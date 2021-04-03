@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.lamport.tla.toolbox.tool.tlc.modelCheck">
-    <stringAttribute key="configurationName" value="ProgramOrder_SnapShot_1617435469245"/>
+    <stringAttribute key="configurationName" value="WellFormed"/>
     <intAttribute key="distributedFPSetCount" value="0"/>
     <stringAttribute key="distributedNetworkInterface" value="192.168.3.7"/>
     <intAttribute key="distributedNodesCount" value="1"/>
     <stringAttribute key="distributedTLC" value="off"/>
-    <intAttribute key="fpIndex" value="128"/>
+    <intAttribute key="fpIndex" value="36"/>
     <intAttribute key="maxHeapSize" value="50"/>
     <stringAttribute key="modelBehaviorInit" value=""/>
     <stringAttribute key="modelBehaviorNext" value=""/>
@@ -16,15 +16,20 @@
     <booleanAttribute key="modelCorrectnessCheckDeadlock" value="true"/>
     <listAttribute key="modelCorrectnessInvariants"/>
     <listAttribute key="modelCorrectnessProperties"/>
-    <intAttribute key="modelEditorOpenTabs" value="8"/>
-    <stringAttribute key="modelExpressionEval" value="ProgramOrder({&lt;&lt;&gt;&gt;})"/>
+    <intAttribute key="modelEditorOpenTabs" value="10"/>
+    <stringAttribute key="modelExpressionEval" value="WellFormedTheorem"/>
+    <stringAttribute key="modelParameterActionConstraint" value=""/>
     <listAttribute key="modelParameterConstants">
         <listEntry value="Keys;;{k1, k2};1;1"/>
         <listEntry value="Vals;;{v1, v2};1;1"/>
     </listAttribute>
+    <stringAttribute key="modelParameterContraint" value=""/>
     <listAttribute key="modelParameterDefinitions">
         <listEntry value="InitVal;;InitVal;1;0"/>
+        <listEntry value="Nat;;1 .. 10;0;0"/>
     </listAttribute>
+    <stringAttribute key="modelParameterModelValues" value="{}"/>
+    <stringAttribute key="modelParameterNewDefinitions" value=""/>
     <intAttribute key="modelVersion" value="20191005"/>
     <intAttribute key="numberOfWorkers" value="4"/>
     <stringAttribute key="result.mail.address" value=""/>

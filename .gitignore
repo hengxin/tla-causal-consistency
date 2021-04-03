@@ -274,3 +274,14 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+**/tla/*.toolbox/*aux
+**/tla/*.toolbox/*.log
+**/tla/*.toolbox/*.pdf
+**/tla/*.toolbox/*.tex
+**/tla/*.toolbox/*___model_SnapShot*.launch
+**/tla/*.toolbox/**/*.tla
+**/tla/*.toolbox/**/*.out
+**/tla/*.pdf
+**/tla/*.old
+**/*~

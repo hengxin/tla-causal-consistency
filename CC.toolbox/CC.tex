@@ -941,7 +941,6 @@
 \setboolean{shading}{true}
  \@x{\makebox[0pt][r]{\scriptsize 1\hspace{1em}}}\moduleLeftDash\@xx{
  {\MODULE} CC}\moduleRightDash\@xx{}%
-\@pvspace{8.0pt}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 TLA+ specification of Causal Consistency variants,
@@ -949,38 +948,79 @@ TLA+ specification of Causal Consistency variants,
 \end{cpar}%
 \vshade{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- See the paper ``On Verifying Causal Consistency``
+ See the paper ``On Verifying Causal Consistency''
  (\ensuremath{POPL\.{'}}2017).
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 10\hspace{1em}} {\EXTENDS} TLC ,\, Sequences
- ,\, FiniteSets ,\, FunctionUtils}%
+ \@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}} {\EXTENDS} TLC ,\, Naturals
+ ,\, Sequences ,\, FiniteSets ,\, FiniteSetsExt ,\, FunctionUtils}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 12\hspace{1em}} {\CONSTANTS} Keys ,\, Vals}%
- \@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}} InitVal \.{\defeq} {\CHOOSE}
+\@x{\makebox[0pt][r]{\scriptsize 10\hspace{1em}} {\CONSTANTS} Keys ,\, Vals}%
+ \@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}} InitVal \.{\defeq} {\CHOOSE}
  v \.{:} v \.{\notin} ( Keys \.{\cup} Vals )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}} Operation \.{\defeq} [ op
- \.{:} \{\@w{read} ,\,\@w{write} \} ,\, key \.{:} Keys ,\, val \.{:} Vals ]}%
- \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}} R ( k ,\, v )\@s{4.14}
- \.{\defeq} [ op \.{\mapsto}\@w{read} ,\, key \.{\mapsto} k ,\, val
- \.{\mapsto} v ]}%
- \@x{\makebox[0pt][r]{\scriptsize 17\hspace{1em}} W ( k ,\, v ) \.{\defeq} [
- op \.{\mapsto}\@w{write} ,\, key \.{\mapsto} k ,\, val \.{\mapsto} v ]}%
+\@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}}}%
+\@y{\@s{0}%
+ \ensuremath{oid}: unique operation identifier
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 14\hspace{1em}} Operation \.{\defeq} [ op
+ \.{:} \{\@w{read} ,\,\@w{write} \} ,\, key \.{:} Keys ,\, val \.{:} Vals ,\,
+ oid \.{:} Nat ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}} R ( k ,\, v ,\, oid
+ )\@s{4.14} \.{\defeq} [ op \.{\mapsto}\@w{read} ,\, key \.{\mapsto} k ,\,
+ val \.{\mapsto} v ,\, oid \.{\mapsto} oid ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}} W ( k ,\, v ,\, oid )
+ \.{\defeq} [ op \.{\mapsto}\@w{write} ,\, key \.{\mapsto} k ,\, val
+ \.{\mapsto} v ,\, oid \.{\mapsto} oid ]}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}} Session\@s{4.09} \.{\defeq}
+ \@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}} Session\@s{0.01} \.{\defeq}
  Seq ( Operation )\@s{2.77}}%
 \@y{\@s{0}%
  A session \ensuremath{s \.{\in} Session} is a sequence of operations.
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 20\hspace{1em}} History\@s{4.08} \.{\defeq}
- {\SUBSET} Session}%
+ \@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}} History \.{\defeq} {\SUBSET}
+ Session}%
 \@y{\@s{0}%
  A history \ensuremath{h \.{\in} History} is a set of sessions.
 }%
 \@xx{}%
-\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 20\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Utilities.
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} Ops ( h ) \.{\defeq}}%
+\@y{\@s{0}%
+ Return the set of all operations in history \ensuremath{h \.{\in} History}.
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}\@s{8.2} {\UNION} \{ Range (
+ s ) \.{:} s \.{\in} h \}}%
+\@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Well-formedness of history \ensuremath{h \.{\in} History}:
+\end{cpar}%
+\vshade{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+- type invariants
+\end{cpar}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+- uniqueness of oids
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}} WellFormed ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}}}%
+\@y{\@s{2.5}%
+ \ensuremath{\.{\land} h \.{\in} History
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}}\@s{8.2} \.{\land}
+ Cardinality ( Ops ( h ) ) \.{=} Sum ( \{ Len ( s ) \.{:} s \.{\in} h \} )}%
+\@x{\makebox[0pt][r]{\scriptsize 36\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  Test case: The following histories are from Figure 2 of the
@@ -999,88 +1039,89 @@ Naming:
 \ensuremath{\.{-} hasa}: session a of history ha
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}} hasa \.{\defeq} {\langle} W
- (\@w{x} ,\, 1 ) ,\, R (\@w{x} ,\, 2 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}} hasb\@s{0.64} \.{\defeq}
- {\langle} W (\@w{x} ,\, 2 ) ,\, R (\@w{x} ,\, 1 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}} ha \.{\defeq} \{ hasa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}} hasa \.{\defeq} {\langle} W
+ (\@w{x} ,\, 1 ,\, 1 ) ,\, R (\@w{x} ,\, 2 ,\, 2 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} hasb\@s{0.64} \.{\defeq}
+ {\langle} W (\@w{x} ,\, 2 ,\, 3 ) ,\, R (\@w{x} ,\, 1 ,\, 4 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}} ha \.{\defeq} \{ hasa ,\,
  hasb \}}%
 \@y{\@s{0}%
  \ensuremath{CM} but not \ensuremath{CCv
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}} hbsa \.{\defeq} {\langle} W
- (\@w{z} ,\, 1 ) ,\, W (\@w{x} ,\, 1 ) ,\, W (\@w{y} ,\, 1 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}} hbsb\@s{0.64} \.{\defeq}
- {\langle} W (\@w{x} ,\, 2 ) ,\, R (\@w{z} ,\, 0 ) ,\, R (\@w{y} ,\, 1 ) ,\,
- R (\@w{x} ,\, 2 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 36\hspace{1em}} hb \.{\defeq} \{ hbsa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}} hbsa \.{\defeq} {\langle} W
+ (\@w{z} ,\, 1 ,\, 1 ) ,\, W (\@w{x} ,\, 1 ,\, 2 ) ,\, W (\@w{y} ,\, 1 ,\, 3
+ ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}} hbsb\@s{0.64} \.{\defeq}
+ {\langle} W (\@w{x} ,\, 2 ,\, 4 ) ,\, R (\@w{z} ,\, 0 ,\, 5 ) ,\, R (\@w{y}
+ ,\, 1 ,\, 6 ) ,\, R (\@w{x} ,\, 2 ,\, 7 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}} hb \.{\defeq} \{ hbsa ,\,
  hbsb \}}%
 \@y{\@s{0}%
  \ensuremath{CCv} but not \ensuremath{CM
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 38\hspace{1em}} hcsa \.{\defeq} {\langle} W
- (\@w{x} ,\, 1 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 39\hspace{1em}} hcsb\@s{0.64} \.{\defeq}
- {\langle} W (\@w{x} ,\, 2 ) ,\, R (\@w{x} ,\, 1 ) ,\, R (\@w{x} ,\, 2 )
- {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}} hc \.{\defeq} \{ hcsa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}} hcsa \.{\defeq} {\langle} W
+ (\@w{x} ,\, 1 ,\, 1 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}} hcsb\@s{0.64} \.{\defeq}
+ {\langle} W (\@w{x} ,\, 2 ,\, 2 ) ,\, R (\@w{x} ,\, 1 ,\, 3 ) ,\, R (\@w{x}
+ ,\, 2 ,\, 4 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}} hc \.{\defeq} \{ hcsa ,\,
  hcsb \}}%
 \@y{\@s{0}%
  \ensuremath{CC} but not \ensuremath{CM} nor \ensuremath{CCv
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}} hdsa \.{\defeq} {\langle} W
- (\@w{x} ,\, 1 ) ,\, R (\@w{y} ,\, 0 ) ,\, W (\@w{y} ,\, 1 ) ,\, R (\@w{x}
- ,\, 1 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}} hdsb\@s{0.64} \.{\defeq}
- {\langle} W (\@w{x} ,\, 2 ) ,\, R (\@w{y} ,\, 0 ) ,\, W (\@w{y} ,\, 2 ) ,\,
- R (\@w{x} ,\, 2 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}} hd \.{\defeq} \{ hdsa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}} hdsa \.{\defeq} {\langle} W
+ (\@w{x} ,\, 1 ,\, 1 ) ,\, R (\@w{y} ,\, 0 ,\, 2 ) ,\, W (\@w{y} ,\, 1 ,\, 3
+ ) ,\, R (\@w{x} ,\, 1 ,\, 4 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}} hdsb\@s{0.64} \.{\defeq}
+ {\langle} W (\@w{x} ,\, 2 ,\, 5 ) ,\, R (\@w{y} ,\, 0 ,\, 6 ) ,\, W (\@w{y}
+ ,\, 2 ,\, 7 ) ,\, R (\@w{x} ,\, 2 ,\, 8 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}} hd \.{\defeq} \{ hdsa ,\,
  hdsb \}}%
 \@y{\@s{0}%
  \ensuremath{CC}, \ensuremath{CM}, and \ensuremath{CCv} but no \ensuremath{SC
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} hesa \.{\defeq} {\langle} W
- (\@w{x} ,\, 1 ) ,\, W (\@w{y} ,\, 1 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}} hesb\@s{0.64} \.{\defeq}
- {\langle} R (\@w{y} ,\, 1 ) ,\, W (\@w{x} ,\, 2 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}} hesc\@s{0.71} \.{\defeq}
- {\langle} R (\@w{x} ,\, 2 ) ,\, R (\@w{x} ,\, 1 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}} he \.{\defeq} \{ hesa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}} hesa \.{\defeq} {\langle} W
+ (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}} hesb\@s{0.64} \.{\defeq}
+ {\langle} R (\@w{y} ,\, 1 ,\, 3 ) ,\, W (\@w{x} ,\, 2 ,\, 4 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}} hesc\@s{0.71} \.{\defeq}
+ {\langle} R (\@w{x} ,\, 2 ,\, 5 ) ,\, R (\@w{x} ,\, 1 ,\, 6 ) {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}} he \.{\defeq} \{ hesa ,\,
  hesb ,\, hesc \}}%
 \@y{\@s{0}%
  not \ensuremath{CC} (nor \ensuremath{CM}, nor \ensuremath{CCv})
 }%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Program order: a union of total orders among operations in the same session.
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}} ProgramOrder ( h )
+ \@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}} ProgramOrder ( h )
  \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{8.2} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}}\@s{8.2} \.{\LET}
  {\RECURSIVE} SessionProgramOrder ( \_ )}%
- \@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}\@s{28.59}
+ \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}}\@s{28.59}
  SessionProgramOrder ( s ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{36.79} {\IF} s \.{=}
+ \@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}}\@s{36.79} {\IF} s \.{=}
  {\langle} {\rangle} \.{\THEN} \{ \}}%
- \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{36.79} \.{\ELSE} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}}\@s{36.79} \.{\ELSE} \.{\LET}
  sh\@s{2.49} \.{\defeq} Head ( s )}%
- \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{92.61} st \.{\defeq} Tail
+ \@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}\@s{92.61} st \.{\defeq} Tail
  ( s )}%
- \@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}\@s{68.11} \.{\IN}\@s{4.09}
+ \@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}}\@s{68.11} \.{\IN}\@s{4.09}
  \{ {\langle} sh ,\, t {\rangle} \.{:} t \.{\in} Range ( st ) \} \.{\cup}
  SessionProgramOrder ( st )}%
- \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}}\@s{8.2} \.{\IN} {\UNION} \{
+ \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}}\@s{8.2} \.{\IN} {\UNION} \{
  SessionProgramOrder ( s ) \.{:} s \.{\in} h \}}%
 \@pvspace{8.0pt}%
 \begin{lcom}{5.0}%
@@ -1088,51 +1129,33 @@ Program order: a union of total orders among operations in the same session.
 Test case: \ensuremath{TODO}: \ensuremath{Cardinality} testing
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}}}%
 \@y{%
  \ensuremath{CardOfProgramOrderOf(h) \.{\defeq}
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}}}%
 \@y{%
  \ensuremath{{\THEOREM}} \ensuremath{CardOfProgramOrderTheorem \.{\defeq}
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}}}%
 \@y{\@s{7.5}%
  \ensuremath{\A\, h \.{\in} \{ha,\, hb,\, hc,\, hd,\, he\}}:
 }%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}}}%
 \@y{\@s{12.5}%
  \ensuremath{Cardinality(ProgramOrder(h)) \.{=} CardOfProgramOrderOf(h)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Sequential semantics of read-write registers.
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}}\midbar\@xx{}%
-\begin{lcom}{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-Utilities.
-\end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{FIXME}: there may be multiple same operations in one and more
- sessions.
-\end{cpar}%
-\end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 80\hspace{1em}} Ops ( h ) \.{\defeq}}%
-\@y{\@s{0}%
- Return the set of all operations in history \ensuremath{h \.{\in} History}.
-}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}}\@s{8.2} {\UNION} \{ Range (
- s ) \.{:} s \.{\in} h \}}%
-\@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  Specification of Causal Consistency: \ensuremath{CC}, \ensuremath{CCv}, and
@@ -1140,20 +1163,20 @@ Utilities.
 }%
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}} CCv ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 93\hspace{1em}} CCv ( h ) \.{\defeq}}%
 \@y{\@s{0}%
  Check whether \ensuremath{h \.{\in} History} satisfies \ensuremath{CCv}
  (Causal Convergence)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}}\@s{8.2} \.{\land} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 94\hspace{1em}}\@s{8.2} \.{\land} \.{\LET}
  ops \.{\defeq} Ops ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}}\@s{19.31} \.{\IN} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 95\hspace{1em}}\@s{19.31} \.{\IN} \.{\land}
  \E\, co \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}}\@s{59.02} \E\, arb \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 96\hspace{1em}}\@s{59.02} \E\, arb \.{\in}
  {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}}\@s{67.22} \A\, op \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 97\hspace{1em}}\@s{67.22} \A\, op \.{\in}
  ops \.{:} {\TRUE}}%
-\@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}}\@s{8.2} \.{\land} {\FALSE}}%
-\@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 98\hspace{1em}}\@s{8.2} \.{\land} {\FALSE}}%
+\@x{\makebox[0pt][r]{\scriptsize 99\hspace{1em}}}\bottombar\@xx{}%
 \end{document}

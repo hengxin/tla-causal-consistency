@@ -92,12 +92,8 @@ he == {hesa, hesb, hesc} \* not CC (nor CM, nor CCv)
 THEOREM WellFormedTheorem ==
   \A h \in {ha, hb, hc, hd, he}: WellFormed(h)
 
-CardOfProgramOrderOfHistory(h) ==
-  LET CardOfProgramOrderOfSession(s) ==
-    IF Len(s) <= 1 THEN 0 ELSE Sum(1 .. Len(s) - 1)
-  IN  ReduceSet(LAMBDA s, x: CardOfProgramOrderOfSession(s) + x, h, 0)
-
-THEOREM ProgramOrderCardinalityTheorem == 
-  \A h \in {ha, hb, hc, hd, he}:
-    Cardinality(ProgramOrder(h)) = CardOfProgramOrderOfHistory(h)
+\*CardOfProgramOrderOf(h) ==
+\*THEOREM CardOfProgramOrderTheorem ==
+\*    \A h \in {ha, hb, hc, hd, he}:
+\*      Cardinality(ProgramOrder(h)) = CardOfProgramOrderOf(h)
 =====================================================

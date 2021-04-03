@@ -21,9 +21,19 @@
 			<locationURI>PARENT-1-PROJECT_LOC/CC.tla</locationURI>
 		</link>
 		<link>
+			<name>FiniteSetsExt.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/FiniteSetsExt.tla</location>
+		</link>
+		<link>
 			<name>FunctionUtils.tla</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/FunctionUtils.tla</locationURI>
+		</link>
+		<link>
+			<name>Functions.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/Functions.tla</location>
 		</link>
 	</linkedResources>
 </projectDescription>
