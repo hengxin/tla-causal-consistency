@@ -26,14 +26,19 @@
 			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/FiniteSetsExt.tla</location>
 		</link>
 		<link>
-			<name>FunctionUtils.tla</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/FunctionUtils.tla</locationURI>
-		</link>
-		<link>
 			<name>Functions.tla</name>
 			<type>1</type>
 			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/Functions.tla</location>
+		</link>
+		<link>
+			<name>Relation.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/Relation.tla</location>
+		</link>
+		<link>
+			<name>RelationUtils.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/RelationUtils.tla</location>
 		</link>
 	</linkedResources>
 </projectDescription>

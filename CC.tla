@@ -5,7 +5,7 @@
 
   See the paper ``On Verifying Causal Consistency" (POPL'2017).
 *) 
-EXTENDS Naturals, Sequences, Functions, FiniteSets, FiniteSetsExt, TLC
+EXTENDS Naturals, Sequences, Functions, FiniteSets, FiniteSetsExt, RelationUtils, TLC
 
 CONSTANTS Keys, Vals
 InitVal == CHOOSE v : v \notin (Keys \cup Vals)
@@ -54,10 +54,15 @@ ProgramOrder(h) ==
   Specification of Causal Consistency: CC, CCv, and CM
 *)
 CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
+  /\ WellFormed(h)
   /\ LET ops == Ops(h)
      IN  /\ \E co \in SUBSET (ops \times ops):
               \E arb \in SUBSET (ops \times ops):
-                \A op \in ops: TRUE
+                /\ IsStrictPartialOrder(co, ops)
+                /\ IsStrictTotalOrder(arb, ops)
+                /\ Respect(co, ProgramOrder(h)) \* AxCausal
+                /\ Respect(arb, co)             \* AxArb
+                /\ \A op \in ops: TRUE          \* TODO: AxCausalArb
   /\ FALSE
 -------------------------------------------------
 (*
@@ -103,3 +108,6 @@ THEOREM ProgramOrderCardinalityTheorem ==
   \A h \in {ha, hb, hc, hd, he}:
     Cardinality(ProgramOrder(h)) = CardOfProgramOrderOfHistory(h)
 =====================================================
+\* Modification History
+\* Last modified Sat Apr 03 22:21:24 CST 2021 by hengxin
+\* Created Tue Apr 01 10:24:07 CST 2021 by hengxin
