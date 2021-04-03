@@ -1,4 +1,4 @@
--------------------- MODULE CC -------------------
+---- MODULE CC ----
 
 (*
   TLA+ specification of Causal Consistency variants,
@@ -20,7 +20,7 @@ Session == Seq(Operation) \* A session s \in Session is a sequence of operations
 History == SUBSET Session \* A history h \in History is a set of sessions.
 
 (*
-  Test case: The following histories are from Figure 2 of the POPL'2017 paper.
+  The following histories are from Figure 2 of the POPL'2017 paper.
   
   Naming:
 
@@ -59,34 +59,16 @@ ProgramOrder(h) ==
                  st == Tail(s)
              IN  {<<sh, t>> : t \in Range(st)} \cup SessionProgramOrder(st)
   IN UNION {SessionProgramOrder(s) : s \in h}
+-------------------------------------------------
+\* Sequential semantics of read-write registers
 
-(*
-  Test case: TODO: Cardinality testing
-*)
-\*CardOfProgramOrderOf(h) ==
-\*THEOREM CardOfProgramOrderTheorem ==
-\*    \A h \in {ha, hb, hc, hd, he}:
-\*      Cardinality(ProgramOrder(h)) = CardOfProgramOrderOf(h)
--------------------------------------------------
-(*
-  Sequential semantics of read-write registers.
-*)
--------------------------------------------------
-(*
-  Utilities.
-  
-  FIXME: there may be multiple same operations in one and more sessions.
-*)
-Ops(h) == \* Return the set of all operations in history h \in History.
+Ops(h) == \* Get all operations of history h \in History
   UNION {Range(s) : s \in h}
--------------------------------------------------
-(*
-  Specification of Causal Consistency: CC, CCv, and CM
-*)
+
 CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
   /\ LET ops == Ops(h)
      IN  /\ \E co \in SUBSET (ops \times ops):
               \E arb \in SUBSET (ops \times ops):
                 \A op \in ops: TRUE
   /\ FALSE
-=====================================================
+====

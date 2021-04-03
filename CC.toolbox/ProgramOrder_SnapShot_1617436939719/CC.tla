@@ -74,11 +74,11 @@ ProgramOrder(h) ==
 -------------------------------------------------
 (*
   Utilities.
-  
-  FIXME: there may be multiple same operations in one and more sessions.
 *)
 Ops(h) == \* Return the set of all operations in history h \in History.
   UNION {Range(s) : s \in h}
+
+
 -------------------------------------------------
 (*
   Specification of Causal Consistency: CC, CCv, and CM
