@@ -12,12 +12,10 @@ Basic definitions.
 Dom(R) == {a : <<a, b>> \in R} \* Domain of R
 Ran(R) == {b : <<a, b>> \in R} \* Range of R
 Support(R) == Dom(R) \cup Ran(R) \* Support of R
--------------------------------------------------
 (*
 Basic operations.
 *)
 Image(R, a) == {b \in Ran(R): <<a, b>> \in R}
-LeftRestriction(R, a) == {<<a, b>> : b \in Image(R, a)}
 
 InverseRelation(R) == {<<b, a>> : <<a, b>> \in R}
 InverseImage(R, b) == {a \in Dom(R) : <<a, b>> \in R}
@@ -29,8 +27,8 @@ R ** T == \* Composition of R and T
         ST == Support(T) 
     IN  {<<r, t>> \in SR \X ST: \E s \in SR \cap ST: (<<r, s>> \in R) /\ (<<s, t>> \in T)}
 
-GT(R, a) == {b \in Ran(R): <<a, b>> \in R} \* == Image(R, a)
-LT(R, b) == {a \in Dom(R): <<a, b>> \in R} \* == InverseImage(R, b)
+GT(R, a) == {b \in Ran(R): <<a, b>> \in R}
+LT(R, b) == {a \in Dom(R): <<a, b>> \in R}
 (*
 The following definition is from 
 https://github.com/jameshfisher/tlaplus/blob/master/examples/TransitiveClosure/TransitiveClosure.tla
@@ -49,13 +47,12 @@ TC(R) == \* Transitive closure of R
 (*
 Example: SeqToRel(<<1, 2, 3>>) = {<<1, 2>>, <<1, 3>>, <<2, 3>>}
 *)
-RECURSIVE Seq2Rel(_)
-Seq2Rel(s) == \* Transform a (total order) sequence s to a relation
+RECURSIVE SeqToRel(_)
+SeqToRel(s) == \* Transform a (total order) sequence s to a relation
     IF s = <<>> THEN {}
     ELSE LET h == Head(s)
              t == Tail(s)
-         IN  {<<h, r>> : r \in Range(t)} \cup Seq2Rel(t)
--------------------------------------------------
+         IN  {<<h, r>> : r \in Range(t)} \cup SeqToRel(t)
 (*
 Basic properties.
 *)
@@ -90,42 +87,7 @@ IsStrictTotalOrder(R, S) ==
     /\ IsTotal(R, S)
 
 Respect(R, T) == T \subseteq R \* Does R respect T?
--------------------------------------------------
-(*
-Special elements in a relation
-*)
-Minimal(R, S) == \* the set of minimal elements in relation R on the set S
-    {m \in S : ~\E a \in Dom(R): <<a, m>> \in R}
-Maximal(R, S) == \* the set of maximal elements in relation R on the set S
-    {m \in S : ~\E b \in Ran(R): <<m, b>> \in R}
--------------------------------------------------
-AnyLinearExtension(R, S) == \* return an arbitrary linear extension of R on the set S
-    LET RECURSIVE LinearExtensionUtil(_, _)
-        LinearExtensionUtil(rel, set) == \* rel: remaining relation; set: remaining set
-            IF set = {} THEN <<>>
-            ELSE LET m == CHOOSE x \in Minimal(rel, set) : TRUE
-                 IN  <<m>> \o LinearExtensionUtil(rel \ LeftRestriction(R, m), set \ {m})
-    IN LinearExtensionUtil(R, S)
-
-AllLinearExtensions(R, S) == \* return all possible linear extensions of R on the set S
-    LET RECURSIVE LinearExtensionsUtil(_, _)
-        LinearExtensionsUtil(rel, set) ==
-            IF set = {} THEN <<>>
-            ELSE {<<m>> \o l : m \in Minimal(rel, set), \* for each minimal element
-                    l \in LinearExtensionsUtil(rel \LeftRestriction(R, m), set \ {m})}
-    IN  LinearExtensionsUtil(R, S)
-
-LinearExtensions(R, S) == \* return the set of all possible linear extensions of R on the set S
-    {l \in Seq(S) : Respect(Seq2Rel(l), R)} \* FIXME: Seq(s) is not enumerable
--------------------------------------------------
-(*
-Test cases
-*)
-Rel == \* example from https://en.wikipedia.org/wiki/Topological_sorting
-    {<<3, 8>>, <<3, 10>>, <<5, 11>>, <<7, 8>>, <<7, 11>>,
-     <<8, 9>>, <<11, 2>>, <<11, 9>>, <<11, 10>>}
-Set == {2, 3, 5, 7, 8, 9, 10, 11}
 =============================================================================
-\* Modification Historjy
-\* Last modified Tue Apr 06 15:09:55 CST 2021 by hengxin
+\* Modification History
+\* Last modified Mon Apr 05 15:21:47 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin

@@ -948,7 +948,7 @@ TLA+ specification of Causal Consistency variants,
 \end{cpar}%
 \vshade{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- See the paper ``On Verifying Causal Consistency''
+ See the paper ``On Verifying Causal Consistency``
  (\ensuremath{POPL}\mbox{'}2017).
 \end{cpar}%
 \end{lcom}%
@@ -1029,29 +1029,14 @@ Program order: a union of total orders among operations in the same session.
 \end{cpar}%
 \end{lcom}%
  \@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}} ProgramOrder ( h )
- \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}}\@s{8.2} \.{\LET}
- {\RECURSIVE} SessionProgramOrder ( \_ )}%
- \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}}\@s{28.59}
- SessionProgramOrder ( s ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}}\@s{36.79} {\IF} s \.{=}
- {\langle} {\rangle} \.{\THEN} \{ \}}%
- \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}}\@s{36.79} \.{\ELSE} \.{\LET}
- sh\@s{2.49} \.{\defeq} Head ( s )}%
- \@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}\@s{92.61} st \.{\defeq} Tail
- ( s )}%
- \@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}}\@s{68.11} \.{\IN}\@s{4.09}
- \{ {\langle} sh ,\, t {\rangle} \.{:} t \.{\in} Range ( st ) \} \.{\cup}
- SessionProgramOrder ( st )}%
- \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{8.2} \.{\IN} {\UNION} \{
- SessionProgramOrder ( s ) \.{:} s \.{\in} h \}}%
-\@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}}\midbar\@xx{}%
+ \.{\defeq} {\UNION} \{ Seq2Rel ( s ) \.{:} s \.{\in} h \}}%
+\@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Sequential semantics of read-write registers.
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  Specification of Causal Consistency: \ensuremath{CC}, \ensuremath{CCv}, and
@@ -1059,44 +1044,44 @@ Sequential semantics of read-write registers.
 }%
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}} CCv ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}} CCv ( h ) \.{\defeq}}%
 \@y{\@s{0}%
  Check whether \ensuremath{h \.{\in} History} satisfies \ensuremath{CCv}
  (Causal Convergence)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{8.2} \.{\land} WellFormed
+ \@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}\@s{8.2} \.{\land} WellFormed
  ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{8.2} \.{\land} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}}\@s{8.2} \.{\land} \.{\LET}
  ops \.{\defeq} Ops ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{19.31} \.{\IN} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}}\@s{19.31} \.{\IN} \.{\land}
  \E\, co \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}\@s{59.02} \E\, arb \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{59.02} \E\, arb \.{\in}
  {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}}\@s{67.22} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{67.22} \.{\land}
  IsStrictPartialOrder ( co ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{67.22} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{67.22} \.{\land}
  IsStrictTotalOrder ( arb ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{67.22} \.{\land} Respect
+ \@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}\@s{67.22} \.{\land} Respect
  ( co ,\, ProgramOrder ( h ) )}%
 \@y{\@s{0}%
  \ensuremath{AxCausal
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}}\@s{67.22} \.{\land} Respect
+ \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{67.22} \.{\land} Respect
  ( arb ,\, co )\@s{62.15}}%
 \@y{\@s{0}%
  \ensuremath{AxArb
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}\@s{67.22} \.{\land} \A\, op
+ \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{67.22} \.{\land} \A\, op
  \.{\in} ops \.{:} {\TRUE}\@s{55.17}}%
 \@y{\@s{0}%
  \ensuremath{TODO}: \ensuremath{AxCausalArb
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}\@s{8.2} \.{\land} {\FALSE}}%
-\@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{8.2} \.{\land} {\FALSE}}%
+\@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  Test case: The following histories are from Figure 2 of the
@@ -1119,90 +1104,90 @@ Naming Conventions:
 \ensuremath{TODO}: to automatically generate histories
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 78\hspace{1em}} hasa \.{\defeq} {\langle} W
+ \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}} hasa \.{\defeq} {\langle} W
  (\@w{x} ,\, 1 ,\, 1 ) ,\, R (\@w{x} ,\, 2 ,\, 2 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 79\hspace{1em}} hasb\@s{0.64} \.{\defeq}
+ \@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}} hasb\@s{0.64} \.{\defeq}
  {\langle} W (\@w{x} ,\, 2 ,\, 3 ) ,\, R (\@w{x} ,\, 1 ,\, 4 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 80\hspace{1em}} ha \.{\defeq} \{ hasa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}} ha \.{\defeq} \{ hasa ,\,
  hasb \}}%
 \@y{\@s{0}%
  \ensuremath{CM} but not \ensuremath{CCv
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}} hbsa \.{\defeq} {\langle} W
+ \@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}} hbsa \.{\defeq} {\langle} W
  (\@w{z} ,\, 1 ,\, 1 ) ,\, W (\@w{x} ,\, 1 ,\, 2 ) ,\, W (\@w{y} ,\, 1 ,\, 3
  ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}} hbsb\@s{0.64} \.{\defeq}
+ \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}} hbsb\@s{0.64} \.{\defeq}
  {\langle} W (\@w{x} ,\, 2 ,\, 4 ) ,\, R (\@w{z} ,\, 0 ,\, 5 ) ,\, R (\@w{y}
  ,\, 1 ,\, 6 ) ,\, R (\@w{x} ,\, 2 ,\, 7 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}} hb \.{\defeq} \{ hbsa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}} hb \.{\defeq} \{ hbsa ,\,
  hbsb \}}%
 \@y{\@s{0}%
  \ensuremath{CCv} but not \ensuremath{CM
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}} hcsa \.{\defeq} {\langle} W
+ \@x{\makebox[0pt][r]{\scriptsize 79\hspace{1em}} hcsa \.{\defeq} {\langle} W
  (\@w{x} ,\, 1 ,\, 1 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}} hcsb\@s{0.64} \.{\defeq}
+ \@x{\makebox[0pt][r]{\scriptsize 80\hspace{1em}} hcsb\@s{0.64} \.{\defeq}
  {\langle} W (\@w{x} ,\, 2 ,\, 2 ) ,\, R (\@w{x} ,\, 1 ,\, 3 ) ,\, R (\@w{x}
  ,\, 2 ,\, 4 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}} hc \.{\defeq} \{ hcsa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}} hc \.{\defeq} \{ hcsa ,\,
  hcsb \}}%
 \@y{\@s{0}%
  \ensuremath{CC} but not \ensuremath{CM} nor \ensuremath{CCv
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}} hdsa \.{\defeq} {\langle} W
+ \@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}} hdsa \.{\defeq} {\langle} W
  (\@w{x} ,\, 1 ,\, 1 ) ,\, R (\@w{y} ,\, 0 ,\, 2 ) ,\, W (\@w{y} ,\, 1 ,\, 3
  ) ,\, R (\@w{x} ,\, 1 ,\, 4 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}} hdsb\@s{0.64} \.{\defeq}
+ \@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}} hdsb\@s{0.64} \.{\defeq}
  {\langle} W (\@w{x} ,\, 2 ,\, 5 ) ,\, R (\@w{y} ,\, 0 ,\, 6 ) ,\, W (\@w{y}
  ,\, 2 ,\, 7 ) ,\, R (\@w{x} ,\, 2 ,\, 8 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}} hd \.{\defeq} \{ hdsa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}} hd \.{\defeq} \{ hdsa ,\,
  hdsb \}}%
 \@y{\@s{0}%
  \ensuremath{CC}, \ensuremath{CM}, and \ensuremath{CCv} but no \ensuremath{SC
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 94\hspace{1em}} hesa \.{\defeq} {\langle} W
+ \@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}} hesa \.{\defeq} {\langle} W
  (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 95\hspace{1em}} hesb\@s{0.64} \.{\defeq}
+ \@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}} hesb\@s{0.64} \.{\defeq}
  {\langle} R (\@w{y} ,\, 1 ,\, 3 ) ,\, W (\@w{x} ,\, 2 ,\, 4 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 96\hspace{1em}} hesc\@s{0.71} \.{\defeq}
+ \@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}} hesc\@s{0.71} \.{\defeq}
  {\langle} R (\@w{x} ,\, 2 ,\, 5 ) ,\, R (\@w{x} ,\, 1 ,\, 6 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 97\hspace{1em}} he \.{\defeq} \{ hesa ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}} he \.{\defeq} \{ hesa ,\,
  hesb ,\, hesc \}}%
 \@y{\@s{0}%
  not \ensuremath{CC} (nor \ensuremath{CM}, nor \ensuremath{CCv})
 }%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 99\hspace{1em}} {\THEOREM} WellFormedTheorem
+ \@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}} {\THEOREM} WellFormedTheorem
  \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}}\@s{8.2} \A\, h \.{\in} \{
- ha ,\, hb ,\, hc ,\, hd ,\, he \} \.{:} WellFormed ( h )}%
+ \@x{\makebox[0pt][r]{\scriptsize 93\hspace{1em}}\@s{8.2} \A\, h \.{\in} \{ ha
+ ,\, hb ,\, hc ,\, hd ,\, he \} \.{:} WellFormed ( h )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}} CardOfProgramOrderOfHistory
+ \@x{\makebox[0pt][r]{\scriptsize 95\hspace{1em}} CardOfProgramOrderOfHistory
  ( h ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}}\@s{8.2} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 96\hspace{1em}}\@s{8.2} \.{\LET}
  CardOfProgramOrderOfSession ( s ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{16.4} {\IF} Len ( s )
+ \@x{\makebox[0pt][r]{\scriptsize 97\hspace{1em}}\@s{16.4} {\IF} Len ( s )
  \.{\leq} 1 \.{\THEN} 0 \.{\ELSE} Sum ( 1 \.{\dotdot} Len ( s ) \.{-} 1 )}%
- \@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}\@s{8.2} \.{\IN}\@s{4.1}
+ \@x{\makebox[0pt][r]{\scriptsize 98\hspace{1em}}\@s{8.2} \.{\IN}\@s{4.1}
  ReduceSet ( {\LAMBDA} s ,\, x \.{:} CardOfProgramOrderOfSession ( s ) \.{+}
  x ,\, h ,\, 0 )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 107\hspace{1em}} {\THEOREM}
+ \@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}} {\THEOREM}
  ProgramOrderCardinalityTheorem \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}}\@s{8.2} \A\, h \.{\in} \{
+ \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{8.2} \A\, h \.{\in} \{
  ha ,\, hb ,\, hc ,\, hd ,\, he \} \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}}\@s{16.4} Cardinality (
+ \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}\@s{16.4} Cardinality (
  ProgramOrder ( h ) ) \.{=} CardOfProgramOrderOfHistory ( h )}%
-\@x{\makebox[0pt][r]{\scriptsize 110\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1210,8 +1195,8 @@ Naming Conventions:
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified Sat \ensuremath{Apr} 03
- 22:21:24 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Mon}
+ \ensuremath{Apr} 05 15:27:39 \ensuremath{CST} 2021 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%

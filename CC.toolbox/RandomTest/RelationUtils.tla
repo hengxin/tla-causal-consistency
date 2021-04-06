@@ -99,24 +99,16 @@ Minimal(R, S) == \* the set of minimal elements in relation R on the set S
 Maximal(R, S) == \* the set of maximal elements in relation R on the set S
     {m \in S : ~\E b \in Ran(R): <<m, b>> \in R}
 -------------------------------------------------
+LinearExtensions(R, S) == \* the set of linear extensions of R on the set S
+    {l \in Seq(S) : Respect(Seq2Rel(l), R)}
+
 AnyLinearExtension(R, S) == \* return an arbitrary linear extension of R on the set S
     LET RECURSIVE LinearExtensionUtil(_, _)
-        LinearExtensionUtil(rel, set) == \* rel: remaining relation; set: remaining set
+        LinearExtensionUtil(rel, set) ==
             IF set = {} THEN <<>>
             ELSE LET m == CHOOSE x \in Minimal(rel, set) : TRUE
                  IN  <<m>> \o LinearExtensionUtil(rel \ LeftRestriction(R, m), set \ {m})
     IN LinearExtensionUtil(R, S)
-
-AllLinearExtensions(R, S) == \* return all possible linear extensions of R on the set S
-    LET RECURSIVE LinearExtensionsUtil(_, _)
-        LinearExtensionsUtil(rel, set) ==
-            IF set = {} THEN <<>>
-            ELSE {<<m>> \o l : m \in Minimal(rel, set), \* for each minimal element
-                    l \in LinearExtensionsUtil(rel \LeftRestriction(R, m), set \ {m})}
-    IN  LinearExtensionsUtil(R, S)
-
-LinearExtensions(R, S) == \* return the set of all possible linear extensions of R on the set S
-    {l \in Seq(S) : Respect(Seq2Rel(l), R)} \* FIXME: Seq(s) is not enumerable
 -------------------------------------------------
 (*
 Test cases
@@ -126,6 +118,6 @@ Rel == \* example from https://en.wikipedia.org/wiki/Topological_sorting
      <<8, 9>>, <<11, 2>>, <<11, 9>>, <<11, 10>>}
 Set == {2, 3, 5, 7, 8, 9, 10, 11}
 =============================================================================
-\* Modification Historjy
-\* Last modified Tue Apr 06 15:09:55 CST 2021 by hengxin
+\* Modification History
+\* Last modified Tue Apr 06 15:03:43 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin

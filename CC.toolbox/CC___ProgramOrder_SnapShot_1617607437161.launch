@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.lamport.tla.toolbox.tool.tlc.modelCheck">
-    <stringAttribute key="configurationName" value="WellFormed"/>
+    <stringAttribute key="configurationName" value="ProgramOrder_SnapShot_1617607437161"/>
     <intAttribute key="distributedFPSetCount" value="0"/>
     <stringAttribute key="distributedNetworkInterface" value="192.168.3.7"/>
     <intAttribute key="distributedNodesCount" value="1"/>
     <stringAttribute key="distributedTLC" value="off"/>
-    <intAttribute key="fpIndex" value="62"/>
+    <intAttribute key="fpIndex" value="78"/>
     <intAttribute key="maxHeapSize" value="50"/>
     <stringAttribute key="modelBehaviorInit" value=""/>
     <stringAttribute key="modelBehaviorNext" value=""/>
@@ -17,7 +17,7 @@
     <listAttribute key="modelCorrectnessInvariants"/>
     <listAttribute key="modelCorrectnessProperties"/>
     <intAttribute key="modelEditorOpenTabs" value="10"/>
-    <stringAttribute key="modelExpressionEval" value="WellFormedTheorem"/>
+    <stringAttribute key="modelExpressionEval" value="ProgramOrderCardinalityTheorem"/>
     <stringAttribute key="modelParameterActionConstraint" value=""/>
     <listAttribute key="modelParameterConstants">
         <listEntry value="Keys;;{k1, k2};1;1"/>

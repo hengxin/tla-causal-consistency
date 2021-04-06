@@ -5,7 +5,7 @@
 
   See the paper ``On Verifying Causal Consistency" (POPL'2017).
 *) 
-EXTENDS Naturals, Sequences, Functions, FiniteSets, FiniteSetsExt, TLC
+EXTENDS Naturals, Sequences, Functions, FiniteSets, FiniteSetsExt, RelationUtils, TLC
 
 CONSTANTS Keys, Vals
 InitVal == CHOOSE v : v \notin (Keys \cup Vals)
@@ -27,7 +27,7 @@ Ops(h) == \* Return the set of all operations in history h \in History.
 (*
   Well-formedness of history h \in History:
   
-  - type invariants
+  - TODO: type invariants
   - uniqueness of oids
 *)
 WellFormed(h) ==
@@ -37,14 +37,8 @@ WellFormed(h) ==
 (* 
   Program order: a union of total orders among operations in the same session.
 *)
-ProgramOrder(h) ==
-  LET RECURSIVE SessionProgramOrder(_)
-      SessionProgramOrder(s) ==
-        IF s = <<>> THEN {}
-        ELSE LET sh == Head(s)
-                 st == Tail(s)
-             IN  {<<sh, t>> : t \in Range(st)} \cup SessionProgramOrder(st)
-  IN UNION {SessionProgramOrder(s) : s \in h}
+ProgramOrder(h) == 
+    UNION {SeqToRel(s) : s \in h}
 -------------------------------------------------
 (*
   Sequential semantics of read-write registers.
@@ -54,19 +48,26 @@ ProgramOrder(h) ==
   Specification of Causal Consistency: CC, CCv, and CM
 *)
 CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
+  /\ WellFormed(h)
   /\ LET ops == Ops(h)
      IN  /\ \E co \in SUBSET (ops \times ops):
               \E arb \in SUBSET (ops \times ops):
-                \A op \in ops: TRUE
+                /\ IsStrictPartialOrder(co, ops)
+                /\ IsStrictTotalOrder(arb, ops)
+                /\ Respect(co, ProgramOrder(h)) \* AxCausal
+                /\ Respect(arb, co)             \* AxArb
+                /\ \A op \in ops: TRUE          \* TODO: AxCausalArb
   /\ FALSE
 -------------------------------------------------
 (*
   Test case: The following histories are from Figure 2 of the POPL'2017 paper.
   
-  Naming:
+  Naming Conventions:
 
   - ha: history of Figure 2(a)
   - hasa: session a of history ha
+  
+  TODO: to automatically generate histories
 *)
 hasa == <<W("x", 1, 1), R("x", 2, 2)>>
 hasb == <<W("x", 2, 3), R("x", 1, 4)>>
@@ -92,8 +93,15 @@ he == {hesa, hesb, hesc} \* not CC (nor CM, nor CCv)
 THEOREM WellFormedTheorem ==
   \A h \in {ha, hb, hc, hd, he}: WellFormed(h)
 
-\*CardOfProgramOrderOf(h) ==
-\*THEOREM CardOfProgramOrderTheorem ==
-\*    \A h \in {ha, hb, hc, hd, he}:
-\*      Cardinality(ProgramOrder(h)) = CardOfProgramOrderOf(h)
+CardOfProgramOrderOfHistory(h) ==
+  LET CardOfProgramOrderOfSession(s) ==
+    IF Len(s) <= 1 THEN 0 ELSE Sum(1 .. Len(s) - 1)
+  IN  ReduceSet(LAMBDA s, x: CardOfProgramOrderOfSession(s) + x, h, 0)
+
+THEOREM ProgramOrderCardinalityTheorem == 
+  \A h \in {ha, hb, hc, hd, he}:
+    Cardinality(ProgramOrder(h)) = CardOfProgramOrderOfHistory(h)
 =====================================================
+\* Modification History
+\* Last modified Mon Apr 05 15:23:40 CST 2021 by hengxin
+\* Created Tue Apr 01 10:24:07 CST 2021 by hengxin
