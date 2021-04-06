@@ -5,7 +5,7 @@
 
   See the paper ``On Verifying Causal Consistency" (POPL'2017).
 *) 
-EXTENDS Naturals, Sequences, Functions, FiniteSets, FiniteSetsExt, RelationUtils, TLC
+EXTENDS Naturals, Sequences, FiniteSets, Functions, FiniteSetsExt, RelationUtils, TLC
 
 CONSTANTS Keys, Vals
 InitVal == CHOOSE v : v \notin (Keys \cup Vals)
@@ -102,5 +102,5 @@ THEOREM ProgramOrderCardinalityTheorem ==
     Cardinality(ProgramOrder(h)) = CardOfProgramOrderOfHistory(h)
 =====================================================
 \* Modification History
-\* Last modified Mon Apr 05 19:55:57 CST 2021 by hengxin
+\* Last modified Tue Apr 06 19:25:42 CST 2021 by hengxin
 \* Created Tue Apr 01 10:24:07 CST 2021 by hengxin

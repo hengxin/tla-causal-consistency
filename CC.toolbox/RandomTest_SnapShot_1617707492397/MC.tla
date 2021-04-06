@@ -12,29 +12,29 @@ v1, v2
 ----
 
 \* MV CONSTANT definitions Keys
-const_161769264175072000 == 
+const_1617707490381112000 == 
 {k1, k2}
 ----
 
 \* MV CONSTANT definitions Vals
-const_161769264175073000 == 
+const_1617707490381113000 == 
 {v1, v2}
 ----
 
 \* SYMMETRY definition
-symm_161769264175074000 == 
-Permutations(const_161769264175072000) \union Permutations(const_161769264175073000)
+symm_1617707490381114000 == 
+Permutations(const_1617707490381112000) \union Permutations(const_1617707490381113000)
 ----
 
 \* Constant expression definition @modelExpressionEval
-const_expr_161769264175076000 == 
-LinearExtensions(Rel, Set)
+const_expr_1617707490381116000 == 
+AllLinearExtensions(rel3, set3)
 ----
 
 \* Constant expression ASSUME statement @modelExpressionEval
-ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_161769264175076000>>)
+ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_1617707490381116000>>)
 ----
 
 =============================================================================
 \* Modification History
-\* Created Tue Apr 06 15:04:01 CST 2021 by hengxin
+\* Created Tue Apr 06 19:11:30 CST 2021 by hengxin

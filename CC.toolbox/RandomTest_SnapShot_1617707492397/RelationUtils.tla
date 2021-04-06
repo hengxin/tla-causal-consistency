@@ -99,25 +99,45 @@ Minimal(R, S) == \* the set of minimal elements in relation R on the set S
 Maximal(R, S) == \* the set of maximal elements in relation R on the set S
     {m \in S : ~\E b \in Ran(R): <<m, b>> \in R}
 -------------------------------------------------
-LinearExtensions(R, S) == \* the set of linear extensions of R on the set S
-    {l \in Seq(S) : Respect(Seq2Rel(l), R)}
-
-LinearExtension(R, S) == \* return some linear extension of R on the set S
-    LET RECURSIVE LinearExtensionUtil(_, _) 
-        LinearExtensionUtil(rel, set) ==
+AnyLinearExtension(R, S) == \* return an arbitrary linear extension of R on the set S
+    LET RECURSIVE LinearExtensionUtil(_, _)
+        LinearExtensionUtil(rel, set) == \* rel: remaining relation; set: remaining set
             IF set = {} THEN <<>>
             ELSE LET m == CHOOSE x \in Minimal(rel, set) : TRUE
                  IN  <<m>> \o LinearExtensionUtil(rel \ LeftRestriction(R, m), set \ {m})
     IN LinearExtensionUtil(R, S)
+
+(*
+See https://groups.google.com/g/tlaplus/c/mtyEmqhlRVg
+*)
+AllLinearExtensions(R, S) == \* return all possible linear extensions of R on the set S
+    LET RECURSIVE LinearExtensionsUtil(_, _)
+        LinearExtensionsUtil(rel, set) ==
+            IF set = {} THEN {<<>>}
+            ELSE LET Extend(m) == {<<m>> \o l : \* extend recursively by the minimal element m
+                        l \in LinearExtensionsUtil(rel \LeftRestriction(R, m), set \ {m})}
+                 IN  UNION {Extend(m) : m \in Minimal(rel, set)} \* for each minimal element
+    IN  LinearExtensionsUtil(R, S)
+
+LinearExtensions(R, S) == \* return the set of all possible linear extensions of R on the set S
+    {l \in Seq(S) : Respect(Seq2Rel(l), R)} \* FIXME: Seq(s) is not enumerable
 -------------------------------------------------
 (*
 Test cases
 *)
-Rel == \* example from https://en.wikipedia.org/wiki/Topological_sorting
+set1 == {2, 3, 5, 7, 8, 9, 10, 11}
+rel1 == \* from https://en.wikipedia.org/wiki/Topological_sorting
     {<<3, 8>>, <<3, 10>>, <<5, 11>>, <<7, 8>>, <<7, 11>>,
      <<8, 9>>, <<11, 2>>, <<11, 9>>, <<11, 10>>}
-Set == {2, 3, 5, 7, 8, 9, 10, 11}
+
+set2 == 0 .. 5
+rel2 == \* from https://www.geeksforgeeks.org/topological-sorting/
+    {<<2, 3>>, <<3, 1>>, <<4, 0>>, <<4, 1>>, <<5, 0>>, <<5, 2>>}
+
+set3 == 1 .. 6
+rel3 == \* from https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort
+    {<<1, 2>>, <<1, 4>>, <<2, 3>>, <<4, 2>>, <<4, 5>>, <<4, 6>>, <<5, 6>>}
 =============================================================================
-\* Modification History
-\* Last modified Tue Apr 06 15:02:36 CST 2021 by hengxin
+\* Modification Historjjy
+\* Last modified Tue Apr 06 15:09:55 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin
