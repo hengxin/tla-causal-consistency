@@ -34,14 +34,29 @@ WellFormed(h) ==
 \*  /\ h \in History
   /\ Cardinality(Ops(h)) = ReduceSet(LAMBDA s, x: Len(s) + x, h, 0)
 -------------------------------------------------
-(* 
-  Program order: a union of total orders among operations in the same session.
-*)
-ProgramOrder(h) == UNION {Seq2Rel(s) : s \in h}
--------------------------------------------------
 (*
   Sequential semantics of read-write registers.
 *)
+-------------------------------------------------
+(*
+  Auxiliary definitions for the axioms used in the definitions of causal consistency
+*)
+\* The program order of h \in History is a union of total orders among operations in the same session
+ProgramOrder(h) == UNION {Seq2Rel(s) : s \in h}
+
+\* The set of operations that preceed o \in Operation in program order in history h \in History
+POPast(h, o) == InverseImage(ProgramOrder(h), o)
+
+\* The set of operations that preceed o \in Operation in causal order co
+CausalPast(co, o) == InverseImage(co, o)
+
+\* The restriction of arbitration arb to the operations in the causal past of operation o \in Operation
+CausalArb(co, arb, o) == arb | CausalPast(co, o)
+-------------------------------------------------
+(*
+  Axioms used in the defintions of causal consistency
+*)
+\*AxCausalArb == 
 -------------------------------------------------
 (*
   Specification of Causal Consistency: CC, CCv, and CM
@@ -49,7 +64,7 @@ ProgramOrder(h) == UNION {Seq2Rel(s) : s \in h}
 CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
   /\ WellFormed(h)
   /\ LET ops == Ops(h)
-     IN  /\ \E co \in SUBSET (ops \X ops):
+     IN  /\ \E co \in SUBSET (ops \X ops): \* FIXME: efficiency!!!
               \E arb \in SUBSET (ops \X ops):
                 /\ IsStrictPartialOrder(co, ops)
                 /\ IsStrictTotalOrder(arb, ops)
@@ -57,50 +72,7 @@ CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
                 /\ Respect(arb, co)             \* AxArb
                 /\ \A op \in ops: TRUE          \* TODO: AxCausalArb
   /\ FALSE
--------------------------------------------------
-(*
-  Test case: The following histories are from Figure 2 of the POPL'2017 paper.
-  
-  Naming Conventions:
-
-  - ha: history of Figure 2(a)
-  - hasa: session a of history ha
-  
-  TODO: to automatically generate histories
-*)
-hasa == <<W("x", 1, 1), R("x", 2, 2)>>
-hasb == <<W("x", 2, 3), R("x", 1, 4)>>
-ha == {hasa, hasb} \* CM but not CCv
-
-hbsa == <<W("z", 1, 1), W("x", 1, 2), W("y", 1, 3)>>
-hbsb == <<W("x", 2, 4), R("z", 0, 5), R("y", 1, 6), R("x", 2, 7)>>
-hb == {hbsa, hbsb} \* CCv but not CM
-
-hcsa == <<W("x", 1, 1)>>
-hcsb == <<W("x", 2, 2), R("x", 1, 3), R("x", 2, 4)>>
-hc == {hcsa, hcsb} \* CC but not CM nor CCv
-
-hdsa == <<W("x", 1, 1), R("y", 0, 2), W("y", 1, 3), R("x", 1, 4)>>
-hdsb == <<W("x", 2, 5), R("y", 0, 6), W("y", 2, 7), R("x", 2, 8)>>
-hd == {hdsa, hdsb} \* CC, CM, and CCv but no SC
-
-hesa == <<W("x", 1, 1), W("y", 1, 2)>>
-hesb == <<R("y", 1, 3), W("x", 2, 4)>>
-hesc == <<R("x", 2, 5), R("x", 1, 6)>>
-he == {hesa, hesb, hesc} \* not CC (nor CM, nor CCv)
-
-THEOREM WellFormedTheorem ==
-  \A h \in {ha, hb, hc, hd, he}: WellFormed(h)
-
-CardOfProgramOrderOfHistory(h) ==
-  LET CardOfProgramOrderOfSession(s) ==
-    IF Len(s) <= 1 THEN 0 ELSE Sum(1 .. Len(s) - 1)
-  IN  ReduceSet(LAMBDA s, x: CardOfProgramOrderOfSession(s) + x, h, 0)
-
-THEOREM ProgramOrderCardinalityTheorem == 
-  \A h \in {ha, hb, hc, hd, he}:
-    Cardinality(ProgramOrder(h)) = CardOfProgramOrderOfHistory(h)
 =====================================================
 \* Modification History
-\* Last modified Tue Apr 06 19:25:42 CST 2021 by hengxin
+\* Last modified Fri Apr 09 12:46:47 CST 2021 by hengxin
 \* Created Tue Apr 01 10:24:07 CST 2021 by hengxin

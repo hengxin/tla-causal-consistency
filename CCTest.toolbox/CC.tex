@@ -948,7 +948,7 @@ TLA+ specification of Causal Consistency variants,
 \end{cpar}%
 \vshade{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- See the paper ``On Verifying Causal Consistency''
+ See the paper ``On Verifying Causal Consistency``
  (\ensuremath{POPL}\mbox{'}2017).
 \end{cpar}%
 \end{lcom}%
@@ -1025,38 +1025,63 @@ Well-formedness of history \ensuremath{h \.{\in} History}:
 \@x{\makebox[0pt][r]{\scriptsize 36\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
-Axioms used in the defintions of causal consistency
-\end{cpar}%
-\end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}} ProgramOrder ( h )
- \.{\defeq}}%
-\@y{\@s{0}%
- a union of total orders among operations in the same session
-}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}}\@s{16.4} {\UNION} \{ Seq2Rel
- ( s ) \.{:} s \.{\in} h \}}%
- \@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}} POPast ( h ,\, o )
- \.{\defeq}}%
-\@y{\@s{0}%
- the set of operations that preceed \ensuremath{o \.{\in} Operation} in
- program order in history \ensuremath{h \.{\in} History
-}}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}}\@s{16.4} InverseImage (
- ProgramOrder ( h ) ,\, o )}%
-\@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}}%
-\@y{%
- \ensuremath{CausalPast(h,\, co,\, o)
-}}%
-\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}}}\midbar\@xx{}%
-\begin{lcom}{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
 Sequential semantics of read-write registers.
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+ Auxiliary definitions for the axioms used in the definitions of causal
+ consistency
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}}}%
+\@y{\@s{0}%
+ The program order of \ensuremath{h \.{\in} History} is a union of total
+ orders among operations in the same session
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}} ProgramOrder ( h )
+ \.{\defeq} {\UNION} \{ Seq2Rel ( s ) \.{:} s \.{\in} h \}}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}}%
+\@y{\@s{0}%
+ The set of operations that preceed \ensuremath{o \.{\in} Operation} in
+ program order in history \ensuremath{h \.{\in} History
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}} POPast ( h ,\, o )
+ \.{\defeq} InverseImage ( ProgramOrder ( h ) ,\, o )}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}}%
+\@y{\@s{0}%
+ The set of operations that preceed \ensuremath{o \.{\in} Operation} in
+ causal order \ensuremath{co
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}} CausalPast ( co ,\, o )
+ \.{\defeq} InverseImage ( co ,\, o )}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}}%
+\@y{\@s{0}%
+ The restriction of arbitration \ensuremath{arb} to the operations in the
+ causal past of operation \ensuremath{o \.{\in} Operation
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}} CausalArb ( co ,\, arb ,\, o
+ ) \.{\defeq} arb \.{\,|\,} CausalPast ( co ,\, o )}%
+\@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Axioms used in the defintions of causal consistency
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}}%
+\@y{%
+ \ensuremath{AxCausalArb \.{\defeq}
+}}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  Specification of Causal Consistency: \ensuremath{CC}, \ensuremath{CCv}, and
@@ -1064,44 +1089,48 @@ Sequential semantics of read-write registers.
 }%
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}} CCv ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}} CCv ( h ) \.{\defeq}}%
 \@y{\@s{0}%
  Check whether \ensuremath{h \.{\in} History} satisfies \ensuremath{CCv}
  (Causal Convergence)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{8.2} \.{\land} WellFormed
+ \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}\@s{8.2} \.{\land} WellFormed
  ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}\@s{8.2} \.{\land} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}\@s{8.2} \.{\land} \.{\LET}
  ops \.{\defeq} Ops ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{19.31} \.{\IN} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}}\@s{19.31} \.{\IN} \.{\land}
  \E\, co \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{59.02} \E\, arb \.{\in}
+\@y{\@s{0}%
+ \ensuremath{FIXME}: efficiency\.{!!}!
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}}\@s{59.02} \E\, arb \.{\in}
  {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{67.22} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}\@s{67.22} \.{\land}
  IsStrictPartialOrder ( co ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}\@s{67.22} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}}\@s{67.22} \.{\land}
  IsStrictTotalOrder ( arb ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}}\@s{67.22} \.{\land} Respect
+ \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}}\@s{67.22} \.{\land} Respect
  ( co ,\, ProgramOrder ( h ) )}%
 \@y{\@s{0}%
  \ensuremath{AxCausal
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{67.22} \.{\land} Respect
+ \@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}}\@s{67.22} \.{\land} Respect
  ( arb ,\, co )\@s{62.15}}%
 \@y{\@s{0}%
  \ensuremath{AxArb
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{67.22} \.{\land} \A\, op
+ \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}}\@s{67.22} \.{\land} \A\, op
  \.{\in} ops \.{:} {\TRUE}\@s{55.17}}%
 \@y{\@s{0}%
  \ensuremath{TODO}: \ensuremath{AxCausalArb
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}}\@s{8.2} \.{\land} {\FALSE}}%
-\@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}\@s{8.2} \.{\land} {\FALSE}}%
+\@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1110,7 +1139,7 @@ Sequential semantics of read-write registers.
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Fri}
- \ensuremath{Apr} 09 11:54:14 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ \ensuremath{Apr} 09 12:46:47 \ensuremath{CST} 2021 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%

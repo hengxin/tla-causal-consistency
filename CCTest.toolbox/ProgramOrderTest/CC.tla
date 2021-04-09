@@ -5,7 +5,7 @@
 
   See the paper ``On Verifying Causal Consistency" (POPL'2017).
 *) 
-EXTENDS Naturals, Sequences, Functions, FiniteSets, FiniteSetsExt, RelationUtils, TLC
+EXTENDS Naturals, Sequences, FiniteSets, Functions, FiniteSetsExt, RelationUtils, TLC
 
 CONSTANTS Keys, Vals
 InitVal == CHOOSE v : v \notin (Keys \cup Vals)
@@ -34,11 +34,15 @@ WellFormed(h) ==
 \*  /\ h \in History
   /\ Cardinality(Ops(h)) = ReduceSet(LAMBDA s, x: Len(s) + x, h, 0)
 -------------------------------------------------
-(* 
-  Program order: a union of total orders among operations in the same session.
+(*
+  Axioms used in the defintions of causal consistency
 *)
-ProgramOrder(h) == 
-    UNION {SeqToRel(s) : s \in h}
+
+ProgramOrder(h) == \* a union of total orders among operations in the same session
+    UNION {Seq2Rel(s) : s \in h}
+POPast(h, o) == \* the set of operations that preceed o \in Operation in program order in history h \in History
+    InverseImage(ProgramOrder(h), o)
+\*CausalPast(h, co, o)
 -------------------------------------------------
 (*
   Sequential semantics of read-write registers.
@@ -50,58 +54,15 @@ ProgramOrder(h) ==
 CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
   /\ WellFormed(h)
   /\ LET ops == Ops(h)
-     IN  /\ \E co \in SUBSET (ops \times ops):
-              \E arb \in SUBSET (ops \times ops):
+     IN  /\ \E co \in SUBSET (ops \X ops):
+              \E arb \in SUBSET (ops \X ops):
                 /\ IsStrictPartialOrder(co, ops)
                 /\ IsStrictTotalOrder(arb, ops)
                 /\ Respect(co, ProgramOrder(h)) \* AxCausal
                 /\ Respect(arb, co)             \* AxArb
                 /\ \A op \in ops: TRUE          \* TODO: AxCausalArb
   /\ FALSE
--------------------------------------------------
-(*
-  Test case: The following histories are from Figure 2 of the POPL'2017 paper.
-  
-  Naming Conventions:
-
-  - ha: history of Figure 2(a)
-  - hasa: session a of history ha
-  
-  TODO: to automatically generate histories
-*)
-hasa == <<W("x", 1, 1), R("x", 2, 2)>>
-hasb == <<W("x", 2, 3), R("x", 1, 4)>>
-ha == {hasa, hasb} \* CM but not CCv
-
-hbsa == <<W("z", 1, 1), W("x", 1, 2), W("y", 1, 3)>>
-hbsb == <<W("x", 2, 4), R("z", 0, 5), R("y", 1, 6), R("x", 2, 7)>>
-hb == {hbsa, hbsb} \* CCv but not CM
-
-hcsa == <<W("x", 1, 1)>>
-hcsb == <<W("x", 2, 2), R("x", 1, 3), R("x", 2, 4)>>
-hc == {hcsa, hcsb} \* CC but not CM nor CCv
-
-hdsa == <<W("x", 1, 1), R("y", 0, 2), W("y", 1, 3), R("x", 1, 4)>>
-hdsb == <<W("x", 2, 5), R("y", 0, 6), W("y", 2, 7), R("x", 2, 8)>>
-hd == {hdsa, hdsb} \* CC, CM, and CCv but no SC
-
-hesa == <<W("x", 1, 1), W("y", 1, 2)>>
-hesb == <<R("y", 1, 3), W("x", 2, 4)>>
-hesc == <<R("x", 2, 5), R("x", 1, 6)>>
-he == {hesa, hesb, hesc} \* not CC (nor CM, nor CCv)
-
-THEOREM WellFormedTheorem ==
-  \A h \in {ha, hb, hc, hd, he}: WellFormed(h)
-
-CardOfProgramOrderOfHistory(h) ==
-  LET CardOfProgramOrderOfSession(s) ==
-    IF Len(s) <= 1 THEN 0 ELSE Sum(1 .. Len(s) - 1)
-  IN  ReduceSet(LAMBDA s, x: CardOfProgramOrderOfSession(s) + x, h, 0)
-
-THEOREM ProgramOrderCardinalityTheorem == 
-  \A h \in {ha, hb, hc, hd, he}:
-    Cardinality(ProgramOrder(h)) = CardOfProgramOrderOfHistory(h)
 =====================================================
 \* Modification History
-\* Last modified Mon Apr 05 15:23:40 CST 2021 by hengxin
+\* Last modified Fri Apr 09 11:54:14 CST 2021 by hengxin
 \* Created Tue Apr 01 10:24:07 CST 2021 by hengxin

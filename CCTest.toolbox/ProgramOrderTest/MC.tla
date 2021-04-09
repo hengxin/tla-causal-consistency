@@ -1,5 +1,5 @@
 ---- MODULE MC ----
-EXTENDS CC, TLC
+EXTENDS CCTest, TLC
 
 \* MV CONSTANT declarations@modelParameterConstants
 CONSTANTS
@@ -12,33 +12,33 @@ v1, v2
 ----
 
 \* MV CONSTANT definitions Keys
-const_16176074349082000 == 
+const_161794220313241000 == 
 {k1, k2}
 ----
 
 \* MV CONSTANT definitions Vals
-const_16176074349083000 == 
+const_161794220313242000 == 
 {v1, v2}
 ----
 
 \* SYMMETRY definition
-symm_16176074349084000 == 
-Permutations(const_16176074349082000) \union Permutations(const_16176074349083000)
+symm_161794220313243000 == 
+Permutations(const_161794220313241000) \union Permutations(const_161794220313242000)
 ----
 
 \* CONSTANT definition @modelParameterDefinitions:1
-def_ov_16176074349086000 ==
-1 .. 10
+def_ov_161794220313245000 ==
+0 .. 5
 ----
 \* Constant expression definition @modelExpressionEval
-const_expr_16176074349087000 == 
-ProgramOrderCardinalityTheorem
+const_expr_161794220313246000 == 
+POPastTest
 ----
 
 \* Constant expression ASSUME statement @modelExpressionEval
-ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_16176074349087000>>)
+ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_161794220313246000>>)
 ----
 
 =============================================================================
 \* Modification History
-\* Created Mon Apr 05 15:23:54 CST 2021 by hengxin
+\* Created Fri Apr 09 12:23:23 CST 2021 by hengxin

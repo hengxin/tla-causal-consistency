@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>CC</name>
+	<name>CCTest</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -18,7 +18,7 @@
 		<link>
 			<name>CC.tla</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/CC.tla</locationURI>
+			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/CC.tla</location>
 		</link>
 		<link>
 			<name>CCTest.tla</name>
@@ -43,7 +43,7 @@
 		<link>
 			<name>SequencesExt.tla</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SequencesExt.tla</locationURI>
+			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/SequencesExt.tla</location>
 		</link>
 	</linkedResources>
 </projectDescription>

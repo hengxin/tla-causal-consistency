@@ -65,7 +65,6 @@ ExistsBijection(S,T)  == Bijection(S,T) # {}
 
 =============================================================================
 \* Modification History
-\* Last modified Sat Apr 03 20:40:42 CST 2021 by hengxin
 \* Last modified Sun Dec 27 09:38:06 CET 2020 by merz
 \* Last modified Wed Jun 05 12:14:19 CEST 2013 by bhargav
 \* Last modified Fri May 03 12:55:35 PDT 2013 by tomr
