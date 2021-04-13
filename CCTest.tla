@@ -12,7 +12,10 @@ EXTENDS CC
   - ha: history of Figure 2(a)
   - hasa: session a of history ha
   
-  TODO: to automatically generate histories
+  TODO:
+  
+  - to add more test cases
+  - to automatically generate test cases that do or do not satisfy the specs
 *)
 hasa == <<W("x", 1, 1), R("x", 2, 2)>>
 hasb == <<W("x", 2, 3), R("x", 1, 4)>>
@@ -34,9 +37,11 @@ hesa == <<W("x", 1, 1), W("y", 1, 2)>>
 hesb == <<R("y", 1, 3), W("x", 2, 4)>>
 hesc == <<R("x", 2, 5), R("x", 1, 6)>>
 he == {hesa, hesb, hesc} \* not CC (nor CM, nor CCv)
+
+all == {ha, hb, hc, hd, he}
 -------------------------------------------------
 THEOREM WellFormedTheorem == \* test of well-formedness of histories
-    \A h \in {ha, hb, hc, hd, he}: WellFormed(h)
+    \A h \in all: WellFormed(h)
 -------------------------------------------------
 (*
   Test of program order
@@ -60,7 +65,20 @@ THEOREM POPastTest ==
 (*
   Test of axioms
 *)
+-------------------------------------------------
+(*
+  Test of the definitions of causal consistency
+*)
+CCvTest ==
+    /\ PrintT(~CCv(ha)) \* 4
+\*    /\ CCv(hb)  \* 7
+    /\ PrintT(~CCv(hc)) \* 4
+\*    /\ CCv(hd)  \* 8
+    /\ PrintT(~CCv(he)) \* 6
+\*    LET sat == {hb, hd}
+\*    IN  /\ \A h \in sat: CCv(h)
+\*        /\ \A h \in all \ sat: ~CCv(h)
 =============================================================================
 \* Modification History
-\* Last modified Fri Apr 09 12:19:50 CST 2021 by hengxin
+\* Last modified Tue Apr 13 09:07:14 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin

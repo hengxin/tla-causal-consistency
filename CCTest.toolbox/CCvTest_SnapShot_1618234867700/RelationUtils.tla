@@ -52,7 +52,7 @@ TC(R) == \* Transitive closure of R
 Example: SeqToRel(<<1, 2, 3>>) = {<<1, 2>>, <<1, 3>>, <<2, 3>>}
 *)
 RECURSIVE Seq2Rel(_)
-Seq2Rel(s) == \* Transform a sequence s into a strict total order relation
+Seq2Rel(s) == \* Transform a (total order) sequence s to a relation
     IF s = <<>> THEN {}
     ELSE LET h == Head(s)
              t == Tail(s)
@@ -122,7 +122,7 @@ AllLinearExtensions(R, S) == \* return all possible linear extensions of R on th
     IN  LinearExtensionsUtil(R, S)
 
 LinearExtensions(R, S) == \* return the set of all possible linear extensions of R on the set S
-    {l \in TupleOf(S, Cardinality(S)) : Respect(Seq2Rel(l), R)}
+    {l \in TupleOf(S, Cardinality(S)) : Respect(Seq2Rel(l), R)} \* FIXME: Seq(s) is not enumerable
 -------------------------------------------------
 (*
 Test cases
@@ -146,5 +146,5 @@ THEOREM LE ==
     /\ AllLinearExtensions(rel3, set3) = LinearExtensions(rel3, set3)
 =============================================================================
 \* Modification History
-\* Last modified Mon Apr 12 21:57:39 CST 2021 by hengxin
+\* Last modified Tue Apr 06 20:29:54 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin

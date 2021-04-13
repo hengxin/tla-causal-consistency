@@ -66,13 +66,9 @@ AxCausalArb(co, arb, o) ==
 (*
   Specification of Causal Consistency: CC, CCv, and CM
 *)
-
-(*
-  To generate possible ordering relations, not to enumerate and test them
-*)
 CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     LET ops == Ops(h)
-    IN  \E co \in SUBSET (ops \X ops): \* TODO: to generate (given a chain decomposition)
+    IN  \E co \in SUBSET (ops \X ops): \* for efficiency: to generate; not to enumerate and test
             /\ Respect(co, ProgramOrder(h))                 \* AxCausal
             /\ IsStrictPartialOrder(co, ops)
             /\ PrintT("co: " \o ToString(co))
@@ -109,5 +105,5 @@ CCv1(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
                 /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
 =====================================================
 \* Modification History
-\* Last modified Tue Apr 13 09:07:52 CST 2021 by hengxin
+\* Last modified Mon Apr 12 21:59:41 CST 2021 by hengxin
 \* Created Tue Apr 01 10:24:07 CST 2021 by hengxin
