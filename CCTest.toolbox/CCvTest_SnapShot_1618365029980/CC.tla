@@ -68,16 +68,42 @@ AxCausalArb(co, arb, o) ==
 *)
 CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     LET ops == Ops(h)
+    IN  \E co \in SUBSET (ops \X ops): \* for efficiency: to generate; not to enumerate and test
+            /\ Respect(co, ProgramOrder(h))                 \* AxCausal
+            /\ IsStrictPartialOrder(co, ops)
+            /\ PrintT("co: " \o ToString(co))
+            /\ \E arb \in {Seq2Rel(le) : le \in AllLinearExtensions(co, ops)}: \* AxArb
+                   /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
+                   /\ PrintT("arb: " \o ToString(arb))
+(*
+  Version 2: re-arrange clauses
+*)
+CCv2(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
+    LET ops == Ops(h)
     IN  \E co \in SUBSET (ops \X ops): \* FIXME: efficiency!!!
             /\ Respect(co, ProgramOrder(h)) \* AxCausal
             /\ IsStrictPartialOrder(co, ops)
             /\ PrintT("co: " \o ToString(co))
-            /\ \E arb \in SUBSET (ops \X ops):
+            /\ \E arb \in SUBSET (ops \X ops):  \* to generate; not to test
                    /\ Respect(arb, co)                      \* AxArb
                    /\ IsStrictTotalOrder(arb, ops)
                    /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
                    /\ PrintT("arb: " \o ToString(arb))
+(*
+  Version 1: Following the definition of POPL2017
+*)
+CCv1(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
+    LET ops == Ops(h)
+    IN  \E co \in SUBSET (ops \X ops): \* FIXME: efficiency!!!
+            /\ \E arb \in SUBSET (ops \X ops):
+                /\ PrintT("co: " \o ToString(co))
+                /\ PrintT("arb: " \o ToString(arb))
+                /\ IsStrictPartialOrder(co, ops)
+                /\ IsStrictTotalOrder(arb, ops)
+                /\ Respect(co, ProgramOrder(h))          \* AxCausal
+                /\ Respect(arb, co)                      \* AxArb
+                /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
 =====================================================
 \* Modification History
-\* Last modified Mon Apr 12 21:35:50 CST 2021 by hengxin
+\* Last modified Mon Apr 12 21:59:41 CST 2021 by hengxin
 \* Created Tue Apr 01 10:24:07 CST 2021 by hengxin

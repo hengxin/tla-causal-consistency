@@ -67,12 +67,15 @@ THEOREM POPastTest ==
   Test of the definitions of causal consistency
 *)
 CCvTest ==
-    /\ ~CCv(ha)
-    /\ CCv(hb)
-\*    LET sat == {hb, hb} \* {hb, hd}
+    /\ PrintT(~CCv(ha)) \* 4
+\*    /\ CCv(hb)  \* 7
+    /\ PrintT(~CCv(hc)) \* 4
+\*    /\ CCv(hd)  \* 8
+    /\ PrintT(~CCv(he)) \* 6
+\*    LET sat == {hb, hd}
 \*    IN  /\ \A h \in sat: CCv(h)
 \*        /\ \A h \in all \ sat: ~CCv(h)
 =============================================================================
 \* Modification History
-\* Last modified Mon Apr 12 21:36:43 CST 2021 by hengxin
+\* Last modified Mon Apr 12 21:41:04 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin

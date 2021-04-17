@@ -51,12 +51,18 @@ POPast(h, o) == InverseImage(ProgramOrder(h), o)
 \* The set of operations that preceed o \in Operation in causal order co
 CausalPast(co, o) == InverseImage(co, o)
 
+\* The restriction of causal order co to the operations in the causal past of operation o \in Operation
+CausalHist(co, o) == co | CausalPast(co, o)
+
 \* The restriction of arbitration arb to the operations in the causal past of operation o \in Operation
 CausalArb(co, arb, o) == arb | CausalPast(co, o)
 -------------------------------------------------
 (*
   Axioms used in the defintions of causal consistency
 *)
+AxCausalValue(co, o) ==
+    LET seqs == AllLinearExtensions(CausalHist(co, o), CausalPast(co, o))
+    IN  TRUE
 AxCausalArb(co, arb, o) == 
     LET seq == AnyLinearExtension(CausalArb(co, arb, o), CausalPast(co, o)) \* it is unique
        wseq == SelectSeq(seq, LAMBDA op : op.type = "write" /\ op.key = o.key)
@@ -64,7 +70,18 @@ AxCausalArb(co, arb, o) ==
         ELSE o.val = wseq[Len(wseq)].val
 -------------------------------------------------
 (*
-  Specification of Causal Consistency: CC, CCv, and CM
+  Specification of CC
+*)
+CC(h) == \* Check whether h \in History satisfies CC (Causal Consistency)
+    LET ops == Ops(h)
+    IN  \E co \in SUBSET (ops \X ops): \* TODO: to generate (given a chain decomposition)
+            /\ Respect(co, ProgramOrder(h))                 \* AxCausal
+            /\ IsStrictPartialOrder(co, ops)
+            /\ PrintT("co: " \o ToString(co))
+            /\ \A o \in ops: AxCausalValue(co, o)           \* AxCausalValue
+-------------------------------------------------
+(*
+  Specification of CCv
 *)
 
 (*
@@ -109,5 +126,5 @@ CCv1(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
                 /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
 =====================================================
 \* Modification History
-\* Last modified Tue Apr 13 09:07:52 CST 2021 by hengxin
+\* Last modified Sat Apr 17 19:30:51 CST 2021 by hengxin
 \* Created Tue Apr 01 10:24:07 CST 2021 by hengxin
