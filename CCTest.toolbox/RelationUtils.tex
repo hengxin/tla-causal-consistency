@@ -940,311 +940,377 @@
 \tlatex
 \setboolean{shading}{true}
  \@x{\makebox[0pt][r]{\scriptsize 1\hspace{1em}}}\moduleLeftDash\@xx{
- {\MODULE} CCTest}\moduleRightDash\@xx{}%
-\begin{lcom}{5.0}%
+ {\MODULE} RelationUtils}\moduleRightDash\@xx{}%
+\begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
-Test of \ensuremath{CC} Module
+Relation related operators.
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} {\EXTENDS} CC}%
-\@x{\makebox[0pt][r]{\scriptsize 6\hspace{1em}}}\midbar\@xx{}%
-\begin{lcom}{5.0}%
+ \@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} {\LOCAL} {\INSTANCE}
+ Naturals}%
+ \@x{\makebox[0pt][r]{\scriptsize 6\hspace{1em}} {\LOCAL} {\INSTANCE}
+ FiniteSets}%
+ \@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}} {\LOCAL} {\INSTANCE}
+ Sequences}%
+ \@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}} {\LOCAL} {\INSTANCE}
+ SequencesExt}%
+ \@x{\makebox[0pt][r]{\scriptsize 9\hspace{1em}} {\LOCAL} {\INSTANCE}
+ Functions}%
+\@x{\makebox[0pt][r]{\scriptsize 10\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- Test case: The following histories are from Figure 2 of the
- \ensuremath{POPL}\mbox{'}2017 paper.
-\end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-Naming Conventions:
-\end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-\ensuremath{\.{-} ha}: history of Figure \ensuremath{2(a)
-}%
-\end{cpar}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-\ensuremath{\.{-} hasa}: session a of history ha
-\end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-\ensuremath{TODO}:
-\end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-- to add more test cases
-\end{cpar}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-- to automatically generate test cases that do or do not satisfy the specs
-\end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{T}{F}{5.0}{0}{}%
-- consider Section 3.2 of \ensuremath{POPL}\mbox{'}\ensuremath{2017
-}%
-\end{cpar}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-\ensuremath{\.{-} ref}: the \ensuremath{MonkeyDB} paper
+Basic definitions.
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 23\hspace{1em}} hasa \.{\defeq} {\langle} W
- (\@w{x} ,\, 1 ,\, 1 ) ,\, R (\@w{x} ,\, 2 ,\, 2 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} hasb\@s{0.64} \.{\defeq}
- {\langle} W (\@w{x} ,\, 2 ,\, 3 ) ,\, R (\@w{x} ,\, 1 ,\, 4 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}} ha \.{\defeq} \{ hasa ,\,
- hasb \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 14\hspace{1em}} Dom ( R ) \.{\defeq} \{ a
+ \.{:} {\langle} a ,\, b {\rangle} \.{\in} R \}}%
 \@y{\@s{0}%
- \ensuremath{CM} but not \ensuremath{CCv
+ Domain of \ensuremath{R
 }}%
 \@xx{}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}} hbsa \.{\defeq} {\langle} W
- (\@w{z} ,\, 1 ,\, 1 ) ,\, W (\@w{x} ,\, 1 ,\, 2 ) ,\, W (\@w{y} ,\, 1 ,\, 3
- ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}} hbsb\@s{0.64} \.{\defeq}
- {\langle} W (\@w{x} ,\, 2 ,\, 4 ) ,\, R (\@w{z} ,\, 0 ,\, 5 ) ,\, R (\@w{y}
- ,\, 1 ,\, 6 ) ,\, R (\@w{x} ,\, 2 ,\, 7 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}} hb \.{\defeq} \{ hbsa ,\,
- hbsb \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}} Ran ( R )\@s{3.32}
+ \.{\defeq} \{ b\@s{0.64} \.{:} {\langle} a ,\, b {\rangle} \.{\in} R \}}%
 \@y{\@s{0}%
- \ensuremath{CCv} but not \ensuremath{CM
+ Range of \ensuremath{R
 }}%
 \@xx{}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}} hcsa \.{\defeq} {\langle} W
- (\@w{x} ,\, 1 ,\, 1 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}} hcsb\@s{0.64} \.{\defeq}
- {\langle} W (\@w{x} ,\, 2 ,\, 2 ) ,\, R (\@w{x} ,\, 1 ,\, 3 ) ,\, R (\@w{x}
- ,\, 2 ,\, 4 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}} hc \.{\defeq} \{ hcsa ,\,
- hcsb \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}} Support ( R ) \.{\defeq} Dom
+ ( R ) \.{\cup} Ran ( R )}%
 \@y{\@s{0}%
- \ensuremath{CC} but not \ensuremath{CM} nor \ensuremath{CCv
+ Support of \ensuremath{R
 }}%
 \@xx{}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}} hdsa \.{\defeq} {\langle} W
- (\@w{x} ,\, 1 ,\, 1 ) ,\, R (\@w{y} ,\, 0 ,\, 2 ) ,\, W (\@w{y} ,\, 1 ,\, 3
- ) ,\, R (\@w{x} ,\, 1 ,\, 4 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 36\hspace{1em}} hdsb\@s{0.64} \.{\defeq}
- {\langle} W (\@w{x} ,\, 2 ,\, 5 ) ,\, R (\@w{y} ,\, 0 ,\, 6 ) ,\, W (\@w{y}
- ,\, 2 ,\, 7 ) ,\, R (\@w{x} ,\, 2 ,\, 8 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 37\hspace{1em}} hd \.{\defeq} \{ hdsa ,\,
- hdsb \}}%
-\@y{\@s{0}%
- \ensuremath{CC}, \ensuremath{CM}, and \ensuremath{CCv} but no \ensuremath{SC
-}}%
-\@xx{}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 39\hspace{1em}} hesa \.{\defeq} {\langle} W
- (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}} hesb\@s{0.64} \.{\defeq}
- {\langle} R (\@w{y} ,\, 1 ,\, 3 ) ,\, W (\@w{x} ,\, 2 ,\, 4 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}} hesc\@s{0.71} \.{\defeq}
- {\langle} R (\@w{x} ,\, 2 ,\, 5 ) ,\, R (\@w{x} ,\, 1 ,\, 6 ) {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}} he \.{\defeq} \{ hesa ,\,
- hesb ,\, hesc \}}%
-\@y{\@s{0}%
- not \ensuremath{CC} (nor \ensuremath{CM}, nor \ensuremath{CCv})
-}%
-\@xx{}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}} all \.{\defeq} \{ ha ,\, hb
- ,\, hc ,\, hd ,\, he \}}%
-\@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}}\midbar\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} {\THEOREM} WellFormedTheorem
- \.{\defeq}}%
-\@y{\@s{0}%
- test of well-formedness of histories
-}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{16.4} \A\, h \.{\in} all
- \.{:} WellFormed ( h )}%
-\@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}}\midbar\@xx{}%
-\begin{lcom}{5.0}%
+\@x{\makebox[0pt][r]{\scriptsize 17\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
-Test of the auxiliary definitions for the axioms
+Basic operations.
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}} CardOfProgramOrderOfHistory
- ( h ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{16.4} \.{\LET}
- CardOfProgramOrderOfSession ( s ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{40.89} {\IF} Len ( s )
- \.{\leq} 1 \.{\THEN} 0 \.{\ELSE} Sum ( 1 \.{\dotdot} Len ( s ) \.{-} 1 )}%
- \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
- ReduceSet ( {\LAMBDA} s ,\, x \.{:} CardOfProgramOrderOfSession ( s ) \.{+}
- x ,\, h ,\, 0 )}%
+ \@x{\makebox[0pt][r]{\scriptsize 21\hspace{1em}} Image ( R ,\, a ) \.{\defeq}
+ \{ b \.{\in} Ran ( R ) \.{:} {\langle} a ,\, b {\rangle} \.{\in} R \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}} LeftRestriction ( R ,\, a )
+ \.{\defeq} \{ {\langle} a ,\, b {\rangle} \.{:} b\@s{8.85} \.{\in} Image ( R
+ ,\, a ) \}}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}} {\THEOREM}
- ProgramOrderCardinalityTheorem \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} InverseRelation ( R
+ )\@s{1.49} \.{\defeq} \{ {\langle} b ,\, a {\rangle} \.{:} {\langle} a ,\, b
+ {\rangle} \.{\in} R \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}} InverseImage ( R ,\, b )
+ \.{\defeq} \{ a \.{\in} Dom ( R ) \.{:} {\langle} a ,\, b {\rangle} \.{\in}
+ R \}}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}} R \.{\,|\,} S \.{\defeq} R
+ \.{\cap} ( S \.{\times} S )}%
 \@y{\@s{0}%
- test of \ensuremath{ProgramOrder(h)
+ Restriction of \ensuremath{R} on \ensuremath{S
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{16.4} \A\, h \.{\in} \{
- ha ,\, hb ,\, hc ,\, hd ,\, he \} \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{27.72} Cardinality (
- ProgramOrder ( h ) ) \.{=} CardOfProgramOrderOfHistory ( h )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}} {\THEOREM} POPastTest
- \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}} R \.{\stst} T \.{\defeq}}%
 \@y{\@s{0}%
- test of \ensuremath{POPast(h,\, o)
+ Composition of \ensuremath{R} and \ensuremath{T
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{16.4} \.{\land} POPast (
- ha ,\, R (\@w{x} ,\, 2 ,\, 2 ) )\@s{3.61} \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 )
- \}}%
- \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{16.4} \.{\land} POPast (
- hb ,\, R (\@w{y} ,\, 1 ,\, 6 ) )\@s{4.26} \.{=} \{ W (\@w{x} ,\, 2 ,\, 4 )
- ,\, R (\@w{z} ,\, 0 ,\, 5 ) \}}%
- \@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}}\@s{16.4} \.{\land} POPast (
- hc ,\, W (\@w{x} ,\, 2 ,\, 2 ) )\@s{0.18} \.{=} \{ \}}%
- \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}\@s{16.4} \.{\land} POPast (
- hd ,\, R (\@w{x} ,\, 1 ,\, 4 ) )\@s{3.35} \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 )
- ,\, R (\@w{y} ,\, 0 ,\, 2 ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) \}}%
- \@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}\@s{16.4} \.{\land} POPast (
- he ,\, W (\@w{x} ,\, 2 ,\, 4 ) ) \.{=} \{ R (\@w{y} ,\, 1 ,\, 3 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}}\@s{15.88} \.{\LET}
+ SR\@s{4.90} \.{\defeq} Support ( R )}%
+ \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}\@s{40.38} ST \.{\defeq}
+ Support ( T )}%
+ \@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}}\@s{15.88} \.{\IN}\@s{4.09}
+ \{ {\langle} r ,\, t {\rangle} \.{\in} SR \.{\times} ST \.{:} \E\, s \.{\in}
+ SR \.{\cap} ST \.{:} ( {\langle} r ,\, s {\rangle} \.{\in} R ) \.{\land} (
+ {\langle} s ,\, t {\rangle} \.{\in} T ) \}}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}} {\THEOREM} CausalPastTest
- \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}} GT ( R ,\, a ) \.{\defeq} \{
+ b\@s{0.64} \.{\in} Ran ( R )\@s{3.32} \.{:} {\langle} a ,\, b {\rangle}
+ \.{\in} R \}}%
 \@y{\@s{0}%
- \ensuremath{TODO}: test of \ensuremath{CausalPast(co,\, o)
+ \ensuremath{\.{\defeq} Image(R,\, a)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}\@s{16.4} {\FALSE}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}} {\THEOREM} CausalHistTest
- \.{\defeq}\@s{1.39}}%
+ \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}} LT ( R ,\, b )\@s{2.87}
+ \.{\defeq} \{ a \.{\in} Dom ( R ) \.{:} {\langle} a ,\, b {\rangle} \.{\in}
+ R \}}%
 \@y{\@s{0}%
- \ensuremath{TODO}: test of \ensuremath{CausalHist(co,\, o)
+ \ensuremath{\.{\defeq} InverseImage(R,\, b)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}}\@s{16.4} {\FALSE}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}} {\THEOREM} CausalArbTest
- \.{\defeq}}%
-\@y{\@s{0}%
- \ensuremath{TODO}: test of \ensuremath{CausalArb(co,\, ar,\, o)
-}}%
-\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}}\@s{16.4} {\FALSE}}%
-\@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}}}\midbar\@xx{}%
-\begin{lcom}{5.0}%
+\begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
-Test of axioms
-\end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{TODO}: test of \ensuremath{AxCausalValue},
- \ensuremath{AxCausalArb}, etc
+The following definition is from
+ https:\ensuremath{\.{\slsl}github.com}/jameshfisher/tlaplus/blob/master/examples/\ensuremath{TransitiveClosure}/\ensuremath{TransitiveClosure.tla
+} It also contains several other methods for computing \ensuremath{TC}.
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}} {\THEOREM}
- RWRegSemanticsTest \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}} TC ( R ) \.{\defeq}}%
 \@y{\@s{0}%
- Test of \ensuremath{RWRegSemanticsTest(seq,\, o)
+ Transitive closure of \ensuremath{R
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}}\@s{16.4}}%
+ \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}}\@s{27.33} \.{\LET} S
+ \.{\defeq} Support ( R )}%
+ \@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}}\@s{47.73} {\RECURSIVE} TCR (
+ \_ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}}\@s{51.83} TCR ( T )
+ \.{\defeq} {\IF} T \.{=} \{ \}}%
+\@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}\@s{108.97} \.{\THEN} R}%
+ \@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}}\@s{108.97} \.{\ELSE}
+ \.{\LET} r \.{\defeq} {\CHOOSE} s \.{\in} T \.{:} {\TRUE}}%
+ \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{164.78} RR \.{\defeq} TCR
+ ( T \.{\,\backslash\,} \{ r \} )}%
+ \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}\@s{140.28} \.{\IN}\@s{4.10}
+ RR \.{\cup} \{ {\langle} s ,\, t {\rangle} \.{\in} S \.{\times} S \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}}\@s{199.76} {\langle} s ,\, r
+ {\rangle} \.{\in} RR \.{\land} {\langle} r ,\, t {\rangle} \.{\in} RR \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}\@s{27.33} \.{\IN}\@s{4.09}
+ TCR ( S )}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+ Example: \ensuremath{SeqToRel({\langle}1,\, 2,\, 3{\rangle}) \.{=}
+ \{{\langle}1,\, 2{\rangle},\, {\langle}1,\, 3{\rangle},\, {\langle}2,\,
+ 3{\rangle}\}
+}%
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}} {\RECURSIVE} Seq2Rel ( \_ )}%
+\@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}} Seq2Rel ( s ) \.{\defeq}}%
 \@y{\@s{0}%
- \ensuremath{seq \.{=} {\langle}{\rangle}
-}}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}}\@s{16.4} \.{\land}
- RWRegSemantics ( {\langle} {\rangle} ,\, R (\@w{x} ,\, InitVal ,\, 1 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}}\@s{16.4} \.{\land}
- RWRegSemantics ( {\langle} {\rangle} ,\, W (\@w{x} ,\, 1 ,\, 1 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
- RWRegSemantics ( {\langle} {\rangle} ,\, R (\@w{x} ,\, 2 ,\, 1 ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}}\@s{16.4}}%
-\@y{\@s{0}%
- no \ensuremath{W(\@w{x},\, \_,\, \_)} in seq
+ Transform a sequence \ensuremath{s} into a strict total order relation
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}}\@s{16.4} \.{\land}
- RWRegSemantics ( {\langle} W (\@w{y} ,\, 1 ,\, 1 ) ,\, W (\@w{z} ,\, 1 ,\, 2
- ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) {\rangle} ,\, R (\@w{x} ,\, InitVal ,\, 4 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}}\@s{16.4} \.{\land}
- RWRegSemantics ( {\langle} W (\@w{y} ,\, 1 ,\, 1 ) ,\, W (\@w{z} ,\, 1 ,\, 2
- ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) {\rangle} ,\, W (\@w{x} ,\, 1 ,\, 4 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
- RWRegSemantics ( {\langle} W (\@w{y} ,\, 1 ,\, 1 ) ,\, W (\@w{z} ,\, 1 ,\, 2
- ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) {\rangle} ,\, R (\@w{x} ,\, 1 ,\, 4 ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}}\@s{16.4}}%
+ \@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}\@s{16.4} {\IF} s \.{=}
+ {\langle} {\rangle} \.{\THEN} \{ \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{16.4} \.{\ELSE} \.{\LET}
+ h\@s{2.49} \.{\defeq} Head ( s )}%
+ \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{72.21} t \.{\defeq} Tail
+ ( s )}%
+ \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{47.71} \.{\IN}\@s{4.09}
+ \{ {\langle} h ,\, r {\rangle} \.{:} r \.{\in} Range ( t ) \} \.{\cup}
+ Seq2Rel ( t )}%
+\@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Basic properties.
+\end{cpar}%
+\end{lcom}%
+ \@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}} IsReflexive ( R ,\, S )
+ \.{\defeq} \forall\, a \.{\in} S \.{:} {\langle} a ,\, a {\rangle} \.{\in}
+ R}%
+ \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}} IsIrreflexive ( R ,\, S )
+ \.{\defeq} \forall\, a \.{\in} S \.{:} {\langle} a ,\, a {\rangle}
+ \.{\notin} R}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}} IsSymmetric ( R ,\, S )
+ \.{\defeq} \A\, a ,\, b \.{\in} S \.{:} {\langle} a ,\, b {\rangle} \.{\in}
+ R \.{\equiv} {\langle} b ,\, a {\rangle} \.{\in} R}%
+ \@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}} IsAntisymmetric ( R ,\, S )
+ \.{\defeq} \A\, a ,\, b \.{\in} S \.{:} {\langle} a ,\, b {\rangle} \.{\in}
+ R \.{\land} {\langle} b ,\, a {\rangle} \.{\in} R \.{\implies} a \.{=} b}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}} IsTransitive ( R ,\, S )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}}\@s{16.4} \forall\, a ,\, b
+ ,\, c \.{\in} S \.{:} ( {\langle} a ,\, b {\rangle} \.{\in} R \.{\land}
+ {\langle} b ,\, c {\rangle} \.{\in} R ) \.{\implies} {\langle} a ,\, c
+ {\rangle} \.{\in} R}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}} IsTotal ( R ,\, S )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}\@s{16.4} \forall\, a ,\, b
+ \.{\in} S \.{:} {\langle} a ,\, b {\rangle} \.{\in} R \.{\lor} {\langle} b
+ ,\, a {\rangle} \.{\in} R}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}} IsPartialOrder ( R ,\, S )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}}\@s{16.4} \.{\land}
+ IsReflexive ( R ,\, S )}%
+ \@x{\makebox[0pt][r]{\scriptsize 78\hspace{1em}}\@s{16.4} \.{\land}
+ IsAntisymmetric ( R ,\, S )}%
+ \@x{\makebox[0pt][r]{\scriptsize 79\hspace{1em}}\@s{16.4} \.{\land}
+ IsTransitive ( R ,\, S )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}} IsTotalOrder ( R ,\, S )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}}\@s{16.4} \.{\land}
+ IsPartialOrder ( R ,\, S )}%
+ \@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}}\@s{16.4} \.{\land} IsTotal (
+ R ,\, S )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}} IsStrictPartialOrder ( R ,\,
+ S ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}}\@s{16.4} \.{\land}
+ IsIrreflexive ( R ,\, S )}%
+ \@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}}\@s{16.4} \.{\land}
+ IsTransitive ( R ,\, S )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}} IsStrictTotalOrder ( R ,\, S
+ ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}}\@s{16.4} \.{\land}
+ IsStrictPartialOrder ( R ,\, S )}%
+ \@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}}\@s{16.4} \.{\land} IsTotal (
+ R ,\, S )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 93\hspace{1em}} Respect ( R ,\, T )
+ \.{\defeq} T \.{\subseteq} R}%
 \@y{\@s{0}%
- contains \ensuremath{W(\@w{x},\, \_,\, \_)} in seq
+ Does \ensuremath{R} respect \ensuremath{T}\.{?}
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}}\@s{16.4} \.{\land}
- RWRegSemantics ( {\langle} W (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2
- ) ,\, W (\@w{x} ,\, 2 ,\, 3 ) ,\, W (\@w{z} ,\, 1 ,\, 4 ) {\rangle} ,\, R
- (\@w{x} ,\, 2 ,\, 5 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 93\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
- RWRegSemantics ( {\langle} W (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2
- ) ,\, W (\@w{x} ,\, 2 ,\, 3 ) ,\, W (\@w{z} ,\, 1 ,\, 4 ) {\rangle} ,\, R
- (\@w{x} ,\, 1 ,\, 5 ) )}%
 \@x{\makebox[0pt][r]{\scriptsize 94\hspace{1em}}}\midbar\@xx{}%
-\begin{lcom}{5.0}%
+\begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
-Test of the definitions of causal consistency
-\end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
-ha: 4; \ensuremath{hb}: 7; \ensuremath{hc}: 4; \ensuremath{hd}: 8; he: 6
+Special elements in a relation
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}} CCTest \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{16.4} \.{\land}\@s{6.14}
- PrintT ( CC ( ha ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}\@s{16.4} \.{\land}\@s{6.14}
- PrintT ( CC ( hc ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}}\@s{16.4} \.{\land}\@s{6.14}
- PrintT ( {\lnot} CC ( he ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{16.4} \.{\land}\@s{6.14}
- \.{\LET} sat \.{\defeq} \{ ha ,\, hb ,\, hc ,\, hd \}}%
- \@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}\@s{33.65} \.{\IN} \.{\land}
- \A\, h \.{\in} sat \.{:} CC ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 106\hspace{1em}}\@s{54.05} \.{\land} \A\, h
- \.{\in} all \.{\,\backslash\,} sat \.{:} {\lnot} CC ( h )}%
+ \@x{\makebox[0pt][r]{\scriptsize 98\hspace{1em}} Minimal ( R ,\, S )
+ \.{\defeq}}%
+\@y{\@s{0}%
+ the set of minimal elements in relation \ensuremath{R} on the set
+ \ensuremath{S
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 99\hspace{1em}}\@s{16.4} \{ m \.{\in} S
+ \.{:} {\lnot} \E\, a \.{\in} Dom ( R ) \.{:} {\langle} a ,\, m {\rangle}
+ \.{\in} R \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}} Maximal ( R ,\, S )
+ \.{\defeq}}%
+\@y{\@s{0}%
+ the set of maximal elements in relation \ensuremath{R} on the set
+ \ensuremath{S
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{16.4} \{ m \.{\in} S
+ \.{:} {\lnot} \E\, b \.{\in} Ran ( R ) \.{:} {\langle} m ,\, b {\rangle}
+ \.{\in} R \}}%
+\@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}}\midbar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}} AnyLinearExtension ( R ,\,
+ S ) \.{\defeq}}%
+\@y{\@s{0}%
+ return an arbitrary linear extension of \ensuremath{R} on the set
+ \ensuremath{S
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{16.4} \.{\LET}
+ {\RECURSIVE} LinearExtensionUtil ( \_ ,\, \_ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}\@s{36.79}
+ LinearExtensionUtil ( rel ,\, set ) \.{\defeq}}%
+\@y{\@s{0}%
+ \ensuremath{rel}: remaining relation; set: remaining set
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 106\hspace{1em}}\@s{53.19} {\IF} set \.{=}
+ \{ \} \.{\THEN} {\langle} {\rangle}}%
+ \@x{\makebox[0pt][r]{\scriptsize 107\hspace{1em}}\@s{53.19} \.{\ELSE}
+ \.{\LET} m \.{\defeq} {\CHOOSE} x \.{\in} Minimal ( rel ,\, set ) \.{:}
+ {\TRUE}}%
+ \@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}}\@s{84.51} \.{\IN} {\langle}
+ m {\rangle} \.{\circ} LinearExtensionUtil ( rel \.{\,\backslash\,}
+ LeftRestriction ( R ,\, m ) ,\, set \.{\,\backslash\,} \{ m \} )}%
+ \@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}}\@s{16.4} \.{\IN}
+ LinearExtensionUtil ( R ,\, S )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}} CCvTest \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}}\@s{16.4} \.{\land} PrintT (
- {\lnot} CCv ( ha ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 110\hspace{1em}}}%
-\@y{\@s{7.5}%
- \ensuremath{\.{\land} CCv(hb)
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+See https:\ensuremath{\.{\slsl}groups.google.com}/g/tlaplus/\ensuremath{c}/\ensuremath{mtyEmqhlRVg
+}%
+\end{cpar}%
+\end{lcom}%
+ \@x{\makebox[0pt][r]{\scriptsize 114\hspace{1em}} AllLinearExtensions ( R ,\,
+ S ) \.{\defeq}}%
+\@y{\@s{0}%
+ return all possible linear extensions of \ensuremath{R} on the set
+ \ensuremath{S
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 111\hspace{1em}}\@s{16.4} \.{\land} PrintT (
- {\lnot} CCv ( hc ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 112\hspace{1em}}}%
-\@y{\@s{7.5}%
- \ensuremath{\.{\land} CCv(hd)
+ \@x{\makebox[0pt][r]{\scriptsize 115\hspace{1em}}\@s{16.4} \.{\LET}
+ {\RECURSIVE} LinearExtensionsUtil ( \_ ,\, \_ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 116\hspace{1em}}\@s{40.89}
+ LinearExtensionsUtil ( rel ,\, set ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 117\hspace{1em}}\@s{57.29} {\IF} set \.{=}
+ \{ \} \.{\THEN} \{ {\langle} {\rangle} \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}\@s{57.29} \.{\ELSE}
+ \.{\LET} Extend ( m ) \.{\defeq} \{ {\langle} m {\rangle} \.{\circ} l \.{:}}%
+\@y{\@s{0}%
+ extend recursively by the minimal element \ensuremath{m
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 113\hspace{1em}}}%
-\@y{\@s{7.5}%
- \ensuremath{\.{\land} PrintT({\lnot}CCv(he))
-}}%
+ \@x{\makebox[0pt][r]{\scriptsize 119\hspace{1em}}\@s{121.31} l \.{\in}
+ LinearExtensionsUtil ( rel \.{\,\backslash\,} LeftRestriction ( R ,\, m )
+ ,\, set \.{\,\backslash\,} \{ m \} ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 120\hspace{1em}}\@s{88.61} \.{\IN} {\UNION}
+ \{ Extend ( m ) \.{:} m \.{\in} Minimal ( rel ,\, set ) \}}%
+\@y{\@s{0}%
+ for each minimal element
+}%
 \@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 121\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ LinearExtensionsUtil ( R ,\, S )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 115\hspace{1em}}}%
-\@y{\@s{7.5}%
- \ensuremath{\.{\LET} sat \.{\defeq} \{hb,\, hd\}
+ \@x{\makebox[0pt][r]{\scriptsize 123\hspace{1em}} LinearExtensions ( R ,\, S
+ ) \.{\defeq}}%
+\@y{\@s{0}%
+ return the set of all possible linear extensions of \ensuremath{R} on the
+ set \ensuremath{S
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 116\hspace{1em}}}%
-\@y{\@s{7.5}%
- \ensuremath{\.{\IN} \.{\land} \A\, h \.{\in} sat}: \ensuremath{CCv(h)
+ \@x{\makebox[0pt][r]{\scriptsize 124\hspace{1em}}\@s{16.4} \{ l \.{\in}
+ TupleOf ( S ,\, Cardinality ( S ) ) \.{:} Respect ( Seq2Rel ( l ) ,\, R )
+ \}}%
+\@x{\makebox[0pt][r]{\scriptsize 125\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Test cases
+\end{cpar}%
+\end{lcom}%
+ \@x{\makebox[0pt][r]{\scriptsize 129\hspace{1em}} set1 \.{\defeq} \{ 2 ,\, 3
+ ,\, 5 ,\, 7 ,\, 8 ,\, 9 ,\, 10 ,\, 11 \}}%
+\@x{\makebox[0pt][r]{\scriptsize 130\hspace{1em}} rel1\@s{1.06} \.{\defeq}}%
+\@y{\@s{0}%
+ from https:\ensuremath{\.{\slsl}en.wikipedia.org}/wiki/\ensuremath{Topological\_sorting
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 117\hspace{1em}}}%
-\@y{\@s{17.5}%
- \ensuremath{\.{\land} \A\, h \.{\in} all \.{\,\backslash\,} sat}:
- \ensuremath{{\lnot}CCv(h)
-}}%
+ \@x{\makebox[0pt][r]{\scriptsize 131\hspace{1em}}\@s{16.4} \{ {\langle} 3 ,\,
+ 8 {\rangle} ,\, {\langle} 3 ,\, 10 {\rangle} ,\, {\langle} 5 ,\, 11
+ {\rangle} ,\, {\langle} 7 ,\, 8 {\rangle} ,\, {\langle} 7 ,\, 11 {\rangle}
+ ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 132\hspace{1em}}\@s{21.40} {\langle} 8 ,\, 9
+ {\rangle} ,\, {\langle} 11 ,\, 2 {\rangle} ,\, {\langle} 11 ,\, 9 {\rangle}
+ ,\, {\langle} 11 ,\, 10 {\rangle} \}}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 134\hspace{1em}} set2 \.{\defeq} 0
+ \.{\dotdot} 5}%
+\@x{\makebox[0pt][r]{\scriptsize 135\hspace{1em}} rel2\@s{1.06} \.{\defeq}}%
+\@y{\@s{0}%
+ from https:\ensuremath{\.{\slsl}www.geeksforgeeks.org}/topological-sorting/
+}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}}\bottombar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 136\hspace{1em}}\@s{16.4} \{ {\langle} 2 ,\,
+ 3 {\rangle} ,\, {\langle} 3 ,\, 1 {\rangle} ,\, {\langle} 4 ,\, 0 {\rangle}
+ ,\, {\langle} 4 ,\, 1 {\rangle} ,\, {\langle} 5 ,\, 0 {\rangle} ,\,
+ {\langle} 5 ,\, 2 {\rangle} \}}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 138\hspace{1em}} set3 \.{\defeq} 1
+ \.{\dotdot} 6}%
+\@x{\makebox[0pt][r]{\scriptsize 139\hspace{1em}} rel3\@s{1.06} \.{\defeq}}%
+\@y{\@s{0}%
+ from https:\ensuremath{\.{\slsl}leetcode.com}/discuss/general-discussion/1078072/introduction-to-topological-sort
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 140\hspace{1em}}\@s{16.4} \{ {\langle} 1 ,\,
+ 2 {\rangle} ,\, {\langle} 1 ,\, 4 {\rangle} ,\, {\langle} 2 ,\, 3 {\rangle}
+ ,\, {\langle} 4 ,\, 2 {\rangle} ,\, {\langle} 4 ,\, 5 {\rangle} ,\,
+ {\langle} 4 ,\, 6 {\rangle} ,\, {\langle} 5 ,\, 6 {\rangle} \}}%
+\@x{\makebox[0pt][r]{\scriptsize 141\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 142\hspace{1em}} {\THEOREM} LE \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 143\hspace{1em}}\@s{16.4} \.{\land}
+ AllLinearExtensions ( rel1 ,\, set1 ) \.{=} LinearExtensions ( rel1 ,\, set1
+ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 144\hspace{1em}}\@s{16.4} \.{\land}
+ AllLinearExtensions ( rel2 ,\, set2 ) \.{=} LinearExtensions ( rel2 ,\, set2
+ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 145\hspace{1em}}\@s{16.4} \.{\land}
+ AllLinearExtensions ( rel3 ,\, set3 ) \.{=} LinearExtensions ( rel3 ,\, set3
+ )}%
+\@x{\makebox[0pt][r]{\scriptsize 146\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1252,12 +1318,12 @@ ha: 4; \ensuremath{hb}: 7; \ensuremath{hc}: 4; \ensuremath{hd}: 8; he: 6
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  \ensuremath{\.{\,\backslash\,}}* Last modified Sun \ensuremath{Apr} 18
- 11:21:15 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ 10:50:36 \ensuremath{CST} 2021 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Created \ensuremath{Fri} \ensuremath{Apr} 09
- 11:53:33 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Created \ensuremath{Tue} \ensuremath{Sep} 18
+ 19:16:04 \ensuremath{CST} 2018 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \end{lcom}%

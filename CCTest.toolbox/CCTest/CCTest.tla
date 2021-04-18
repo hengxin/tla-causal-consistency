@@ -16,9 +16,7 @@ EXTENDS CC
   
   - to add more test cases
   - to automatically generate test cases that do or do not satisfy the specs
-
     - consider Section 3.2 of POPL'2017
-    - ref: the MonkeyDB paper
 *)
 hasa == <<W("x", 1, 1), R("x", 2, 2)>>
 hasb == <<W("x", 2, 3), R("x", 1, 4)>>
@@ -47,50 +45,29 @@ THEOREM WellFormedTheorem == \* test of well-formedness of histories
     \A h \in all: WellFormed(h)
 -------------------------------------------------
 (*
-  Test of the auxiliary definitions for the axioms
+  Test of program order
 *)
 CardOfProgramOrderOfHistory(h) ==
     LET CardOfProgramOrderOfSession(s) ==
         IF Len(s) <= 1 THEN 0 ELSE Sum(1 .. Len(s) - 1)
     IN  ReduceSet(LAMBDA s, x: CardOfProgramOrderOfSession(s) + x, h, 0)
 
-THEOREM ProgramOrderCardinalityTheorem == \* test of ProgramOrder(h)
+THEOREM ProgramOrderCardinalityTheorem ==
     \A h \in {ha, hb, hc, hd, he}:
         Cardinality(ProgramOrder(h)) = CardOfProgramOrderOfHistory(h)
 
-THEOREM POPastTest == \* test of POPast(h, o)
+THEOREM POPastTest ==
     /\ POPast(ha, R("x", 2, 2)) = {W("x", 1, 1)}
     /\ POPast(hb, R("y", 1, 6)) = {W("x", 2, 4), R("z", 0, 5)}
     /\ POPast(hc, W("x", 2, 2)) = {}
     /\ POPast(hd, R("x", 1, 4)) = {W("x", 1, 1), R("y", 0, 2), W("y", 1, 3)}
     /\ POPast(he, W("x", 2, 4)) = {R("y", 1, 3)}
-
-THEOREM CausalPastTest == \* TODO: test of CausalPast(co, o)
-    FALSE
-
-THEOREM CausalHistTest == \* TODO: test of CausalHist(co, o)
-    FALSE
-
-THEOREM CausalArbTest == \* TODO: test of CausalArb(co, ar, o)
-    FALSE
 -------------------------------------------------
 (*
   Test of axioms
-  
-  TODO: test of AxCausalValue, AxCausalArb, etc
 *)
-THEOREM RWRegSemanticsTest == \* Test of RWRegSemanticsTest(seq, o)
-    \* seq = <<>>
-    /\ RWRegSemantics(<<>>, R("x", InitVal, 1))
-    /\ RWRegSemantics(<<>>, W("x", 1, 1))
-    /\ ~RWRegSemantics(<<>>, R("x", 2, 1))
-    \* no W("x", _, _) in seq
-    /\ RWRegSemantics(<<W("y", 1, 1), W("z", 1, 2), W("y", 1, 3)>>, R("x", InitVal, 4))
-    /\ RWRegSemantics(<<W("y", 1, 1), W("z", 1, 2), W("y", 1, 3)>>, W("x", 1, 4))
-    /\ ~RWRegSemantics(<<W("y", 1, 1), W("z", 1, 2), W("y", 1, 3)>>, R("x", 1, 4))
-    \* contains W("x", _, _) in seq
-    /\ RWRegSemantics(<<W("x", 1, 1), W("y", 1, 2), W("x", 2, 3), W("z", 1, 4)>>, R("x", 2, 5))
-    /\ ~RWRegSemantics(<<W("x", 1, 1), W("y", 1, 2), W("x", 2, 3), W("z", 1, 4)>>, R("x", 1, 5))
+RWRegSemanticsTest ==
+    FALSE
 -------------------------------------------------
 (*
   Test of the definitions of causal consistency
@@ -117,5 +94,5 @@ CCvTest ==
 \*        /\ \A h \in all \ sat: ~CCv(h)
 =============================================================================
 \* Modification History
-\* Last modified Sun Apr 18 11:21:15 CST 2021 by hengxin
+\* Last modified Sun Apr 18 10:47:30 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin

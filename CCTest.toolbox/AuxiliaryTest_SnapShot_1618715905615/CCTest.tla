@@ -79,7 +79,7 @@ THEOREM CausalArbTest == \* TODO: test of CausalArb(co, ar, o)
   
   TODO: test of AxCausalValue, AxCausalArb, etc
 *)
-THEOREM RWRegSemanticsTest == \* Test of RWRegSemanticsTest(seq, o)
+THEOREM RWRegSemanticsTest == \* Test of RWRegSemanticsTest(seq, 0)
     \* seq = <<>>
     /\ RWRegSemantics(<<>>, R("x", InitVal, 1))
     /\ RWRegSemantics(<<>>, W("x", 1, 1))
@@ -117,5 +117,5 @@ CCvTest ==
 \*        /\ \A h \in all \ sat: ~CCv(h)
 =============================================================================
 \* Modification History
-\* Last modified Sun Apr 18 11:21:15 CST 2021 by hengxin
+\* Last modified Sun Apr 18 11:17:07 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin
