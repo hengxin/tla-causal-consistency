@@ -948,7 +948,7 @@ TLA+ specification of Causal Consistency variants,
 \end{cpar}%
 \vshade{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- See the paper ``On Verifying Causal Consistency''
+ See the paper ``On Verifying Causal Consistency``
  (\ensuremath{POPL}\mbox{'}2017).
 \end{cpar}%
 \end{lcom}%
@@ -1407,91 +1407,79 @@ The checking algorithms in \ensuremath{POPL}\mbox{'}2017.
 \@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 161\hspace{1em}}\@s{25.52} TC ( PO ( h )
  \.{\cup} RF ( h ) )}%
-\@pvspace{8.0pt}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 All bad patterns defined in \ensuremath{POPL}\mbox{'}2017
 \end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{TODO}: to implement \ensuremath{Cyclic(R)} in
- \ensuremath{RelationUtils.tla
-}%
-\end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 168\hspace{1em}} CyclicCO ( h ) \.{\defeq}
- {\FALSE}}%
-\@x{\makebox[0pt][r]{\scriptsize 169\hspace{1em}}}%
-\@y{\@s{7.5}%
- \ensuremath{Cyclic(PO(h) \.{\cup} RF(h))
-}}%
-\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 165\hspace{1em}} CyclicCO ( h ) \.{\defeq}
+ Cyclic ( PO ( h ) \.{\cup} RF ( h ) )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 171\hspace{1em}} WriteCOInitRead ( h )
+ \@x{\makebox[0pt][r]{\scriptsize 167\hspace{1em}} WriteCOInitRead ( h )
  \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 172\hspace{1em}}\@s{16.4} \E\, k \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 168\hspace{1em}}\@s{16.4} \E\, k \.{\in}
  Keys \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 173\hspace{1em}}\@s{27.72} \E\, r \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 169\hspace{1em}}\@s{27.72} \E\, r \.{\in}
  ReadOpsOnKey ( h ,\, k ) ,\, w \.{\in} WriteOpsOnKey ( h ,\, k ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 174\hspace{1em}}\@s{39.04} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 170\hspace{1em}}\@s{39.04} \.{\land}
  {\langle} w ,\, r {\rangle} \.{\in} CO ( h )}%
 \@y{\@s{0}%
  \ensuremath{TODO}: for efficiency
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 175\hspace{1em}}\@s{39.04} \.{\land} r . val
+ \@x{\makebox[0pt][r]{\scriptsize 171\hspace{1em}}\@s{39.04} \.{\land} r . val
  \.{=} InitVal}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 177\hspace{1em}} ThinAirRead ( h )
+ \@x{\makebox[0pt][r]{\scriptsize 173\hspace{1em}} ThinAirRead ( h )
  \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 178\hspace{1em}}\@s{16.4} \E\, k \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 174\hspace{1em}}\@s{16.4} \E\, k \.{\in}
  Keys \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 179\hspace{1em}}\@s{27.72} \E\, r \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 175\hspace{1em}}\@s{27.72} \E\, r \.{\in}
  ReadOpsOnKey ( h ,\, k ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 180\hspace{1em}}\@s{39.04} \.{\land} r . val
+ \@x{\makebox[0pt][r]{\scriptsize 176\hspace{1em}}\@s{39.04} \.{\land} r . val
  \.{\neq} InitVal}%
- \@x{\makebox[0pt][r]{\scriptsize 181\hspace{1em}}\@s{39.04} \.{\land} \A\, w
+ \@x{\makebox[0pt][r]{\scriptsize 177\hspace{1em}}\@s{39.04} \.{\land} \A\, w
  \.{\in} WriteOpsOnKey ( h ,\, k ) \.{:} {\langle} w ,\, r {\rangle}
  \.{\notin} RF ( h )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 183\hspace{1em}} WriteCORead ( h )
+ \@x{\makebox[0pt][r]{\scriptsize 179\hspace{1em}} WriteCORead ( h )
  \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 184\hspace{1em}}\@s{16.4} \E\, k \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 180\hspace{1em}}\@s{16.4} \E\, k \.{\in}
  Keys \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 185\hspace{1em}}\@s{27.72} \E\, w1 ,\, w2
+ \@x{\makebox[0pt][r]{\scriptsize 181\hspace{1em}}\@s{27.72} \E\, w1 ,\, w2
  \.{\in} WriteOpsOnKey ( h ,\, k ) ,\, r1 \.{\in} ReadOpsOnKey ( h ,\, k )
  \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 186\hspace{1em}}\@s{39.04} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 182\hspace{1em}}\@s{39.04} \.{\land}
  {\langle} w1 ,\, w2 {\rangle} \.{\in} CO ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 187\hspace{1em}}\@s{39.04} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 183\hspace{1em}}\@s{39.04} \.{\land}
  {\langle} w2 ,\, r1 {\rangle}\@s{2.42} \.{\in} CO ( h )}%
 \@y{\@s{0}%
  \ensuremath{TODO}: efficiency
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 188\hspace{1em}}\@s{39.04} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 184\hspace{1em}}\@s{39.04} \.{\land}
  {\langle} w1 ,\, r1 {\rangle}\@s{2.42} \.{\in} RF ( h )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 190\hspace{1em}} CyclicHB ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 186\hspace{1em}} CyclicHB ( h ) \.{\defeq}}%
 \@y{\@s{0}%
  \ensuremath{TODO}:
 }%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 191\hspace{1em}}\@s{16.4} {\FALSE}}%
+\@x{\makebox[0pt][r]{\scriptsize 187\hspace{1em}}\@s{16.4} {\FALSE}}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 193\hspace{1em}} CyclicCF ( h )
+ \@x{\makebox[0pt][r]{\scriptsize 189\hspace{1em}} CyclicCF ( h )
  \.{\defeq}\@s{0.48}}%
 \@y{\@s{0}%
  \ensuremath{TODO}:
 }%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 194\hspace{1em}}\@s{16.4} {\FALSE}}%
-\@x{\makebox[0pt][r]{\scriptsize 195\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 190\hspace{1em}}\@s{16.4} {\FALSE}}%
+\@x{\makebox[0pt][r]{\scriptsize 191\hspace{1em}}}%
 \@y{\@s{7.5}%
  \ensuremath{Cyclic(CF(h) \.{\cup} CO(h))
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 196\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 192\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1500,7 +1488,7 @@ All bad patterns defined in \ensuremath{POPL}\mbox{'}2017
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Mon}
- \ensuremath{Apr} 19 16:38:28 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ \ensuremath{Apr} 19 19:49:35 \ensuremath{CST} 2021 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%

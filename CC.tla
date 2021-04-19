@@ -159,14 +159,10 @@ RF(h) == \* the read-from relation
 
 CO(h) == \* the CO order defined as the transitive closure of the union of PO(h) and RF(h)
     TC(PO(h) \cup RF(h))    
-
 (*
   All bad patterns defined in POPL'2017
-  
-  TODO: to implement Cyclic(R) in RelationUtils.tla
 *)
-CyclicCO(h) == FALSE
-\*    Cyclic(PO(h) \cup RF(h))
+CyclicCO(h) == Cyclic(PO(h) \cup RF(h))
 
 WriteCOInitRead(h) ==
     \E k \in Keys:
@@ -195,5 +191,5 @@ CyclicCF(h) == \* TODO:
 \*    Cyclic(CF(h) \cup CO(h))    
 =====================================================
 \* Modification History
-\* Last modified Mon Apr 19 16:38:28 CST 2021 by hengxin
+\* Last modified Mon Apr 19 19:49:35 CST 2021 by hengxin
 \* Created Tue Apr 01 10:24:07 CST 2021 by hengxin
