@@ -948,7 +948,7 @@ TLA+ specification of Causal Consistency variants,
 \end{cpar}%
 \vshade{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- See the paper ``On Verifying Causal Consistency``
+ See the paper ``On Verifying Causal Consistency''
  (\ensuremath{POPL}\mbox{'}2017).
 \end{cpar}%
 \end{lcom}%
@@ -1006,32 +1006,44 @@ Utilities.
  \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{21.57} {\UNION} \{ Range
  ( s ) \.{:} s \.{\in} h \}}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}}}%
-\@y{%
- \ensuremath{ReadOps(h) \.{\defeq} \.{\,\backslash\,}}* Return the set of all
- read operations in history \ensuremath{h \.{\in} History}.
+\@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}} ReadOps ( h ) \.{\defeq}}%
+\@y{\@s{0}%
+ Return the set of all read operations in history \ensuremath{h \.{\in}
+ History}.
 }%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}}}%
-\@y{\@s{7.5}%
- \ensuremath{\{op \.{\in} Ops(h) \.{:} op.type \.{=} \mbox{''}read\mbox{``}\}
-}}%
-\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}}}%
-\@y{}%
-\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}}%
-\@y{%
- \ensuremath{WriteOps(h) \.{\defeq} \.{\,\backslash\,}}* Return the set of
- all write operations in history \ensuremath{h \.{\in} History}.
+ \@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}}\@s{16.4} \{ op \.{\in} Ops (
+ h ) \.{:} op . type \.{=}\@w{read} \}}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}} ReadOpsOnKey ( h ,\, k )
+ \.{\defeq}}%
+\@y{\@s{0}%
+ Return the set of all read operations on key \ensuremath{k \.{\in} Keys} in
+ history \ensuremath{h \.{\in} History}.
 }%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}}}%
-\@y{\@s{7.5}%
- \ensuremath{\{op \.{\in} Ops(h) \.{:} op.type \.{=} \mbox{''}write\mbox{``}\}
+ \@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}}\@s{16.4} \{ op \.{\in} Ops (
+ h ) \.{:} op . type \.{=}\@w{read} \.{\land} op . key \.{=} k \}}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}} WriteOps ( h ) \.{\defeq}}%
+\@y{\@s{0}%
+ Return the set of all write operations in history \ensuremath{h \.{\in}
+ History}.
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}}\@s{16.4} \{ op \.{\in} Ops (
+ h ) \.{:} op . type \.{=}\@w{write} \}}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 37\hspace{1em}} WriteOpsOnKey ( h ,\, k )
+ \.{\defeq}}%
+\@y{\@s{0}%
+ Return the set of all write operations on key \ensuremath{k \.{\in} Keys} in
+ history \ensuremath{h \.{\in} History
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}}}\midbar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 38\hspace{1em}}\@s{16.4} \{ op \.{\in} Ops (
+ h ) \.{:} op . type \.{=}\@w{write} \.{\land} op . key \.{=} k \}}%
+\@x{\makebox[0pt][r]{\scriptsize 39\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Well-formedness of history \ensuremath{h \.{\in} History}:
@@ -1044,95 +1056,95 @@ Well-formedness of history \ensuremath{h \.{\in} History}:
 - uniqueness of oids
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}} WellFormed ( h ) \.{\defeq}}%
-\@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} WellFormed ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}}%
 \@y{\@s{2.5}%
  \ensuremath{\.{\land} h \.{\in} History
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}}\@s{16.4} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}\@s{16.4} \.{\land}
  Cardinality ( Ops ( h ) ) \.{=} ReduceSet ( {\LAMBDA} s ,\, x \.{:} Len ( s
  ) \.{+} x ,\, h ,\, 0 )}%
-\@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  Auxiliary definitions for the axioms used in the definitions of causal
  consistency
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}}%
 \@y{\@s{0}%
  The program order of \ensuremath{h \.{\in} History} is a union of total
  orders among operations in the same session
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}} ProgramOrder ( h )
- \.{\defeq} {\UNION} \{ Seq2Rel ( s ) \.{:} s \.{\in} h \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}} PO ( h ) \.{\defeq} {\UNION}
+ \{ Seq2Rel ( s ) \.{:} s \.{\in} h \}}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}}%
 \@y{\@s{0}%
  The set of operations that preceed \ensuremath{o \.{\in} Operation} in
  program order in history \ensuremath{h \.{\in} History
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}} POPast ( h ,\, o )
- \.{\defeq} InverseImage ( ProgramOrder ( h ) ,\, o )}%
+ \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}} POPast ( h ,\, o )
+ \.{\defeq} InverseImage ( PO ( h ) ,\, o )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}}%
 \@y{\@s{0}%
  The set of operations that preceed \ensuremath{o \.{\in} Operation} in
  causal order \ensuremath{co
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}} CausalPast ( co ,\, o )
+ \@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}} CausalPast ( co ,\, o )
  \.{\defeq} InverseImage ( co ,\, o )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}}%
 \@y{\@s{0}%
  The restriction of causal order \ensuremath{co} to the operations in the
  causal past of operation \ensuremath{o \.{\in} Operation
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}} CausalHist ( co ,\, o )
+ \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}} CausalHist ( co ,\, o )
  \.{\defeq} co \.{\,|\,} CausalPast ( co ,\, o )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}}%
 \@y{\@s{0}%
  The restriction of arbitration \ensuremath{arb} to the operations in the
  causal past of operation \ensuremath{o \.{\in} Operation
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}} CausalArb ( co ,\, arb ,\, o
+ \@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}} CausalArb ( co ,\, arb ,\, o
  ) \.{\defeq} arb \.{\,|\,} CausalPast ( co ,\, o )}%
-\@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Axioms used in the defintions of causal consistency
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}} RWRegSemantics ( seq ,\, o )
+ \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}} RWRegSemantics ( seq ,\, o )
  \.{\defeq}}%
 \@y{\@s{0}%
  Is \ensuremath{o \.{\in} Operation} legal when it is appended to
  \ensuremath{seq
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}\@s{16.4} {\IF} o . type
+ \@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}}\@s{16.4} {\IF} o . type
  \.{=}\@w{write} \.{\THEN} {\TRUE}}%
- \@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}}\@s{16.4} \.{\ELSE} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}}\@s{16.4} \.{\ELSE} \.{\LET}
  wseq \.{\defeq} SelectSeq ( seq ,\, {\LAMBDA} op \.{:} op . type
  \.{=}\@w{write} \.{\land} op . key \.{=} o . key )}%
- \@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}}\@s{47.71} \.{\IN} {\IF} wseq
+ \@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}\@s{47.71} \.{\IN} {\IF} wseq
  \.{=} {\langle} {\rangle} \.{\THEN} o . val \.{=} InitVal}%
- \@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}\@s{68.11} \.{\ELSE} o . val
+ \@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}}\@s{68.11} \.{\ELSE} o . val
  \.{=} wseq [ Len ( wseq ) ] . val}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}} AxCausalValue ( co ,\, o )
+ \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}} AxCausalValue ( co ,\, o )
  \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}}\@s{16.4} \.{\LET} seqs
+ \@x{\makebox[0pt][r]{\scriptsize 78\hspace{1em}}\@s{16.4} \.{\LET} seqs
  \.{\defeq} AllLinearExtensions ( CausalHist ( co ,\, o ) ,\, CausalPast ( co
  ,\, o ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}}\@s{16.4} \.{\IN} {\TRUE}
+ \@x{\makebox[0pt][r]{\scriptsize 79\hspace{1em}}\@s{16.4} \.{\IN} {\TRUE}
  \.{\in} \{ RWRegSemantics ( seq ,\, o ) \.{:} seq \.{\in} seqs \}\@s{4.1}}%
 \@y{\@s{0}%
  \ensuremath{TODO}: shortcut implementation of \ensuremath{anyTrue} for
@@ -1140,55 +1152,55 @@ Axioms used in the defintions of causal consistency
 }%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}} AxCausalArb ( co ,\, arb ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}} AxCausalArb ( co ,\, arb ,\,
  o ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}}\@s{16.4} \.{\LET} seq
+ \@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}}\@s{16.4} \.{\LET} seq
  \.{\defeq} AnyLinearExtension ( CausalArb ( co ,\, arb ,\, o ) ,\,
  CausalPast ( co ,\, o ) )}%
 \@y{\@s{0}%
  it is unique
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}}\@s{16.4} \.{\IN}
+ \@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}}\@s{16.4} \.{\IN}
  RWRegSemantics ( seq ,\, o )}%
-\@x{\makebox[0pt][r]{\scriptsize 78\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Specification of \ensuremath{CC
 }%
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}} CC ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}} CC ( h ) \.{\defeq}}%
 \@y{\@s{0}%
  Check whether \ensuremath{h \.{\in} History} satisfies \ensuremath{CC}
  (Causal Consistency)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}}\@s{25.53} \.{\LET} ops
+ \@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}}\@s{25.53} \.{\LET} ops
  \.{\defeq} Ops ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}}\@s{25.53} \.{\IN} \E\, co
+ \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}}\@s{25.53} \.{\IN} \E\, co
  \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
 \@y{\@s{0}%
  \ensuremath{TODO}: to generate (given a chain decomposition)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}}\@s{57.25} \.{\land} Respect
- ( co ,\, ProgramOrder ( h ) )\@s{65.6}}%
+ \@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}}\@s{57.25} \.{\land} Respect
+ ( co ,\, PO ( h ) )\@s{65.6}}%
 \@y{\@s{0}%
  \ensuremath{AxCausal
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}}\@s{57.25} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}}\@s{57.25} \.{\land}
  IsStrictPartialOrder ( co ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}}\@s{57.25} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 93\hspace{1em}}\@s{57.25} \.{\land} PrintT
  (\@w{co:\ } \.{\circ} ToString ( co ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}}\@s{57.25} \.{\land} \A\, o
- \.{\in} ops \.{:} AxCausalValue ( co ,\, o )\@s{53.32}}%
+ \@x{\makebox[0pt][r]{\scriptsize 94\hspace{1em}}\@s{57.25} \.{\land} \A\, o
+ \.{\in} ops \.{:} AxCausalValue ( co ,\, o )\@s{41.0}}%
 \@y{\@s{0}%
  \ensuremath{AxCausalValue
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 95\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Specification of \ensuremath{CCv
@@ -1199,95 +1211,95 @@ Specification of \ensuremath{CCv
 To generate possible ordering relations, not to enumerate and test them
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 97\hspace{1em}} CCv ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}} CCv ( h ) \.{\defeq}}%
 \@y{\@s{0}%
  Check whether \ensuremath{h \.{\in} History} satisfies \ensuremath{CCv}
  (Causal Convergence)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 98\hspace{1em}}\@s{23.87} \.{\LET} ops
+ \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{23.87} \.{\LET} ops
  \.{\defeq} Ops ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 99\hspace{1em}}\@s{23.87} \.{\IN} \E\, co
+ \@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}\@s{23.87} \.{\IN} \E\, co
  \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
 \@y{\@s{0}%
  \ensuremath{TODO}: to generate (given a chain decomposition)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}}\@s{55.59} \.{\land} Respect
- ( co ,\, ProgramOrder ( h ) )\@s{67.25}}%
+ \@x{\makebox[0pt][r]{\scriptsize 106\hspace{1em}}\@s{55.59} \.{\land} Respect
+ ( co ,\, PO ( h ) )\@s{65.6}}%
 \@y{\@s{0}%
  \ensuremath{AxCausal
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{55.59} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 107\hspace{1em}}\@s{55.59} \.{\land}
  IsStrictPartialOrder ( co ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}\@s{55.59} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}}\@s{55.59} \.{\land} PrintT
  (\@w{co:\ } \.{\circ} ToString ( co ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}}\@s{55.59} \.{\land} \E\,
+ \@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}}\@s{55.59} \.{\land} \E\,
  arb \.{\in} \{ Seq2Rel ( le ) \.{:} le \.{\in} AllLinearExtensions ( co ,\,
  ops ) \} \.{:}}%
 \@y{\@s{0}%
  \ensuremath{AxArb
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{78.03} \.{\land} \A\, o
+ \@x{\makebox[0pt][r]{\scriptsize 110\hspace{1em}}\@s{78.03} \.{\land} \A\, o
  \.{\in} ops \.{:} AxCausalArb ( co ,\, arb ,\, o )\@s{1.11}}%
 \@y{\@s{0}%
  \ensuremath{AxCausalArb
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}\@s{78.03} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 111\hspace{1em}}\@s{78.03} \.{\land} PrintT
  (\@w{arb:\ } \.{\circ} ToString ( arb ) )}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Version 2: re-arrange clauses
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}} CCv2 ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 115\hspace{1em}} CCv2 ( h ) \.{\defeq}}%
 \@y{\@s{0}%
  Check whether \ensuremath{h \.{\in} History} satisfies \ensuremath{CCv}
  (Causal Convergence)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 110\hspace{1em}}\@s{24.98} \.{\LET} ops
+ \@x{\makebox[0pt][r]{\scriptsize 116\hspace{1em}}\@s{24.98} \.{\LET} ops
  \.{\defeq} Ops ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 111\hspace{1em}}\@s{24.98} \.{\IN} \E\, co
+ \@x{\makebox[0pt][r]{\scriptsize 117\hspace{1em}}\@s{24.98} \.{\IN} \E\, co
  \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
 \@y{\@s{0}%
  \ensuremath{FIXME}: efficiency\.{!!}!
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 112\hspace{1em}}\@s{56.70} \.{\land} Respect
- ( co ,\, ProgramOrder ( h ) )}%
+ \@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}\@s{56.70} \.{\land} Respect
+ ( co ,\, PO ( h ) )}%
 \@y{\@s{0}%
  \ensuremath{AxCausal
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 113\hspace{1em}}\@s{56.70} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 119\hspace{1em}}\@s{56.70} \.{\land}
  IsStrictPartialOrder ( co ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 114\hspace{1em}}\@s{56.70} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 120\hspace{1em}}\@s{56.70} \.{\land} PrintT
  (\@w{co:\ } \.{\circ} ToString ( co ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 115\hspace{1em}}\@s{56.70} \.{\land} \E\,
+ \@x{\makebox[0pt][r]{\scriptsize 121\hspace{1em}}\@s{56.70} \.{\land} \E\,
  arb \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}\@s{4.1}}%
 \@y{\@s{0}%
  to generate; not to test
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 116\hspace{1em}}\@s{79.14} \.{\land} Respect
+ \@x{\makebox[0pt][r]{\scriptsize 122\hspace{1em}}\@s{79.14} \.{\land} Respect
  ( arb ,\, co )\@s{86.67}}%
 \@y{\@s{0}%
  \ensuremath{AxArb
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 117\hspace{1em}}\@s{79.14} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 123\hspace{1em}}\@s{79.14} \.{\land}
  IsStrictTotalOrder ( arb ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}\@s{79.14} \.{\land} \A\, o
+ \@x{\makebox[0pt][r]{\scriptsize 124\hspace{1em}}\@s{79.14} \.{\land} \A\, o
  \.{\in} ops \.{:} AxCausalArb ( co ,\, arb ,\, o )}%
 \@y{\@s{0}%
  \ensuremath{AxCausalArb
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 119\hspace{1em}}\@s{79.14} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 125\hspace{1em}}\@s{79.14} \.{\land} PrintT
  (\@w{arb:\ } \.{\circ} ToString ( arb ) )}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1295,49 +1307,191 @@ Version 1: Following the definition of \ensuremath{POPL2017
 }%
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 123\hspace{1em}} CCv1 ( h ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 129\hspace{1em}} CCv1 ( h ) \.{\defeq}}%
 \@y{\@s{0}%
  Check whether \ensuremath{h \.{\in} History} satisfies \ensuremath{CCv}
  (Causal Convergence)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 124\hspace{1em}}\@s{24.98} \.{\LET} ops
+ \@x{\makebox[0pt][r]{\scriptsize 130\hspace{1em}}\@s{24.98} \.{\LET} ops
  \.{\defeq} Ops ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 125\hspace{1em}}\@s{24.98} \.{\IN} \E\, co
+ \@x{\makebox[0pt][r]{\scriptsize 131\hspace{1em}}\@s{24.98} \.{\IN} \E\, co
  \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
 \@y{\@s{0}%
  \ensuremath{FIXME}: efficiency\.{!!}!
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 126\hspace{1em}}\@s{56.70} \.{\land} \E\,
+ \@x{\makebox[0pt][r]{\scriptsize 132\hspace{1em}}\@s{56.70} \.{\land} \E\,
  arb \.{\in} {\SUBSET} ( ops \.{\times} ops ) \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 127\hspace{1em}}\@s{71.92} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 133\hspace{1em}}\@s{71.92} \.{\land} PrintT
  (\@w{co:\ } \.{\circ} ToString ( co ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 128\hspace{1em}}\@s{71.92} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 134\hspace{1em}}\@s{71.92} \.{\land} PrintT
  (\@w{arb:\ } \.{\circ} ToString ( arb ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 129\hspace{1em}}\@s{71.92} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 135\hspace{1em}}\@s{71.92} \.{\land}
  IsStrictPartialOrder ( co ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 130\hspace{1em}}\@s{71.92} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 136\hspace{1em}}\@s{71.92} \.{\land}
  IsStrictTotalOrder ( arb ,\, ops )}%
- \@x{\makebox[0pt][r]{\scriptsize 131\hspace{1em}}\@s{71.92} \.{\land} Respect
- ( co ,\, ProgramOrder ( h ) )\@s{36.89}}%
+ \@x{\makebox[0pt][r]{\scriptsize 137\hspace{1em}}\@s{71.92} \.{\land} Respect
+ ( co ,\, PO ( h ) )\@s{36.89}}%
 \@y{\@s{0}%
  \ensuremath{AxCausal
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 132\hspace{1em}}\@s{71.92} \.{\land} Respect
- ( arb ,\, co )\@s{99.05}}%
+ \@x{\makebox[0pt][r]{\scriptsize 138\hspace{1em}}\@s{71.92} \.{\land} Respect
+ ( arb ,\, co )\@s{86.67}}%
 \@y{\@s{0}%
  \ensuremath{AxArb
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 133\hspace{1em}}\@s{71.92} \.{\land} \A\, o
- \.{\in} ops \.{:} AxCausalArb ( co ,\, arb ,\, o )\@s{12.38}}%
+ \@x{\makebox[0pt][r]{\scriptsize 139\hspace{1em}}\@s{71.92} \.{\land} \A\, o
+ \.{\in} ops \.{:} AxCausalArb ( co ,\, arb ,\, o )}%
 \@y{\@s{0}%
  \ensuremath{AxCausalArb
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 134\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 140\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Specification of \ensuremath{CM
+}%
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 144\hspace{1em}} CM ( h ) \.{\defeq}}%
+\@y{\@s{0}%
+ Check whether \ensuremath{h \.{\in} History} satisfies \ensuremath{CM}
+ (Causal Memory)
+}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 145\hspace{1em}}\@s{27.52} {\FALSE}\@s{4.1}}%
+\@y{\@s{0}%
+ \ensuremath{TODO
+}}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 146\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+The checking algorithms in \ensuremath{POPL}\mbox{'}2017.
+\end{cpar}%
+\end{lcom}%
+ \@x{\makebox[0pt][r]{\scriptsize 150\hspace{1em}} IsDifferentiated ( h )
+ \.{\defeq}}%
+\@y{\@s{0}%
+ Is \ensuremath{h \.{\in} History} differentiated\.{?}
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 151\hspace{1em}}\@s{16.4} \A\, k \.{\in}
+ Keys \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 152\hspace{1em}}\@s{27.72} \.{\LET} writes
+ \.{\defeq} WriteOpsOnKey ( h ,\, k )}%
+ \@x{\makebox[0pt][r]{\scriptsize 153\hspace{1em}}\@s{27.72} \.{\IN} \A\, w1
+ \.{\in} writes ,\, w2 \.{\in} writes \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 154\hspace{1em}}\@s{59.44} \.{\land} w1 .
+ val \.{\neq} w2 . val}%
+ \@x{\makebox[0pt][r]{\scriptsize 155\hspace{1em}}\@s{59.44} \.{\land} w1 .
+ val \.{\neq} InitVal}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 157\hspace{1em}} RF ( h ) \.{\defeq}}%
+\@y{\@s{0}%
+ the read-from relation
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 158\hspace{1em}}\@s{24.91} \{ {\langle} w
+ ,\, r {\rangle} \.{\in} WriteOps ( h ) \.{\times} ReadOps ( h ) \.{:} w .
+ key \.{=} r . key \.{\land} w . val \.{=} r . val \}}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 160\hspace{1em}} CO ( h ) \.{\defeq}}%
+\@y{\@s{0}%
+ the \ensuremath{CO} order defined as the transitive closure of the union of
+ \ensuremath{PO(h)} and \ensuremath{RF(h)
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 161\hspace{1em}}\@s{25.52} TC ( PO ( h )
+ \.{\cup} RF ( h ) )}%
+\@pvspace{8.0pt}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+All bad patterns defined in \ensuremath{POPL}\mbox{'}2017
+\end{cpar}%
+\vshade{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+ \ensuremath{TODO}: to implement \ensuremath{Cyclic(R)} in
+ \ensuremath{RelationUtils.tla
+}%
+\end{cpar}%
+\end{lcom}%
+ \@x{\makebox[0pt][r]{\scriptsize 168\hspace{1em}} CyclicCO ( h ) \.{\defeq}
+ {\FALSE}}%
+\@x{\makebox[0pt][r]{\scriptsize 169\hspace{1em}}}%
+\@y{\@s{7.5}%
+ \ensuremath{Cyclic(PO(h) \.{\cup} RF(h))
+}}%
+\@xx{}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 171\hspace{1em}} WriteCOInitRead ( h )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 172\hspace{1em}}\@s{16.4} \E\, k \.{\in}
+ Keys \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 173\hspace{1em}}\@s{27.72} \E\, r \.{\in}
+ ReadOpsOnKey ( h ,\, k ) ,\, w \.{\in} WriteOpsOnKey ( h ,\, k ) \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 174\hspace{1em}}\@s{39.04} \.{\land}
+ {\langle} w ,\, r {\rangle} \.{\in} CO ( h )}%
+\@y{\@s{0}%
+ \ensuremath{TODO}: for efficiency
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 175\hspace{1em}}\@s{39.04} \.{\land} r . val
+ \.{=} InitVal}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 177\hspace{1em}} ThinAirRead ( h )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 178\hspace{1em}}\@s{16.4} \E\, k \.{\in}
+ Keys \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 179\hspace{1em}}\@s{27.72} \E\, r \.{\in}
+ ReadOpsOnKey ( h ,\, k ) \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 180\hspace{1em}}\@s{39.04} \.{\land} r . val
+ \.{\neq} InitVal}%
+ \@x{\makebox[0pt][r]{\scriptsize 181\hspace{1em}}\@s{39.04} \.{\land} \A\, w
+ \.{\in} WriteOpsOnKey ( h ,\, k ) \.{:} {\langle} w ,\, r {\rangle}
+ \.{\notin} RF ( h )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 183\hspace{1em}} WriteCORead ( h )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 184\hspace{1em}}\@s{16.4} \E\, k \.{\in}
+ Keys \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 185\hspace{1em}}\@s{27.72} \E\, w1 ,\, w2
+ \.{\in} WriteOpsOnKey ( h ,\, k ) ,\, r1 \.{\in} ReadOpsOnKey ( h ,\, k )
+ \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 186\hspace{1em}}\@s{39.04} \.{\land}
+ {\langle} w1 ,\, w2 {\rangle} \.{\in} CO ( h )}%
+ \@x{\makebox[0pt][r]{\scriptsize 187\hspace{1em}}\@s{39.04} \.{\land}
+ {\langle} w2 ,\, r1 {\rangle}\@s{2.42} \.{\in} CO ( h )}%
+\@y{\@s{0}%
+ \ensuremath{TODO}: efficiency
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 188\hspace{1em}}\@s{39.04} \.{\land}
+ {\langle} w1 ,\, r1 {\rangle}\@s{2.42} \.{\in} RF ( h )}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 190\hspace{1em}} CyclicHB ( h ) \.{\defeq}}%
+\@y{\@s{0}%
+ \ensuremath{TODO}:
+}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 191\hspace{1em}}\@s{16.4} {\FALSE}}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 193\hspace{1em}} CyclicCF ( h )
+ \.{\defeq}\@s{0.48}}%
+\@y{\@s{0}%
+ \ensuremath{TODO}:
+}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 194\hspace{1em}}\@s{16.4} {\FALSE}}%
+\@x{\makebox[0pt][r]{\scriptsize 195\hspace{1em}}}%
+\@y{\@s{7.5}%
+ \ensuremath{Cyclic(CF(h) \.{\cup} CO(h))
+}}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 196\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1345,8 +1499,8 @@ Version 1: Following the definition of \ensuremath{POPL2017
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified Sun \ensuremath{Apr} 18
- 10:31:01 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Mon}
+ \ensuremath{Apr} 19 16:38:28 \ensuremath{CST} 2021 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%

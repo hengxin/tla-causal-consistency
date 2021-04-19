@@ -54,9 +54,9 @@ CardOfProgramOrderOfHistory(h) ==
         IF Len(s) <= 1 THEN 0 ELSE Sum(1 .. Len(s) - 1)
     IN  ReduceSet(LAMBDA s, x: CardOfProgramOrderOfSession(s) + x, h, 0)
 
-THEOREM ProgramOrderCardinalityTheorem == \* test of ProgramOrder(h)
+THEOREM ProgramOrderCardinalityTheorem == \* test of PO(h)
     \A h \in {ha, hb, hc, hd, he}:
-        Cardinality(ProgramOrder(h)) = CardOfProgramOrderOfHistory(h)
+        Cardinality(PO(h)) = CardOfProgramOrderOfHistory(h)
 
 THEOREM POPastTest == \* test of POPast(h, o)
     /\ POPast(ha, R("x", 2, 2)) = {W("x", 1, 1)}
@@ -117,5 +117,5 @@ CCvTest ==
 \*        /\ \A h \in all \ sat: ~CCv(h)
 =============================================================================
 \* Modification History
-\* Last modified Sun Apr 18 11:21:15 CST 2021 by hengxin
+\* Last modified Mon Apr 19 16:02:13 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin
