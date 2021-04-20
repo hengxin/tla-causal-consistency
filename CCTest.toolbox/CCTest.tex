@@ -1158,7 +1158,7 @@ Test of axioms
  RWRegSemantics ( {\langle} {\rangle} ,\, R (\@w{x} ,\, 2 ,\, 1 ) )}%
 \@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}}\@s{16.4}}%
 \@y{\@s{0}%
- no \ensuremath{W(\mbox{''}x\mbox{``},\, \_,\, \_)} in \ensuremath{seq
+ no \ensuremath{W(\@w{x},\, \_,\, \_)} in \ensuremath{seq
 }}%
 \@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}}\@s{16.4} \.{\land}
@@ -1172,7 +1172,7 @@ Test of axioms
  ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) {\rangle} ,\, R (\@w{x} ,\, 1 ,\, 4 ) )}%
 \@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}}\@s{16.4}}%
 \@y{\@s{0}%
- contains \ensuremath{W(\mbox{''}x\mbox{``},\, \_,\, \_)} in \ensuremath{seq
+ contains \ensuremath{W(\@w{x},\, \_,\, \_)} in \ensuremath{seq
 }}%
 \@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}}\@s{16.4} \.{\land}
@@ -1193,21 +1193,21 @@ Test of the definitions of causal consistency
 ha: 4; \ensuremath{hb}: 7; \ensuremath{hc}: 4; \ensuremath{hd}: 8; he: 6
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}} CCTest \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{16.4} \.{\land}\@s{6.14}
- PrintT ( CC ( ha ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}\@s{16.4} \.{\land}\@s{6.14}
- PrintT ( CC ( hc ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}}\@s{16.4} \.{\land}\@s{6.14}
- PrintT ( {\lnot} CC ( he ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{16.4} \.{\land}\@s{6.14}
- \.{\LET} sat \.{\defeq} \{ ha ,\, hb ,\, hc ,\, hd \}}%
- \@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}\@s{33.65} \.{\IN} \.{\land}
+\@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}} CCDefTest \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{16.4} \.{\land} PrintT (
+ CC ( ha ) )}%
+ \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}\@s{16.4} \.{\land} PrintT (
+ CC ( hc ) )}%
+ \@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}}\@s{16.4} \.{\land} PrintT (
+ {\lnot} CC ( he ) )}%
+ \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{16.4} \.{\land} \.{\LET}
+ sat \.{\defeq} \{ ha ,\, hb ,\, hc ,\, hd \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}\@s{27.51} \.{\IN} \.{\land}
  \A\, h \.{\in} sat \.{:} CC ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 106\hspace{1em}}\@s{54.05} \.{\land} \A\, h
+ \@x{\makebox[0pt][r]{\scriptsize 106\hspace{1em}}\@s{47.91} \.{\land} \A\, h
  \.{\in} all \.{\,\backslash\,} sat \.{:} {\lnot} CC ( h )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}} CCvTest \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}} CCvDefTest \.{\defeq}}%
  \@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}}\@s{16.4} \.{\land} PrintT (
  {\lnot} CCv ( ha ) )}%
 \@x{\makebox[0pt][r]{\scriptsize 110\hspace{1em}}}%
@@ -1244,7 +1244,34 @@ ha: 4; \ensuremath{hb}: 7; \ensuremath{hc}: 4; \ensuremath{hd}: 8; he: 6
  \ensuremath{{\lnot}CCv(h)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Test of the checking algorithms for causal consistency
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 122\hspace{1em}} CCAlgTest \.{\defeq}}%
+\@y{\@s{0}%
+ Test of the checking algorithm for \ensuremath{CC} (Causal Consistency)
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 123\hspace{1em}}\@s{16.4} \.{\LET} sat
+ \.{\defeq} \{ ha ,\, hb ,\, hc ,\, hd \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 124\hspace{1em}}\@s{16.4} \.{\IN} \.{\land}
+ \A\, h \.{\in} sat \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 125\hspace{1em}}\@s{52.01} \.{\land} PrintT
+ ( ToString ( h ) \.{\circ}\@w{\ is\ differentiated:\ } \.{\circ} ToString (
+ IsDifferentiated ( h ) ) )}%
+ \@x{\makebox[0pt][r]{\scriptsize 126\hspace{1em}}\@s{52.01} \.{\land} CCAlg (
+ h )}%
+ \@x{\makebox[0pt][r]{\scriptsize 127\hspace{1em}}\@s{36.79} \.{\land} \A\, h
+ \.{\in} all \.{\,\backslash\,} sat \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 128\hspace{1em}}\@s{52.01} \.{\land} PrintT
+ ( ToString ( h ) \.{\circ}\@w{\ is\ differentiated:\ } \.{\circ} ToString (
+ IsDifferentiated ( h ) ) )}%
+ \@x{\makebox[0pt][r]{\scriptsize 129\hspace{1em}}\@s{52.01} \.{\land} {\lnot}
+ CCAlg ( h )}%
+\@x{\makebox[0pt][r]{\scriptsize 130\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1252,8 +1279,8 @@ ha: 4; \ensuremath{hb}: 7; \ensuremath{hc}: 4; \ensuremath{hd}: 8; he: 6
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Mon}
- \ensuremath{Apr} 19 16:02:13 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Tue}
+ \ensuremath{Apr} 20 14:11:35 \ensuremath{CST} 2021 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%

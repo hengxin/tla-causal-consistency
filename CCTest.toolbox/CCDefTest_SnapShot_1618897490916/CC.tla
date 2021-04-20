@@ -8,12 +8,11 @@
 EXTENDS Naturals, Sequences, FiniteSets, Functions, FiniteSetsExt,
         RelationUtils, TLC
 
-Key == Range("abcdefghijklmnopqrstuvwxyz") \* We assume single-character keys.
-Val == Nat      \* We assume values from Nat.
-InitVal == 0    \* We follow the convention in POPL'2017.
-Oid == Nat      \* We assume operation identifiers from Nat.
+CONSTANTS Keys, Vals
+InitVal == 0  \* we follow the convention in POPL'2017
 
-Operation == [type : {"read", "write"}, key : Key, val : Val, oid : Oid]
+\* oid: unique operation identifier
+Operation == [type : {"read", "write"}, key : Keys, val : Vals, oid : Nat]
 R(k, v, oid) == [type |-> "read", key |-> k, val |-> v, oid |-> oid]
 W(k, v, oid) == [type |-> "write", key |-> k, val |-> v, oid |-> oid]
 
@@ -29,13 +28,13 @@ Ops(h) == \* Return the set of all operations in history h \in History.
 ReadOps(h) == \* Return the set of all read operations in history h \in History.
     {op \in Ops(h) : op.type = "read"}  
 
-ReadOpsOnKey(h, k) == \* Return the set of all read operations on key k \in Key in history h \in History.
+ReadOpsOnKey(h, k) == \* Return the set of all read operations on key k \in Keys in history h \in History.
     {op \in Ops(h) : op.type = "read" /\ op.key = k}  
 
 WriteOps(h) == \* Return the set of all write operations in history h \in History.
     {op \in Ops(h) : op.type = "write"}  
 
-WriteOpsOnKey(h, k) == \* Return the set of all write operations on key k \in Key in history h \in History
+WriteOpsOnKey(h, k) == \* Return the set of all write operations on key k \in Keys in history h \in History
     {op \in Ops(h) : op.type = "write" /\ op.key = k}
 -------------------------------------------------
 (*
@@ -146,14 +145,13 @@ CM(h) == \* Check whether h \in History satisfies CM (Causal Memory)
     FALSE  \* TODO
 -------------------------------------------------
 (*
-  Auxiliary operators used in the checking algorithms:
+  Auxiliary predicate used in the checking algorithms:
   We consider only differentiated histories.
+  
+  TODO: using ASSUMPTION (in a separate module)
 *)
-KeyOf(h) == \* the set of keys read or written in h \in History
-    {op.key : op \in Ops(h)}
-
 IsDifferentiated(h) == \* Is h \in History differentiated?
-    \A k \in KeyOf(h):
+    \A k \in Keys:
         LET writes == WriteOpsOnKey(h, k)
         IN  \A w1 \in writes, w2 \in writes:
                 /\ w1.val # w2.val
@@ -172,19 +170,19 @@ CO(h) == \* the CO order defined as the transitive closure of the union of PO(h)
 CyclicCO(h) == Cyclic(PO(h) \cup RF(h))
 
 WriteCOInitRead(h) ==
-    \E k \in KeyOf(h):
+    \E k \in Keys:
         \E r \in ReadOpsOnKey(h, k), w \in WriteOpsOnKey(h, k):
             /\ <<w, r>> \in CO(h) \* TODO: for efficiency
             /\ r.val = InitVal
 
 ThinAirRead(h) ==
-    \E k \in KeyOf(h):
+    \E k \in Keys:
         \E r \in ReadOpsOnKey(h, k):
             /\ r.val # InitVal
             /\ \A w \in WriteOpsOnKey(h, k): <<w, r>> \notin RF(h)
 
 WriteCORead(h) ==
-    \E k \in KeyOf(h):
+    \E k \in Keys:
         \E w1, w2 \in WriteOpsOnKey(h, k), r1 \in ReadOpsOnKey(h, k):
             /\ <<w1, w2>> \in CO(h)
             /\ <<w2, r1>> \in CO(h) \* TODO: efficiency
