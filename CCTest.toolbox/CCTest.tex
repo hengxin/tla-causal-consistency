@@ -1050,140 +1050,213 @@ Naming Conventions:
  \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}} all \.{\defeq} \{ ha ,\, hb
  ,\, hc ,\, hd ,\, he \}}%
 \@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}}\midbar\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} {\THEOREM} WellFormedTheorem
- \.{\defeq}}%
-\@y{\@s{0}%
- test of well-formedness of histories
-}%
-\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} WellFormedTest \.{\defeq}}%
  \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{16.4} \A\, h \.{\in} all
  \.{:} WellFormed ( h )}%
 \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
+Test of utility operators for operations
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}} OpsTest \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{OpsTest\ Begin} )}%
+\@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{16.4}}%
+\@y{\@s{0}%
+ on history ha
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{16.4} \.{\land} Ops ( ha
+ ) \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 ) ,\, R (\@w{x} ,\, 2 ,\, 2 ) ,\, W (\@w{x}
+ ,\, 2 ,\, 3 ) ,\, R (\@w{x} ,\, 1 ,\, 4 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}\@s{16.4} \.{\land} ReadOps (
+ ha ) \.{=} \{ R (\@w{x} ,\, 2 ,\, 2 ) ,\, R (\@w{x} ,\, 1 ,\, 4 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{16.4} \.{\land}
+ ReadOpsOnKey ( ha ,\,\@w{x} ) \.{=} \{ R (\@w{x} ,\, 2 ,\, 2 ) ,\, R (\@w{x}
+ ,\, 1 ,\, 4 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{16.4} \.{\land} WriteOps
+ ( ha ) \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{x} ,\, 2 ,\, 3 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{16.4} \.{\land}
+ WriteOpsOnKey ( ha ,\,\@w{x} ) \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 ) ,\, W
+ (\@w{x} ,\, 2 ,\, 3 ) \}}%
+\@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}\@s{16.4}}%
+\@y{\@s{0}%
+ on history he
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}}\@s{16.4} \.{\land} Ops ( he
+ ) \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2 ) ,\, R (\@w{y}
+ ,\, 1 ,\, 3 ) ,\, W (\@w{x} ,\, 2 ,\, 4 ) ,\, R (\@w{x} ,\, 2 ,\, 5 ) ,\, R
+ (\@w{x} ,\, 1 ,\, 6 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{16.4} \.{\land} ReadOps (
+ he ) \.{=} \{ R (\@w{y} ,\, 1 ,\, 3 ) ,\, R (\@w{x} ,\, 2 ,\, 5 ) ,\, R
+ (\@w{x} ,\, 1 ,\, 6 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{16.4} \.{\land}
+ ReadOpsOnKey ( he ,\,\@w{x} ) \.{=} \{ R (\@w{x} ,\, 2 ,\, 5 ) ,\, R (\@w{x}
+ ,\, 1 ,\, 6 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}}\@s{16.4} \.{\land} WriteOps
+ ( he ) \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2 ) ,\, W
+ (\@w{x} ,\, 2 ,\, 4 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}\@s{16.4} \.{\land}
+ WriteOpsOnKey ( he ,\,\@w{y} ) \.{=} \{ W (\@w{y} ,\, 1 ,\, 2 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{OpsTest\ End} )}%
+\@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}}}\midbar\@xx{}%
+\begin{lcom}{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
 Test of the auxiliary definitions for the axioms
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}} CardOfProgramOrderOfHistory
+ \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}} CardOfProgramOrderOfHistory
  ( h ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{16.4} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}}\@s{16.4} \.{\LET}
  CardOfProgramOrderOfSession ( s ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{40.89} {\IF} Len ( s )
+ \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}}\@s{40.89} {\IF} Len ( s )
  \.{\leq} 1 \.{\THEN} 0 \.{\ELSE} Sum ( 1 \.{\dotdot} Len ( s ) \.{-} 1 )}%
- \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ \@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
  ReduceSet ( {\LAMBDA} s ,\, x \.{:} CardOfProgramOrderOfSession ( s ) \.{+}
  x ,\, h ,\, 0 )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}} {\THEOREM}
+ \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}} {\THEOREM}
  ProgramOrderCardinalityTheorem \.{\defeq}}%
 \@y{\@s{0}%
  test of \ensuremath{PO(h)
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{16.4} \A\, h \.{\in} \{
+ \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}}\@s{16.4} \A\, h \.{\in} \{
  ha ,\, hb ,\, hc ,\, hd ,\, he \} \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{27.72} Cardinality ( PO (
+ \@x{\makebox[0pt][r]{\scriptsize 78\hspace{1em}}\@s{27.72} Cardinality ( PO (
  h ) ) \.{=} CardOfProgramOrderOfHistory ( h )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}} {\THEOREM} POPastTest
- \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 80\hspace{1em}} POPastTest \.{\defeq}}%
 \@y{\@s{0}%
  test of \ensuremath{POPast(h,\, o)
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{16.4} \.{\land} POPast (
+ \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{POPastTest\ Begin} )}%
+ \@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}}\@s{16.4} \.{\land} POPast (
  ha ,\, R (\@w{x} ,\, 2 ,\, 2 ) )\@s{3.61} \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 )
  \}}%
- \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{16.4} \.{\land} POPast (
+ \@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}}\@s{16.4} \.{\land} POPast (
  hb ,\, R (\@w{y} ,\, 1 ,\, 6 ) )\@s{4.26} \.{=} \{ W (\@w{x} ,\, 2 ,\, 4 )
  ,\, R (\@w{z} ,\, 0 ,\, 5 ) \}}%
- \@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}}\@s{16.4} \.{\land} POPast (
+ \@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}}\@s{16.4} \.{\land} POPast (
  hc ,\, W (\@w{x} ,\, 2 ,\, 2 ) )\@s{0.18} \.{=} \{ \}}%
- \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}\@s{16.4} \.{\land} POPast (
+ \@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}}\@s{16.4} \.{\land} POPast (
  hd ,\, R (\@w{x} ,\, 1 ,\, 4 ) )\@s{3.35} \.{=} \{ W (\@w{x} ,\, 1 ,\, 1 )
  ,\, R (\@w{y} ,\, 0 ,\, 2 ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) \}}%
- \@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}\@s{16.4} \.{\land} POPast (
+ \@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}}\@s{16.4} \.{\land} POPast (
  he ,\, W (\@w{x} ,\, 2 ,\, 4 ) ) \.{=} \{ R (\@w{y} ,\, 1 ,\, 3 ) \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{POPastTest\ End} )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}} {\THEOREM} CausalPastTest
- \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}} CausalPastTest \.{\defeq}}%
 \@y{\@s{0}%
  \ensuremath{TODO}: test of \ensuremath{CausalPast(co,\, o)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}\@s{16.4} {\FALSE}}%
+ \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CausalPastTest\ Begin} )}%
+\@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}}\@s{16.4} \.{\land} {\FALSE}}%
+ \@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CausalPastTest\ End} )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}} {\THEOREM} CausalHistTest
- \.{\defeq}\@s{1.39}}%
+\@x{\makebox[0pt][r]{\scriptsize 94\hspace{1em}} CausalHistTest \.{\defeq}}%
 \@y{\@s{0}%
  \ensuremath{TODO}: test of \ensuremath{CausalHist(co,\, o)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}}\@s{16.4} {\FALSE}}%
+ \@x{\makebox[0pt][r]{\scriptsize 95\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CausalHistTest\ Begin} )}%
+\@x{\makebox[0pt][r]{\scriptsize 96\hspace{1em}}\@s{16.4} \.{\land} {\FALSE}}%
+ \@x{\makebox[0pt][r]{\scriptsize 97\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CausalHistTest\ End} )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}} {\THEOREM} CausalArbTest
- \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 99\hspace{1em}} CausalArbTest \.{\defeq}}%
 \@y{\@s{0}%
  \ensuremath{TODO}: test of \ensuremath{CausalArb(co,\, ar,\, o)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}}\@s{16.4} {\FALSE}}%
-\@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}}}\midbar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CausalArbTest\ Begin} )}%
+ \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{16.4} \.{\land}
+ {\FALSE}}%
+ \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CausalArbTest\ End} )}%
+\@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Test of axioms
 \end{cpar}%
-\vshade{5.0}%
-\begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{TODO}: test of \ensuremath{AxCausalValue},
- \ensuremath{AxCausalArb}, etc
-\end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}} {\THEOREM}
- RWRegSemanticsTest \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 107\hspace{1em}} RWRegSemanticsTest
+ \.{\defeq}}%
 \@y{\@s{0}%
- Test of \ensuremath{RWRegSemanticsTest(seq,\, o)
+ test of \ensuremath{RWRegSemanticsTest(seq,\, o)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}}\@s{16.4}}%
+ \@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{RWRegSemanticsTest\ Begin} )}%
+\@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}}\@s{16.4}}%
 \@y{\@s{0}%
  \ensuremath{seq \.{=} {\langle}{\rangle}
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}}\@s{16.4} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 110\hspace{1em}}\@s{16.4} \.{\land}
  RWRegSemantics ( {\langle} {\rangle} ,\, R (\@w{x} ,\, InitVal ,\, 1 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}}\@s{16.4} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 111\hspace{1em}}\@s{16.4} \.{\land}
  RWRegSemantics ( {\langle} {\rangle} ,\, W (\@w{x} ,\, 1 ,\, 1 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
+ \@x{\makebox[0pt][r]{\scriptsize 112\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
  RWRegSemantics ( {\langle} {\rangle} ,\, R (\@w{x} ,\, 2 ,\, 1 ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}}\@s{16.4}}%
+\@x{\makebox[0pt][r]{\scriptsize 113\hspace{1em}}\@s{16.4}}%
 \@y{\@s{0}%
- no \ensuremath{W(\@w{x},\, \_,\, \_)} in \ensuremath{seq
+ no \ensuremath{W(\mbox{''}x\mbox{``},\, \_,\, \_)} in \ensuremath{seq
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}}\@s{16.4} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 114\hspace{1em}}\@s{16.4} \.{\land}
  RWRegSemantics ( {\langle} W (\@w{y} ,\, 1 ,\, 1 ) ,\, W (\@w{z} ,\, 1 ,\, 2
  ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) {\rangle} ,\, R (\@w{x} ,\, InitVal ,\, 4 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}}\@s{16.4} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 115\hspace{1em}}\@s{16.4} \.{\land}
  RWRegSemantics ( {\langle} W (\@w{y} ,\, 1 ,\, 1 ) ,\, W (\@w{z} ,\, 1 ,\, 2
  ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) {\rangle} ,\, W (\@w{x} ,\, 1 ,\, 4 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
+ \@x{\makebox[0pt][r]{\scriptsize 116\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
  RWRegSemantics ( {\langle} W (\@w{y} ,\, 1 ,\, 1 ) ,\, W (\@w{z} ,\, 1 ,\, 2
  ) ,\, W (\@w{y} ,\, 1 ,\, 3 ) {\rangle} ,\, R (\@w{x} ,\, 1 ,\, 4 ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}}\@s{16.4}}%
+\@x{\makebox[0pt][r]{\scriptsize 117\hspace{1em}}\@s{16.4}}%
 \@y{\@s{0}%
- contains \ensuremath{W(\@w{x},\, \_,\, \_)} in \ensuremath{seq
+ contains \ensuremath{W(\mbox{''}x\mbox{``},\, \_,\, \_)} in \ensuremath{seq
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}}\@s{16.4} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}\@s{16.4} \.{\land}
  RWRegSemantics ( {\langle} W (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2
  ) ,\, W (\@w{x} ,\, 2 ,\, 3 ) ,\, W (\@w{z} ,\, 1 ,\, 4 ) {\rangle} ,\, R
  (\@w{x} ,\, 2 ,\, 5 ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 93\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
+ \@x{\makebox[0pt][r]{\scriptsize 119\hspace{1em}}\@s{16.4} \.{\land} {\lnot}
  RWRegSemantics ( {\langle} W (\@w{x} ,\, 1 ,\, 1 ) ,\, W (\@w{y} ,\, 1 ,\, 2
  ) ,\, W (\@w{x} ,\, 2 ,\, 3 ) ,\, W (\@w{z} ,\, 1 ,\, 4 ) {\rangle} ,\, R
  (\@w{x} ,\, 1 ,\, 5 ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 94\hspace{1em}}}\midbar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 120\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{RWRegSemanticsTest\ End} )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 122\hspace{1em}} AxCausalValueTest
+ \.{\defeq}}%
+\@y{\@s{0}%
+ \ensuremath{TODO}: test of \ensuremath{AxCausalValue()
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 123\hspace{1em}}\@s{16.4} \.{\land}
+ {\FALSE}}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 125\hspace{1em}} AxCausalArbTest \.{\defeq}}%
+\@y{\@s{0}%
+ \ensuremath{TODO}: test of \ensuremath{AxCausalArb()
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 126\hspace{1em}}\@s{16.4} \.{\land}
+ {\FALSE}}%
+\@x{\makebox[0pt][r]{\scriptsize 127\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Test of the definitions of causal consistency
@@ -1193,85 +1266,141 @@ Test of the definitions of causal consistency
 ha: 4; \ensuremath{hb}: 7; \ensuremath{hc}: 4; \ensuremath{hd}: 8; he: 6
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}} CCDefTest \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{16.4} \.{\land} PrintT (
+\@x{\makebox[0pt][r]{\scriptsize 133\hspace{1em}} CCDefTest \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 134\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CCDefTest\ Begin} )}%
+ \@x{\makebox[0pt][r]{\scriptsize 135\hspace{1em}}\@s{16.4} \.{\land} PrintT (
  CC ( ha ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}\@s{16.4} \.{\land} PrintT (
+ \@x{\makebox[0pt][r]{\scriptsize 136\hspace{1em}}\@s{16.4} \.{\land} PrintT (
  CC ( hc ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}}\@s{16.4} \.{\land} PrintT (
+ \@x{\makebox[0pt][r]{\scriptsize 137\hspace{1em}}\@s{16.4} \.{\land} PrintT (
  {\lnot} CC ( he ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{16.4} \.{\land} \.{\LET}
- sat \.{\defeq} \{ ha ,\, hb ,\, hc ,\, hd \}}%
- \@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}\@s{27.51} \.{\IN} \.{\land}
- \A\, h \.{\in} sat \.{:} CC ( h )}%
- \@x{\makebox[0pt][r]{\scriptsize 106\hspace{1em}}\@s{47.91} \.{\land} \A\, h
- \.{\in} all \.{\,\backslash\,} sat \.{:} {\lnot} CC ( h )}%
+\@y{\@s{0}%
+ too slow
+}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 138\hspace{1em}}}%
+\@y{\@s{7.5}%
+ \ensuremath{\.{\land} \.{\LET} sat \.{\defeq} \{ha,\, hb,\, hc,\, hd\}
+}}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 139\hspace{1em}}}%
+\@y{\@s{15.0}%
+ \ensuremath{\.{\IN} \.{\land} \A\, h \.{\in} sat}: \ensuremath{CC(h)
+}}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 140\hspace{1em}}}%
+\@y{\@s{25.0}%
+ \ensuremath{\.{\land} \A\, h \.{\in} all \.{\,\backslash\,} sat}:
+ \ensuremath{{\lnot}CC(h)
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 141\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CCDefTest\ End} )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}} CCvDefTest \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}}\@s{16.4} \.{\land} PrintT (
+\@x{\makebox[0pt][r]{\scriptsize 143\hspace{1em}} CCvDefTest \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 144\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CCvDefTest\ Begin} )}%
+ \@x{\makebox[0pt][r]{\scriptsize 145\hspace{1em}}\@s{16.4} \.{\land} PrintT (
  {\lnot} CCv ( ha ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 110\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 146\hspace{1em}}}%
 \@y{\@s{7.5}%
  \ensuremath{\.{\land} CCv(hb)
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 111\hspace{1em}}\@s{16.4} \.{\land} PrintT (
+ \@x{\makebox[0pt][r]{\scriptsize 147\hspace{1em}}\@s{16.4} \.{\land} PrintT (
  {\lnot} CCv ( hc ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 112\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 148\hspace{1em}}}%
 \@y{\@s{7.5}%
  \ensuremath{\.{\land} CCv(hd)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 113\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 149\hspace{1em}}}%
 \@y{\@s{7.5}%
  \ensuremath{\.{\land} PrintT({\lnot}CCv(he))
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 115\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 151\hspace{1em}}}%
 \@y{\@s{7.5}%
  \ensuremath{\.{\LET} sat \.{\defeq} \{hb,\, hd\}
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 116\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 152\hspace{1em}}}%
 \@y{\@s{7.5}%
  \ensuremath{\.{\IN} \.{\land} \A\, h \.{\in} sat}: \ensuremath{CCv(h)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 117\hspace{1em}}}%
+\@x{\makebox[0pt][r]{\scriptsize 153\hspace{1em}}}%
 \@y{\@s{17.5}%
  \ensuremath{\.{\land} \A\, h \.{\in} all \.{\,\backslash\,} sat}:
  \ensuremath{{\lnot}CCv(h)
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}}\midbar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 154\hspace{1em}}\@s{16.4} \.{\land} PrintT
+ (\@w{CCvDefTest\ End} )}%
+\@x{\makebox[0pt][r]{\scriptsize 155\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Test of the checking algorithms for causal consistency
 \end{cpar}%
+\vshade{5.0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+ha: 4; \ensuremath{hb}: 7; \ensuremath{hc}: 4; \ensuremath{hd}: 8; he: 6
+\end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 122\hspace{1em}} CCAlgTest \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 161\hspace{1em}} CCAlgTest \.{\defeq}}%
 \@y{\@s{0}%
- Test of the checking algorithm for \ensuremath{CC} (Causal Consistency)
+ Test of the checking algorithm \ensuremath{CCAlg} for \ensuremath{CC}
+ (Causal Consistency)
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 123\hspace{1em}}\@s{16.4} \.{\LET} sat
+ \@x{\makebox[0pt][r]{\scriptsize 162\hspace{1em}}\@s{16.4} \.{\LET} sat
  \.{\defeq} \{ ha ,\, hb ,\, hc ,\, hd \}}%
- \@x{\makebox[0pt][r]{\scriptsize 124\hspace{1em}}\@s{16.4} \.{\IN} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 163\hspace{1em}}\@s{16.4} \.{\IN} \.{\land}
  \A\, h \.{\in} sat \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 125\hspace{1em}}\@s{52.01} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 164\hspace{1em}}\@s{52.01} \.{\land} PrintT
  ( ToString ( h ) \.{\circ}\@w{\ is\ differentiated:\ } \.{\circ} ToString (
  IsDifferentiated ( h ) ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 126\hspace{1em}}\@s{52.01} \.{\land} CCAlg (
+ \@x{\makebox[0pt][r]{\scriptsize 165\hspace{1em}}\@s{52.01} \.{\land} CCAlg (
  h )}%
- \@x{\makebox[0pt][r]{\scriptsize 127\hspace{1em}}\@s{36.79} \.{\land} \A\, h
+ \@x{\makebox[0pt][r]{\scriptsize 166\hspace{1em}}\@s{36.79} \.{\land} \A\, h
  \.{\in} all \.{\,\backslash\,} sat \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 128\hspace{1em}}\@s{52.01} \.{\land} PrintT
+ \@x{\makebox[0pt][r]{\scriptsize 167\hspace{1em}}\@s{52.01} \.{\land} PrintT
  ( ToString ( h ) \.{\circ}\@w{\ is\ differentiated:\ } \.{\circ} ToString (
  IsDifferentiated ( h ) ) )}%
- \@x{\makebox[0pt][r]{\scriptsize 129\hspace{1em}}\@s{52.01} \.{\land} {\lnot}
+ \@x{\makebox[0pt][r]{\scriptsize 168\hspace{1em}}\@s{52.01} \.{\land} {\lnot}
  CCAlg ( h )}%
-\@x{\makebox[0pt][r]{\scriptsize 130\hspace{1em}}}\bottombar\@xx{}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 170\hspace{1em}} CCvAlgTest \.{\defeq}}%
+\@y{\@s{0}%
+ Test of the checking algorithm \ensuremath{CCvAlg} for \ensuremath{CCv}
+ (Causal Convergence)
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 171\hspace{1em}}\@s{16.4} \.{\LET} sat
+ \.{\defeq} \{ hb ,\, hd \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 172\hspace{1em}}\@s{16.4} \.{\IN} \.{\land}
+ \A\, h \.{\in} sat \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 173\hspace{1em}}\@s{52.01} \.{\land} PrintT
+ ( ToString ( h ) \.{\circ}\@w{\ is\ differentiated:\ } \.{\circ} ToString (
+ IsDifferentiated ( h ) ) )}%
+ \@x{\makebox[0pt][r]{\scriptsize 174\hspace{1em}}\@s{52.01} \.{\land} CCvAlg
+ ( h )}%
+ \@x{\makebox[0pt][r]{\scriptsize 175\hspace{1em}}\@s{36.79} \.{\land} \A\, h
+ \.{\in} all \.{\,\backslash\,} sat \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 176\hspace{1em}}\@s{52.01} \.{\land} PrintT
+ ( ToString ( h ) \.{\circ}\@w{\ is\ differentiated:\ } \.{\circ} ToString (
+ IsDifferentiated ( h ) ) )}%
+ \@x{\makebox[0pt][r]{\scriptsize 177\hspace{1em}}\@s{52.01} \.{\land} {\lnot}
+ CCvAlg ( h )}%
+\@x{\makebox[0pt][r]{\scriptsize 178\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 179\hspace{1em}} {\VARIABLES} x}%
+\@y{\@s{0}%
+ keep it so that the model can be run
+}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 180\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1279,8 +1408,8 @@ Test of the checking algorithms for causal consistency
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Tue}
- \ensuremath{Apr} 20 14:11:35 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Wed}
+ \ensuremath{Apr} 21 21:41:21 \ensuremath{CST} 2021 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%

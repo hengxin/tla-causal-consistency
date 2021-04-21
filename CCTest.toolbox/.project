@@ -18,7 +18,7 @@
 		<link>
 			<name>CC.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/CC.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/CC.tla</locationURI>
 		</link>
 		<link>
 			<name>CCTest.tla</name>
@@ -28,37 +28,22 @@
 		<link>
 			<name>FiniteSetsExt.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/FiniteSetsExt.tla</location>
-		</link>
-		<link>
-			<name>FunctionUtils.tla</name>
-			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/FunctionUtils.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/FiniteSetsExt.tla</locationURI>
 		</link>
 		<link>
 			<name>Functions.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/Functions.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/Functions.tla</locationURI>
 		</link>
 		<link>
 			<name>RelationUtils.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/RelationUtils.tla</location>
-		</link>
-		<link>
-			<name>SequenceUtils.tla</name>
-			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/SequenceUtils.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/RelationUtils.tla</locationURI>
 		</link>
 		<link>
 			<name>SequencesExt.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/SequencesExt.tla</location>
-		</link>
-		<link>
-			<name>SetUtils.tla</name>
-			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tla-causal-consistency/SetUtils.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/SequencesExt.tla</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

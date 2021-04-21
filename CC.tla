@@ -21,7 +21,7 @@ Session == Seq(Operation) \* A session s \in Session is a sequence of operations
 History == SUBSET Session \* A history h \in History is a set of sessions.
 -------------------------------------------------
 (*
-  Utilities.
+  Utility operators for operations.
 *)
 Ops(h) == \* Return the set of all operations in history h \in History.
     UNION {Range(s) : s \in h}
@@ -161,11 +161,22 @@ IsDifferentiated(h) == \* Is h \in History differentiated?
 (*
   Auxiliary relations used in the checking algorithms
 *)
-RF(h) == \* the read-from relation
+RF(h) == \* the read-from relation TODO: using infix symbolic operator???
     {<<w, r>> \in WriteOps(h) \X ReadOps(h) : w.key = r.key \land w.val = r.val}
 
 CO(h) == \* the CO order defined as the transitive closure of the union of PO(h) and RF(h)
     TC(PO(h) \cup RF(h))    
+
+CF(h) == \* the conflict relation
+    LET co == CO(h)
+        rf == RF(h)
+     reads == ReadOps(h)
+    writes == WriteOps(h)
+    IN  {<<w1, w2>> \in writes \X writes :
+            /\ w1.key = w2.key
+            /\ w1.val # w2.val
+            /\ \E r \in reads: <<w1, r>> \in co \land <<w2, r>> \in rf}
+
 (*
   All bad patterns defined in POPL'2017 (see Table 2 of POPL'2017)
 *)
@@ -190,20 +201,32 @@ WriteCORead(h) ==
             /\ <<w2, r1>> \in CO(h) \* TODO: efficiency
             /\ <<w1, r1>> \in RF(h) 
 
+CyclicCF(h) ==
+    Cyclic(CF(h) \cup CO(h))    
+
+WriteHBInitRead(h) == \* TODO:
+    FALSE
+    
 CyclicHB(h) == \* TODO:
     FALSE
-
-CyclicCF(h) == \* TODO:
-    FALSE
-\*    Cyclic(CF(h) \cup CO(h))    
 (*
   Checking algorithms of POPL'2017 (see Table 3 of POPL'2017)
 *)
 CCAlg(h) == \* Checking algorithm for CC (Causal Consistency)
-    /\ CyclicCO(h)
-    /\ WriteCOInitRead(h)
-    /\ ThinAirRead(h)
-    /\ WriteCORead(h)
+    /\ ~CyclicCO(h)
+    /\ ~WriteCOInitRead(h)
+    /\ ~ThinAirRead(h)
+    /\ ~WriteCORead(h)
+
+CCvAlg(h) == \* Checking algorithm for CCv (Causal Convergence)
+    /\ ~CyclicCO(h)
+    /\ ~WriteCOInitRead(h)
+    /\ ~ThinAirRead(h)
+    /\ ~WriteCORead(h)
+    /\ ~CyclicCF(h)
+
+CMAlg(h) == \* TODO: Checking algorithm for CM (Causal Memory)
+    FALSE
 =====================================================
 \* Modification Historjy
 \* Last modified Tue Apr 20 13:26:56 CST 2021 by hengxin
