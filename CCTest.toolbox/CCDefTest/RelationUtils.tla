@@ -73,6 +73,9 @@ IsTransitive(R, S) ==
 IsTotal(R, S) ==
     \forall a, b \in S: <<a, b>> \in R \/ <<b, a>> \in R
 
+IsSemiconnex(R, S) ==
+    \forall a, b \in S: a # b => (<<a, b>> \in R \lor <<b, a>> \in R)
+
 IsPartialOrder(R, S) ==
     /\ IsReflexive(R, S)
     /\ IsAntisymmetric(R, S)
@@ -88,7 +91,7 @@ IsStrictPartialOrder(R, S) ==
     
 IsStrictTotalOrder(R, S) ==
     /\ IsStrictPartialOrder(R, S)
-    /\ IsTotal(R, S)
+    /\ IsSemiconnex(R, S)
 
 Respect(R, T) == T \subseteq R \* Does R respect T?
 -------------------------------------------------
@@ -147,5 +150,5 @@ LinearExtensions(R, S) == \* return the set of all possible linear extensions of
     {l \in TupleOf(S, Cardinality(S)) : Respect(Seq2Rel(l), R)}
 =============================================================================
 \* Modification History
-\* Last modified Mon Apr 19 19:48:29 CST 2021 by hengxin
+\* Last modified Thu Apr 22 14:56:42 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin

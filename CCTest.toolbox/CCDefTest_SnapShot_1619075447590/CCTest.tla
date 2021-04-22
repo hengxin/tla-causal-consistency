@@ -134,7 +134,7 @@ CCDefTest ==
     /\ PrintT("CCDefTest Begin")
     /\ PrintT(CC(ha))
     /\ PrintT(CC(hc))
-\*    /\ PrintT(~CC(he)) \* too slow
+    /\ PrintT(~CC(he)) \* too slow
 \*    /\ LET sat == {ha, hb, hc, hd}
 \*       IN  /\ \A h \in sat: CC(h)
 \*           /\ \A h \in all \ sat: ~CC(h)
@@ -179,5 +179,5 @@ CCvAlgTest == \* Test of the checking algorithm CCvAlg for CCv (Causal Convergen
 VARIABLES x \* keep it so that the model can be run
 =============================================================================
 \* Modification History
-\* Last modified Thu Apr 22 15:12:59 CST 2021 by hengxin
+\* Last modified Wed Apr 21 21:41:21 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin

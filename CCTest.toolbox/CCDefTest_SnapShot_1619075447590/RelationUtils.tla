@@ -73,6 +73,9 @@ IsTransitive(R, S) ==
 IsTotal(R, S) ==
     \forall a, b \in S: <<a, b>> \in R \/ <<b, a>> \in R
 
+IsSemiconnex(R, S) ==
+    \forall a, b \in S: a # b => (<<a, b>> \in R \lor <<b, a>> \in R)
+
 IsPartialOrder(R, S) ==
     /\ IsReflexive(R, S)
     /\ IsAntisymmetric(R, S)
@@ -88,7 +91,7 @@ IsStrictPartialOrder(R, S) ==
     
 IsStrictTotalOrder(R, S) ==
     /\ IsStrictPartialOrder(R, S)
-    /\ IsTotal(R, S)
+    /\ IsSemiconnex(R, S)
 
 Respect(R, T) == T \subseteq R \* Does R respect T?
 -------------------------------------------------
@@ -100,16 +103,39 @@ Minimal(R, S) == \* the set of minimal elements in relation R on the set S
 Maximal(R, S) == \* the set of maximal elements in relation R on the set S
     {m \in S : ~\E b \in Ran(R): <<m, b>> \in R}
 -------------------------------------------------
+(*
+  A variant of Kahn's algorithm for topological sorting
+
+  See https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm
+*)
+Cyclic(R) == \* Is R cyclic?
+    LET RECURSIVE CyclicUtil(_, _)
+        CyclicUtil(rel, set) == \* remaining relation; set: remaining set
+            IF set = {} THEN FALSE
+            ELSE LET mins == Minimal(rel, set)
+                 IN  IF mins = {} THEN TRUE
+                     ELSE LET m == CHOOSE x \in mins : TRUE
+                          IN  CyclicUtil(rel \ LeftRestriction(R, m), set \ {m})
+    IN  CyclicUtil(R, Support(R))                    
+-------------------------------------------------
+(*
+  Kahn's algorithm for topological sorting.
+  
+  See https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm
+*)
 AnyLinearExtension(R, S) == \* return an arbitrary linear extension of R on the set S
     LET RECURSIVE LinearExtensionUtil(_, _)
         LinearExtensionUtil(rel, set) == \* rel: remaining relation; set: remaining set
             IF set = {} THEN <<>>
             ELSE LET m == CHOOSE x \in Minimal(rel, set) : TRUE
                  IN  <<m>> \o LinearExtensionUtil(rel \ LeftRestriction(R, m), set \ {m})
-    IN LinearExtensionUtil(R, S)
-
+    IN  LinearExtensionUtil(R, S)
 (*
-See https://groups.google.com/g/tlaplus/c/mtyEmqhlRVg
+  A variant of Kahn's algorithm for topological sorting
+
+  See https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm
+
+  For some TLA+ issue, see https://groups.google.com/g/tlaplus/c/mtyEmqhlRVg
 *)
 AllLinearExtensions(R, S) == \* return all possible linear extensions of R on the set S
     LET RECURSIVE LinearExtensionsUtil(_, _)
@@ -122,28 +148,7 @@ AllLinearExtensions(R, S) == \* return all possible linear extensions of R on th
 
 LinearExtensions(R, S) == \* return the set of all possible linear extensions of R on the set S
     {l \in TupleOf(S, Cardinality(S)) : Respect(Seq2Rel(l), R)}
--------------------------------------------------
-(*
-Test cases
-*)
-set1 == {2, 3, 5, 7, 8, 9, 10, 11}
-rel1 == \* from https://en.wikipedia.org/wiki/Topological_sorting
-    {<<3, 8>>, <<3, 10>>, <<5, 11>>, <<7, 8>>, <<7, 11>>,
-     <<8, 9>>, <<11, 2>>, <<11, 9>>, <<11, 10>>}
-
-set2 == 0 .. 5
-rel2 == \* from https://www.geeksforgeeks.org/topological-sorting/
-    {<<2, 3>>, <<3, 1>>, <<4, 0>>, <<4, 1>>, <<5, 0>>, <<5, 2>>}
-
-set3 == 1 .. 6
-rel3 == \* from https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort
-    {<<1, 2>>, <<1, 4>>, <<2, 3>>, <<4, 2>>, <<4, 5>>, <<4, 6>>, <<5, 6>>}
--------------------------------------------------
-THEOREM LE ==
-    /\ AllLinearExtensions(rel1, set1) = LinearExtensions(rel1, set1)
-    /\ AllLinearExtensions(rel2, set2) = LinearExtensions(rel2, set2)
-    /\ AllLinearExtensions(rel3, set3) = LinearExtensions(rel3, set3)
 =============================================================================
 \* Modification History
-\* Last modified Sun Apr 18 10:50:36 CST 2021 by hengxin
+\* Last modified Thu Apr 22 14:56:42 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin

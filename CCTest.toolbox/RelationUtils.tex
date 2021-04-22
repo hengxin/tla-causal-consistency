@@ -1119,69 +1119,75 @@ Basic properties.
  \.{\in} S \.{:} {\langle} a ,\, b {\rangle} \.{\in} R \.{\lor} {\langle} b
  ,\, a {\rangle} \.{\in} R}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}} IsPartialOrder ( R ,\, S )
+ \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}} IsSemiconnex ( R ,\, S )
  \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}}\@s{16.4} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}}\@s{16.4} \forall\, a ,\, b
+ \.{\in} S \.{:} a \.{\neq} b \.{\implies} ( {\langle} a ,\, b {\rangle}
+ \.{\in} R \.{\lor} {\langle} b ,\, a {\rangle} \.{\in} R )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 79\hspace{1em}} IsPartialOrder ( R ,\, S )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 80\hspace{1em}}\@s{16.4} \.{\land}
  IsReflexive ( R ,\, S )}%
- \@x{\makebox[0pt][r]{\scriptsize 78\hspace{1em}}\@s{16.4} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}}\@s{16.4} \.{\land}
  IsAntisymmetric ( R ,\, S )}%
- \@x{\makebox[0pt][r]{\scriptsize 79\hspace{1em}}\@s{16.4} \.{\land}
- IsTransitive ( R ,\, S )}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}} IsTotalOrder ( R ,\, S )
- \.{\defeq}}%
  \@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}}\@s{16.4} \.{\land}
- IsPartialOrder ( R ,\, S )}%
- \@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}}\@s{16.4} \.{\land} IsTotal (
- R ,\, S )}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}} IsStrictPartialOrder ( R ,\,
- S ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}}\@s{16.4} \.{\land}
- IsIrreflexive ( R ,\, S )}%
- \@x{\makebox[0pt][r]{\scriptsize 87\hspace{1em}}\@s{16.4} \.{\land}
  IsTransitive ( R ,\, S )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}} IsStrictTotalOrder ( R ,\, S
- ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}}\@s{16.4} \.{\land}
- IsStrictPartialOrder ( R ,\, S )}%
- \@x{\makebox[0pt][r]{\scriptsize 91\hspace{1em}}\@s{16.4} \.{\land} IsTotal (
+ \@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}} IsTotalOrder ( R ,\, S )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}}\@s{16.4} \.{\land}
+ IsPartialOrder ( R ,\, S )}%
+ \@x{\makebox[0pt][r]{\scriptsize 86\hspace{1em}}\@s{16.4} \.{\land} IsTotal (
  R ,\, S )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 93\hspace{1em}} Respect ( R ,\, T )
+ \@x{\makebox[0pt][r]{\scriptsize 88\hspace{1em}} IsStrictPartialOrder ( R ,\,
+ S ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 89\hspace{1em}}\@s{16.4} \.{\land}
+ IsIrreflexive ( R ,\, S )}%
+ \@x{\makebox[0pt][r]{\scriptsize 90\hspace{1em}}\@s{16.4} \.{\land}
+ IsTransitive ( R ,\, S )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 92\hspace{1em}} IsStrictTotalOrder ( R ,\, S
+ ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 93\hspace{1em}}\@s{16.4} \.{\land}
+ IsStrictPartialOrder ( R ,\, S )}%
+ \@x{\makebox[0pt][r]{\scriptsize 94\hspace{1em}}\@s{16.4} \.{\land}
+ IsSemiconnex ( R ,\, S )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 96\hspace{1em}} Respect ( R ,\, T )
  \.{\defeq} T \.{\subseteq} R}%
 \@y{\@s{0}%
  Does \ensuremath{R} respect \ensuremath{T}\.{?}
 }%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 94\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 97\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 Special elements in a relation
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 98\hspace{1em}} Minimal ( R ,\, S )
+ \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}} Minimal ( R ,\, S )
  \.{\defeq}}%
 \@y{\@s{0}%
  the set of minimal elements in relation \ensuremath{R} on the set
  \ensuremath{S
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 99\hspace{1em}}\@s{16.4} \{ m \.{\in} S
+ \@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}\@s{16.4} \{ m \.{\in} S
  \.{:} {\lnot} \E\, a \.{\in} Dom ( R ) \.{:} {\langle} a ,\, m {\rangle}
  \.{\in} R \}}%
- \@x{\makebox[0pt][r]{\scriptsize 100\hspace{1em}} Maximal ( R ,\, S )
+ \@x{\makebox[0pt][r]{\scriptsize 103\hspace{1em}} Maximal ( R ,\, S )
  \.{\defeq}}%
 \@y{\@s{0}%
  the set of maximal elements in relation \ensuremath{R} on the set
  \ensuremath{S
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 101\hspace{1em}}\@s{16.4} \{ m \.{\in} S
+ \@x{\makebox[0pt][r]{\scriptsize 104\hspace{1em}}\@s{16.4} \{ m \.{\in} S
  \.{:} {\lnot} \E\, b \.{\in} Ran ( R ) \.{:} {\langle} m ,\, b {\rangle}
  \.{\in} R \}}%
-\@x{\makebox[0pt][r]{\scriptsize 102\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 105\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 A variant of \ensuremath{Kahn}\mbox{'}s algorithm for topological sorting
@@ -1191,33 +1197,33 @@ A variant of \ensuremath{Kahn}\mbox{'}s algorithm for topological sorting
 See https:\ensuremath{\.{\slsl}en.wikipedia.org}/wiki/\ensuremath{Topological\_sorting\.{\neq}Kahn}\mbox{'}s\_algorithm
 \end{cpar}%
 \end{lcom}%
-\@x{\makebox[0pt][r]{\scriptsize 108\hspace{1em}} Cyclic ( R ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 111\hspace{1em}} Cyclic ( R ) \.{\defeq}}%
 \@y{\@s{0}%
  Is \ensuremath{R} cyclic\.{?}
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 109\hspace{1em}}\@s{16.4} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 112\hspace{1em}}\@s{16.4} \.{\LET}
  {\RECURSIVE} CyclicUtil ( \_ ,\, \_ )}%
- \@x{\makebox[0pt][r]{\scriptsize 110\hspace{1em}}\@s{40.89} CyclicUtil ( rel
+ \@x{\makebox[0pt][r]{\scriptsize 113\hspace{1em}}\@s{40.89} CyclicUtil ( rel
  ,\, set ) \.{\defeq}}%
 \@y{\@s{0}%
  remaining relation; set: remaining set
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 111\hspace{1em}}\@s{57.29} {\IF} set \.{=}
+ \@x{\makebox[0pt][r]{\scriptsize 114\hspace{1em}}\@s{57.29} {\IF} set \.{=}
  \{ \} \.{\THEN} {\FALSE}}%
- \@x{\makebox[0pt][r]{\scriptsize 112\hspace{1em}}\@s{57.29} \.{\ELSE}
+ \@x{\makebox[0pt][r]{\scriptsize 115\hspace{1em}}\@s{57.29} \.{\ELSE}
  \.{\LET} mins \.{\defeq} Minimal ( rel ,\, set )}%
- \@x{\makebox[0pt][r]{\scriptsize 113\hspace{1em}}\@s{88.61} \.{\IN} {\IF}
+ \@x{\makebox[0pt][r]{\scriptsize 116\hspace{1em}}\@s{88.61} \.{\IN} {\IF}
  mins \.{=} \{ \} \.{\THEN} {\TRUE}}%
- \@x{\makebox[0pt][r]{\scriptsize 114\hspace{1em}}\@s{109.01} \.{\ELSE}
+ \@x{\makebox[0pt][r]{\scriptsize 117\hspace{1em}}\@s{109.01} \.{\ELSE}
  \.{\LET} m \.{\defeq} {\CHOOSE} x \.{\in} mins \.{:} {\TRUE}}%
- \@x{\makebox[0pt][r]{\scriptsize 115\hspace{1em}}\@s{140.32} \.{\IN}
+ \@x{\makebox[0pt][r]{\scriptsize 118\hspace{1em}}\@s{140.32} \.{\IN}
  CyclicUtil ( rel \.{\,\backslash\,} LeftRestriction ( R ,\, m ) ,\, set
  \.{\,\backslash\,} \{ m \} )}%
- \@x{\makebox[0pt][r]{\scriptsize 116\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ \@x{\makebox[0pt][r]{\scriptsize 119\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
  CyclicUtil ( R ,\, Support ( R ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 117\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 120\hspace{1em}}}\midbar\@xx{}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 \ensuremath{Kahn}\mbox{'}s algorithm for topological sorting.
@@ -1227,30 +1233,30 @@ See https:\ensuremath{\.{\slsl}en.wikipedia.org}/wiki/\ensuremath{Topological\_s
 See https:\ensuremath{\.{\slsl}en.wikipedia.org}/wiki/\ensuremath{Topological\_sorting\.{\neq}Kahn}\mbox{'}s\_algorithm
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 123\hspace{1em}} AnyLinearExtension ( R ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 126\hspace{1em}} AnyLinearExtension ( R ,\,
  S ) \.{\defeq}}%
 \@y{\@s{0}%
  return an arbitrary linear extension of \ensuremath{R} on the set
  \ensuremath{S
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 124\hspace{1em}}\@s{16.4} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 127\hspace{1em}}\@s{16.4} \.{\LET}
  {\RECURSIVE} LinearExtensionUtil ( \_ ,\, \_ )}%
- \@x{\makebox[0pt][r]{\scriptsize 125\hspace{1em}}\@s{40.89}
+ \@x{\makebox[0pt][r]{\scriptsize 128\hspace{1em}}\@s{40.89}
  LinearExtensionUtil ( rel ,\, set ) \.{\defeq}}%
 \@y{\@s{0}%
  \ensuremath{rel}: remaining relation; set: remaining set
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 126\hspace{1em}}\@s{57.29} {\IF} set \.{=}
+ \@x{\makebox[0pt][r]{\scriptsize 129\hspace{1em}}\@s{57.29} {\IF} set \.{=}
  \{ \} \.{\THEN} {\langle} {\rangle}}%
- \@x{\makebox[0pt][r]{\scriptsize 127\hspace{1em}}\@s{57.29} \.{\ELSE}
+ \@x{\makebox[0pt][r]{\scriptsize 130\hspace{1em}}\@s{57.29} \.{\ELSE}
  \.{\LET} m \.{\defeq} {\CHOOSE} x \.{\in} Minimal ( rel ,\, set ) \.{:}
  {\TRUE}}%
- \@x{\makebox[0pt][r]{\scriptsize 128\hspace{1em}}\@s{88.61} \.{\IN} {\langle}
+ \@x{\makebox[0pt][r]{\scriptsize 131\hspace{1em}}\@s{88.61} \.{\IN} {\langle}
  m {\rangle} \.{\circ} LinearExtensionUtil ( rel \.{\,\backslash\,}
  LeftRestriction ( R ,\, m ) ,\, set \.{\,\backslash\,} \{ m \} )}%
- \@x{\makebox[0pt][r]{\scriptsize 129\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ \@x{\makebox[0pt][r]{\scriptsize 132\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
  LinearExtensionUtil ( R ,\, S )}%
 \begin{lcom}{5.0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1267,48 +1273,48 @@ See https:\ensuremath{\.{\slsl}en.wikipedia.org}/wiki/\ensuremath{Topological\_s
 }%
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 137\hspace{1em}} AllLinearExtensions ( R ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 140\hspace{1em}} AllLinearExtensions ( R ,\,
  S ) \.{\defeq}}%
 \@y{\@s{0}%
  return all possible linear extensions of \ensuremath{R} on the set
  \ensuremath{S
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 138\hspace{1em}}\@s{16.4} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 141\hspace{1em}}\@s{16.4} \.{\LET}
  {\RECURSIVE} LinearExtensionsUtil ( \_ ,\, \_ )}%
- \@x{\makebox[0pt][r]{\scriptsize 139\hspace{1em}}\@s{40.89}
+ \@x{\makebox[0pt][r]{\scriptsize 142\hspace{1em}}\@s{40.89}
  LinearExtensionsUtil ( rel ,\, set ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 140\hspace{1em}}\@s{57.29} {\IF} set \.{=}
+ \@x{\makebox[0pt][r]{\scriptsize 143\hspace{1em}}\@s{57.29} {\IF} set \.{=}
  \{ \} \.{\THEN} \{ {\langle} {\rangle} \}}%
- \@x{\makebox[0pt][r]{\scriptsize 141\hspace{1em}}\@s{57.29} \.{\ELSE}
+ \@x{\makebox[0pt][r]{\scriptsize 144\hspace{1em}}\@s{57.29} \.{\ELSE}
  \.{\LET} Extend ( m ) \.{\defeq} \{ {\langle} m {\rangle} \.{\circ} l \.{:}}%
 \@y{\@s{0}%
  extend recursively by the minimal element \ensuremath{m
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 142\hspace{1em}}\@s{121.31} l \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 145\hspace{1em}}\@s{121.31} l \.{\in}
  LinearExtensionsUtil ( rel \.{\,\backslash\,} LeftRestriction ( R ,\, m )
  ,\, set \.{\,\backslash\,} \{ m \} ) \}}%
- \@x{\makebox[0pt][r]{\scriptsize 143\hspace{1em}}\@s{88.61} \.{\IN} {\UNION}
+ \@x{\makebox[0pt][r]{\scriptsize 146\hspace{1em}}\@s{88.61} \.{\IN} {\UNION}
  \{ Extend ( m ) \.{:} m \.{\in} Minimal ( rel ,\, set ) \}}%
 \@y{\@s{0}%
  for each minimal element
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 144\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ \@x{\makebox[0pt][r]{\scriptsize 147\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
  LinearExtensionsUtil ( R ,\, S )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 146\hspace{1em}} LinearExtensions ( R ,\, S
+ \@x{\makebox[0pt][r]{\scriptsize 149\hspace{1em}} LinearExtensions ( R ,\, S
  ) \.{\defeq}}%
 \@y{\@s{0}%
  return the set of all possible linear extensions of \ensuremath{R} on the
  set \ensuremath{S
 }}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 147\hspace{1em}}\@s{16.4} \{ l \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 150\hspace{1em}}\@s{16.4} \{ l \.{\in}
  TupleOf ( S ,\, Cardinality ( S ) ) \.{:} Respect ( Seq2Rel ( l ) ,\, R )
  \}}%
-\@x{\makebox[0pt][r]{\scriptsize 148\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 151\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1316,8 +1322,8 @@ See https:\ensuremath{\.{\slsl}en.wikipedia.org}/wiki/\ensuremath{Topological\_s
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Mon}
- \ensuremath{Apr} 19 19:48:29 \ensuremath{CST} 2021 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Thu}
+ \ensuremath{Apr} 22 14:56:42 \ensuremath{CST} 2021 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
