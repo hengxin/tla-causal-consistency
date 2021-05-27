@@ -47,6 +47,23 @@ WellFormedTest ==
     \A h \in all: WellFormed(h)
 -------------------------------------------------
 (*
+  Test the self-defined EnumerateRO
+*)
+
+EasyPO(s) ==
+    LET rels == SUBSET (s \X s)
+    IN {po \in rels : IsStrictPartialOrder(po, s)}
+
+EnumeratePOTest ==
+\*    LET pos == partialOrderSubset({0, 1})
+    LET ops == {W("x", 2, 0), R("x", 1, 1), R("x", 1, 2)}
+\*        pos == SUBSET (ops \X ops)
+        pos == PartialOrderSubset(ops, "D:\\Education\\Programs\\Python\\EnumeratePO\\POFile\\")
+\*        pos == EasyPO(ops)
+    IN \A po \in pos:
+        PrintT("po: " \o ToString(po))
+-------------------------------------------------
+(*
   Test of utility operators for operations
 *)
 OpsTest ==
@@ -88,7 +105,9 @@ POPastTest == \* test of POPast(h, o)
 
 CausalPastTest == \* TODO: test of CausalPast(co, o)
     /\ PrintT("CausalPastTest Begin")
-    /\ FALSE
+    /\ LET co == CO(ha)
+            o == R("x", 2, 2)
+        IN CausalPast(co, o) = {W("x", 1, 1), R("x", 2, 2), W("x", 2, 3)}
     /\ PrintT("CausalPastTest End")
 
 CausalHistTest == \* TODO: test of CausalHist(co, o)
@@ -124,6 +143,26 @@ AxCausalValueTest == \* TODO: test of AxCausalValue()
 
 AxCausalArbTest == \* TODO: test of AxCausalArb()    
     /\ FALSE
+
+-------------------------------------------------
+(*
+  Test of the relations defined for bad patterns
+*)
+
+oidHB(h) == \* All happened-before relation for o \in history h repsented by oid
+    LET oidHBo(o) == {<<o1.oid-1, o2.oid-1>> : <<o1,o2>> \in HBo(h,o)}       
+    IN {<<o.oid-1, oidHBo(o)>> : o \in Ops(h)}
+
+HBTest ==
+    /\ PrintT("HBTest Begin")
+    /\ PrintT(oidHB(ha))
+    /\ PrintT(oidHB(hb))
+    /\ PrintT(oidHB(hc))
+    /\ PrintT(oidHB(hd))
+    /\ PrintT(oidHB(he))
+    /\ PrintT("HBTest End")
+
+
 -------------------------------------------------
 (*
   Test of the definitions of causal consistency
@@ -143,15 +182,21 @@ CCDefTest ==
 CCvDefTest ==
     /\ PrintT("CCvDefTest Begin")
     /\ PrintT(~CCv(ha))
-\*    /\ CCv(hb)
+    /\ CCv(hb)
     /\ PrintT(~CCv(hc))
 \*    /\ CCv(hd)  
-\*    /\ PrintT(~CCv(he))
+    /\ PrintT(~CCv(he))
 
 \*    LET sat == {hb, hd}
 \*    IN  /\ \A h \in sat: CCv(h)
 \*        /\ \A h \in all \ sat: ~CCv(h)
     /\ PrintT("CCvDefTest End")
+
+CMDefTest == 
+    /\ PrintT("CMDefTest Begin")
+    /\ PrintT(CM(ha))
+    /\ PrintT(~CM(hc))
+    /\ PrintT("CMDefTest End")
 -------------------------------------------------
 (*
   Test of the checking algorithms for causal consistency
@@ -175,9 +220,20 @@ CCvAlgTest == \* Test of the checking algorithm CCvAlg for CCv (Causal Convergen
         /\ \A h \in all \ sat:
             /\ PrintT(ToString(h) \o " is differentiated: " \o ToString(IsDifferentiated(h)))
             /\ ~CCvAlg(h)
+
+CMAlgTest == \* Test of the checking algorithm CMAlg for CM (Causal Memory)
+    LET sat == {ha, hd}
+    IN  /\ \A h \in sat:
+            /\ PrintT(ToString(h) \o " is differentiated: " \o ToString(IsDifferentiated(h)))
+            /\ CMAlg(h)
+        /\ \A h \in all \ sat:
+            /\ PrintT(ToString(h) \o " is differentiated: " \o ToString(IsDifferentiated(h)))
+            /\ ~CMAlg(h)
+
 -------------------------------------------------
 VARIABLES x \* keep it so that the model can be run
 =============================================================================
 \* Modification History
+\* Last modified Thu May 27 00:13:28 CST 2021 by Young
 \* Last modified Thu Apr 22 15:12:59 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin
