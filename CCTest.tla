@@ -32,8 +32,12 @@ hcsa == <<W("x", 1, 1)>>
 hcsb == <<W("x", 2, 2), R("x", 1, 3), R("x", 2, 4)>>
 hc == {hcsa, hcsb} \* CC but not CM nor CCv
 
-hdsa == <<W("x", 1, 1), R("y", 0, 2), W("y", 1, 3), R("x", 1, 4)>>
-hdsb == <<W("x", 2, 5), R("y", 0, 6), W("y", 2, 7), R("x", 2, 8)>>
+\* hdsa == <<W("x", 1, 1), R("y", 0, 2), W("y", 1, 3), R("x", 1, 4)>>
+\* hdsb == <<W("x", 2, 5), R("y", 0, 6), W("y", 2, 7), R("x", 2, 8)>>
+\* hd == {hdsa, hdsb} \* CC, CM, and CCv but no SC
+
+hdsa == <<W("x", 1, 1), W("y", 2, 2), R("y", 2, 3)>>
+hdsb == <<W("y", 1, 4), R("x", 1, 5), R("y", 1, 6)>>
 hd == {hdsa, hdsb} \* CC, CM, and CCv but no SC
 
 hesa == <<W("x", 1, 1), W("y", 1, 2)>>
@@ -41,7 +45,16 @@ hesb == <<R("y", 1, 3), W("x", 2, 4)>>
 hesc == <<R("x", 2, 5), R("x", 1, 6)>>
 he == {hesa, hesb, hesc} \* not CC (nor CM, nor CCv)
 
-all == {ha, hb, hc, hd, he}
+\* all == {ha, hb, hc, hd, he}
+\* satCC  == {ha, hb, hc, hd}
+\* satCM  == {ha, hd}
+\* satCCv == {hb, hd}
+
+all == {ha, hc, hd, he}
+satCC  == {ha, hc, hd}
+satCM  == {ha, hd}
+satCCv == {hd}
+
 -------------------------------------------------
 WellFormedTest ==
     \A h \in all: WellFormed(h)
@@ -57,11 +70,11 @@ EasyPO(s) ==
 EnumeratePOTest ==
 \*    LET pos == partialOrderSubset({0, 1})
     LET ops == {W("x", 2, 0), R("x", 1, 1), R("x", 1, 2)}
-\*        pos == SUBSET (ops \X ops)
-        pos == PartialOrderSubset(ops, "D:\\Education\\Programs\\Python\\EnumeratePO\\POFile\\")
-\*        pos == EasyPO(ops)
-    IN \A po \in pos:
-        PrintT("po: " \o ToString(po))
+        pos1 == EasyPO(ops)
+        pos2 == StrictPartialOrderSubset(ops)
+    IN /\ pos1 = pos2
+       /\ \A po \in pos1:
+            PrintT("po: " \o ToString(po))
 -------------------------------------------------
 (*
   Test of utility operators for operations
@@ -94,13 +107,14 @@ THEOREM ProgramOrderCardinalityTheorem == \* test of PO(h)
     \A h \in {ha, hb, hc, hd, he}:
         Cardinality(PO(h)) = CardOfProgramOrderOfHistory(h)
 
-POPastTest == \* test of POPast(h, o)
+StrictPOPastTest == \* test of POPast(h, o)
     /\ PrintT("POPastTest Begin")
-    /\ POPast(ha, R("x", 2, 2)) = {W("x", 1, 1)}
-    /\ POPast(hb, R("y", 1, 6)) = {W("x", 2, 4), R("z", 0, 5)}
-    /\ POPast(hc, W("x", 2, 2)) = {}
-    /\ POPast(hd, R("x", 1, 4)) = {W("x", 1, 1), R("y", 0, 2), W("y", 1, 3)}
-    /\ POPast(he, W("x", 2, 4)) = {R("y", 1, 3)}
+    /\ StrictPOPast(ha, R("x", 2, 2)) = {W("x", 1, 1)}
+    /\ StrictPOPast(hb, R("y", 1, 6)) = {W("x", 2, 4), R("z", 0, 5)}
+    /\ StrictPOPast(hc, W("x", 2, 2)) = {}
+\*    /\ StrictPOPast(hd, R("x", 1, 4)) = {W("x", 1, 1), R("y", 0, 2), W("y", 1, 3)}
+    /\ StrictPOPast(hd, R("y", 2, 3)) = {W("x", 1, 1), W("y", 2, 2)}
+    /\ StrictPOPast(he, W("x", 2, 4)) = {R("y", 1, 3)}
     /\ PrintT("POPastTest End")
 
 CausalPastTest == \* TODO: test of CausalPast(co, o)
@@ -112,13 +126,22 @@ CausalPastTest == \* TODO: test of CausalPast(co, o)
 
 CausalHistTest == \* TODO: test of CausalHist(co, o)
     /\ PrintT("CausalHistTest Begin")
-    /\ FALSE
+    /\ LET co == CO(ha)
+            o == R("x", 2, 2)
+        IN CausalHist(co, o) = {<<W("x", 1, 1), R("x", 2, 2)>>, <<W("x", 2, 3), R("x", 2, 2)>>}
     /\ PrintT("CausalHistTest End")
 
 CausalArbTest == \* TODO: test of CausalArb(co, ar, o)
     /\ PrintT("CausalArbTest Begin")
     /\ FALSE
     /\ PrintT("CausalArbTest End")
+
+AuxiliaryTest == \* test the auxiliary
+    /\ StrictPOPastTest
+    /\ CausalPastTest
+    /\ CausalHistTest
+    \* /\ CausalArbTest
+
 -------------------------------------------------
 (*
   Test of axioms
@@ -139,11 +162,42 @@ RWRegSemanticsTest == \* test of RWRegSemanticsTest(seq, o)
     /\ PrintT("RWRegSemanticsTest End")
 
 AxCausalValueTest == \* TODO: test of AxCausalValue()    
-    /\ FALSE
+    /\ PrintT("AxCausalValueTest Begin")
+    /\ LET  co == CO(ha)
+            o1 == W("x", 1, 1)
+            o2 == R("x", 2, 2)
+            o3 == W("x", 2, 3)
+            o4 == R("x", 1, 4)
+        IN  /\ AxCausalValue(co, o1)
+            /\ AxCausalValue(co, o2)
+            /\ AxCausalValue(co, o3)
+            /\ AxCausalValue(co, o4)
+    /\ PrintT("AxCausalValueTest End")
+
+AxCausalSeqTest == \* Test of AxCausalSeq
+    /\ PrintT("AxCausalSeqTest Begin")
+    /\ LET  co == CO(ha)
+            o1 == W("x", 1, 1)
+            o2 == R("x", 2, 2)
+            o3 == W("x", 2, 3)
+            o4 == R("x", 1, 4)
+        IN  /\ AxCausalSeq(ha, co, o1)
+            /\ AxCausalSeq(ha, co, o2)
+            /\ AxCausalSeq(ha, co, o3)
+            /\ AxCausalSeq(ha, co, o4)
+    /\ PrintT("AxCausalSeqTest End")    
+
 
 AxCausalArbTest == \* TODO: test of AxCausalArb()    
+    /\ PrintT("AxCausalArbTest Begin")
     /\ FALSE
+    /\ PrintT("AxCausalArbTest End")
 
+AxiomsTest == \* Test the axioms
+    /\ RWRegSemanticsTest
+    /\ AxCausalValueTest
+    /\ AxCausalSeqTest
+    \* /\ AxCausalArbTest
 -------------------------------------------------
 (*
   Test of the relations defined for bad patterns
@@ -171,32 +225,38 @@ HBTest ==
 *)
 CCDefTest ==
     /\ PrintT("CCDefTest Begin")
-    /\ PrintT(CC(ha))
-    /\ PrintT(CC(hc))
-\*    /\ PrintT(~CC(he)) \* too slow
-\*    /\ LET sat == {ha, hb, hc, hd}
-\*       IN  /\ \A h \in sat: CC(h)
-\*           /\ \A h \in all \ sat: ~CC(h)
+    /\ \A h \in satCC: 
+        /\ PrintT(h)
+        /\ CC(h)
+    /\ \A h \in all \ satCC: 
+        /\ PrintT(h)
+        /\ ~CC(h)
     /\ PrintT("CCDefTest End")
 
 CCvDefTest ==
     /\ PrintT("CCvDefTest Begin")
-    /\ PrintT(~CCv(ha))
-    /\ CCv(hb)
-    /\ PrintT(~CCv(hc))
-\*    /\ CCv(hd)  
-    /\ PrintT(~CCv(he))
-
-\*    LET sat == {hb, hd}
-\*    IN  /\ \A h \in sat: CCv(h)
-\*        /\ \A h \in all \ sat: ~CCv(h)
+    /\ \A h \in satCCv: 
+        /\ PrintT(h)
+        /\ CCv(h)
+    /\ \A h \in all \ satCCv: 
+        /\ PrintT(h)
+        /\ ~CCv(h)
     /\ PrintT("CCvDefTest End")
 
 CMDefTest == 
     /\ PrintT("CMDefTest Begin")
-    /\ PrintT(CM(ha))
-    /\ PrintT(~CM(hc))
+    /\ \A h \in satCM: 
+        /\ PrintT(h)
+        /\ CM(h)
+    /\ \A h \in all \ satCM: 
+        /\ PrintT(h)
+        /\ ~CM(h)
     /\ PrintT("CMDefTest End")
+
+CausalDefTest ==
+    /\ CCDefTest
+    /\ CCvDefTest
+    /\ CMDefTest
 -------------------------------------------------
 (*
   Test of the checking algorithms for causal consistency
@@ -204,7 +264,7 @@ CMDefTest ==
   ha: 4; hb: 7; hc: 4; hd: 8; he: 6
 *)
 CCAlgTest == \* Test of the checking algorithm CCAlg for CC (Causal Consistency)
-    LET sat == {ha, hb, hc, hd}
+    LET sat == satCC
     IN  /\ \A h \in sat:
             /\ PrintT(ToString(h) \o " is differentiated: " \o ToString(IsDifferentiated(h)))
             /\ CCAlg(h)
@@ -213,7 +273,7 @@ CCAlgTest == \* Test of the checking algorithm CCAlg for CC (Causal Consistency)
             /\ ~CCAlg(h)
 
 CCvAlgTest == \* Test of the checking algorithm CCvAlg for CCv (Causal Convergence)
-    LET sat == {hb, hd}
+    LET sat == satCCv
     IN  /\ \A h \in sat:
             /\ PrintT(ToString(h) \o " is differentiated: " \o ToString(IsDifferentiated(h)))
             /\ CCvAlg(h)
@@ -222,7 +282,7 @@ CCvAlgTest == \* Test of the checking algorithm CCvAlg for CCv (Causal Convergen
             /\ ~CCvAlg(h)
 
 CMAlgTest == \* Test of the checking algorithm CMAlg for CM (Causal Memory)
-    LET sat == {ha, hd}
+    LET sat == satCM
     IN  /\ \A h \in sat:
             /\ PrintT(ToString(h) \o " is differentiated: " \o ToString(IsDifferentiated(h)))
             /\ CMAlg(h)
@@ -230,10 +290,15 @@ CMAlgTest == \* Test of the checking algorithm CMAlg for CM (Causal Memory)
             /\ PrintT(ToString(h) \o " is differentiated: " \o ToString(IsDifferentiated(h)))
             /\ ~CMAlg(h)
 
+CausalAlgTest == 
+    /\ CCAlgTest
+    /\ CCvAlgTest
+    /\ CMAlgTest
+
 -------------------------------------------------
 VARIABLES x \* keep it so that the model can be run
 =============================================================================
 \* Modification History
-\* Last modified Thu May 27 00:13:28 CST 2021 by Young
+\* Last modified Fri May 28 11:12:49 CST 2021 by Young
 \* Last modified Thu Apr 22 15:12:59 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin

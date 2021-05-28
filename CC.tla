@@ -45,8 +45,15 @@ WriteOpsOnKey(h, k) == \* Return the set of all write operations on key k \in Ke
   - uniqueness of oids
 *)
 WellFormed(h) ==
-\*  /\ h \in History
-    /\ Cardinality(Ops(h)) = ReduceSet(LAMBDA s, x: Len(s) + x, h, 0)
+\*    /\ h \in History 
+    /\  LET ops == Ops(h)
+           nops == Cardinality(ops)
+           oids == {o.oid : o \in ops}
+        IN  /\ \A op \in ops: \* Type invariants
+                \/ op.type = "write"
+                \/ op.type = "read"
+            /\ nops = Cardinality(oids) \* Uniqueness of oids
+            /\ nops = ReduceSet(LAMBDA s, x: Len(s) + x, h, 0)
 -------------------------------------------------
 (*
   Auxiliary definitions for the axioms used in the definitions of causal consistency
@@ -56,20 +63,20 @@ PO(h) == UNION {Seq2Rel(s) : s \in h}
 
 \* The set of operations that preceed o \in Operation in program order in history h \in History
 StrictPOPast(h, o) == InverseImage(PO(h), o)
-POPast(h, o) == StrictPOPast(h, o) \cup {o}
+POPast(h, o) == StrictPOPast(h, o) \cup {o} \* Original definition in paper, including itself
 
 
 \* The set of operations that preceed o \in Operation in causal order co
 StrictCausalPast(co, o) == InverseImage(co, o)
-CausalPast(co, o) == StrictCausalPast(co, o) \cup {o}
+CausalPast(co, o) == StrictCausalPast(co, o) \cup {o} \* Original definition in paper, including itself
 
 \* The restriction of causal order co to the operations in the causal past of operation o \in Operation
 StrictCausalHist(co, o) == co | StrictCausalPast(co, o)
-CausalHist(co, o) == co | CausalPast(co, o)
+CausalHist(co, o) == co | CausalPast(co, o) \* Original definition in paper
 
 \* The restriction of arbitration arb to the operations in the causal past of operation o \in Operation
 StrictCausalArb(co, arb, o) == arb | StrictCausalPast(co, o)
-CausalArb(co, arb, o) == arb | CausalPast(co, o)
+CausalArb(co, arb, o) == arb | CausalPast(co, o) \* Original definition in paper
 -------------------------------------------------
 (*
   Axioms used in the defintions of causal consistency
@@ -80,7 +87,7 @@ RWRegSemantics(seq, o) == \* Is o \in Operation legal when it is appended to seq
          IN  IF wseq = <<>> THEN o.val = InitVal
              ELSE o.val = wseq[Len(wseq)].val
 
-PreSeq(seq, o) == 
+PreSeq(seq, o) == \* All of the operations before o in sequence seq
     LET so == Seq2Rel(seq)
     IN SelectSeq(seq, LAMBDA op: <<op, o>> \in so)
 
@@ -101,21 +108,36 @@ AxCausalSeq(h, co, o) ==
 AxCausalArb(co, arb, o) == 
     LET seq == AnyLinearExtension(StrictCausalArb(co, arb, o), StrictCausalPast(co, o)) \* it is unique
     IN  RWRegSemantics(seq, o)
--------------------------------------------------
-(*
-  Utils for checking
-*)
 
-StrictPartialOrderSubset(ops) ==
-    PartialOrderSubset(ops, "D:\\Education\\Programs\\Python\\EnumeratePO\\POFile\\")
+\* Directory to store files recording strict partial order relations 
+POFilePath == "D:\\Education\\Programs\\Python\\EnumeratePO\\POFile\\" 
+
+\* A set of all subset of the Cartesian Product of ops \X ops, 
+\* each of which represent a strict partial order(irreflexive and transitive)
+StrictPartialOrderSubset(ops) == 
+    PartialOrderSubset(ops, POFilePath)
+-------------------------------------------------
 
 
 (*
   Specification of CC
 *)
+(*
+  Final Version: Enumerate all possible strict partial order subsets
+*)
 CC(h) == \* Check whether h \in History satisfies CC (Causal Consistency)
     LET ops == Ops(h)
-    IN  \E co \in SUBSET (ops \X ops): \* TODO: to generate (given a chain decomposition)
+    IN  \E co \in StrictPartialOrderSubset(ops): \* Optimized implementation
+            /\ Respect(co, PO(h))                 \* AxCausal
+            /\ PrintT("co: " \o ToString(co))
+            /\ \A o \in ops: AxCausalValue(co, o) \* AxCausalValue
+
+(*
+  Version 1: Following the definition of POPL2017
+*)
+CC1(h) == \* Check whether h \in History satisfies CC (Causal Consistency)
+    LET ops == Ops(h)
+    IN  \E co \in SUBSET (ops \X ops): \* Raw implementation: Cartesian Product
             /\ Respect(co, PO(h))                 \* AxCausal
             /\ IsStrictPartialOrder(co, ops)
             /\ PrintT("co: " \o ToString(co))
@@ -126,12 +148,23 @@ CC(h) == \* Check whether h \in History satisfies CC (Causal Consistency)
 *)
 
 (*
-  To generate possible ordering relations, not to enumerate and test them
+  Final Version: Enumerate all possible strict partial order subsets
 *)
 CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     LET ops == Ops(h)
-\*    IN  \E co \in SUBSET (ops \X ops): \* TODO: to generate (given a chain decomposition)
-    IN  \E co \inStrictPartialOrderSubset(ops): 
+    IN  \E co \in StrictPartialOrderSubset(ops): \* Optimized implementation
+            /\ Respect(co, PO(h))                 \* AxCausal
+            /\ PrintT("co: " \o ToString(co))
+            /\ \E arb \in {Seq2Rel(le) : le \in AllLinearExtensions(co, ops)}: \* AxArb
+                   /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
+                   /\ PrintT("arb: " \o ToString(arb))
+
+(*
+  Version 3: If exists, arbitration order is one of the linear exetentions of co on the set ops
+*)
+CCv3(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
+    LET ops == Ops(h)
+    IN  \E co \in SUBSET (ops \X ops): \* Raw implementation: Cartesian Product
             /\ Respect(co, PO(h))                 \* AxCausal
             /\ IsStrictPartialOrder(co, ops)
             /\ PrintT("co: " \o ToString(co))
@@ -139,11 +172,11 @@ CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
                    /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
                    /\ PrintT("arb: " \o ToString(arb))
 (*
-  Version 2: re-arrange clauses
+  Version 2: Re-arrange clauses
 *)
 CCv2(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     LET ops == Ops(h)
-    IN  \E co \in SUBSET (ops \X ops): \* FIXME: efficiency!!!
+    IN  \E co \in SUBSET (ops \X ops): 
             /\ Respect(co, PO(h)) \* AxCausal
             /\ IsStrictPartialOrder(co, ops)
             /\ PrintT("co: " \o ToString(co))
@@ -157,7 +190,7 @@ CCv2(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
 *)
 CCv1(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     LET ops == Ops(h)
-    IN  \E co \in SUBSET (ops \X ops): \* FIXME: efficiency!!!
+    IN  \E co \in SUBSET (ops \X ops): 
             /\ \E arb \in SUBSET (ops \X ops):
                 /\ PrintT("co: " \o ToString(co))
                 /\ PrintT("arb: " \o ToString(arb))
@@ -171,9 +204,18 @@ CCv1(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
   Specification of CM
 *)
 (*
-  Version 1: Following the definition of POPL2017
+  Final Version: Enumerate all possible strict partial order subsets
 *)
 CM(h) == \* Check whether h \in History satisfies CM (Causal Memory)
+    LET ops == Ops(h)
+    IN  \E co \in StrictPartialOrderSubset(ops):
+            /\ Respect(co, PO(h))          \* AxCausal
+            /\ \A o \in ops: AxCausalSeq(h, co, o) \* AxCausalSeq
+
+(*
+  Version 1: Following the definition of POPL2017
+*)            
+CM1(h) == \* Check whether h \in History satisfies CM (Causal Memory)
     LET ops == Ops(h)
     IN  \E co \in SUBSET (ops \X ops):
             /\ IsStrictPartialOrder(co, ops)
@@ -221,7 +263,7 @@ BaseHB(h, o) == \* CO | CasualPast(o)
 HBo(h, o) ==  \* Happened-before relation for o, denoted HBo \subseteq O \times O, to be the smallest relation such that
     LET po == PO(h)
     writes == WriteOps(h)
-      base == BaseHB(h, o)
+      base == BaseHB(h, o) \* CO | CasualPast(o) \subseteq HBo
       RECURSIVE HBoRE(_)
       HBoRE(hbo) == 
           LET update == {
@@ -237,7 +279,7 @@ HBo(h, o) ==  \* Happened-before relation for o, denoted HBo \subseteq O \times 
                hbo2 == update \cup hbo
           IN IF hbo2 = hbo 
                 THEN hbo
-                ELSE HBoRE(hbo2)
+                ELSE HBoRE(TC(hbo2))
     IN TC(HBoRE(base))
 
 HB(h) == \* All happened-before relation for o \in history h
@@ -271,7 +313,7 @@ WriteCORead(h) ==
 CyclicCF(h) ==
     Cyclic(CF(h) \cup CO(h))    
 
-WriteHBInitRead(h) == \* TODO:
+WriteHBInitRead(h) == 
     \E o \in Ops(h):
         LET hbo == HBo(h,o)
             popast == POPast(h,o)
@@ -281,7 +323,7 @@ WriteHBInitRead(h) == \* TODO:
                 IN \E w \in writes:
                     <<w, r>> \in hbo
 
-CyclicHB(h) == \* TODO:
+CyclicHB(h) == 
     \E o \in Ops(h):
         Cyclic(HBo(h, o))
 
