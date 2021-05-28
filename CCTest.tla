@@ -55,6 +55,13 @@ satCC  == {ha, hc, hd}
 satCM  == {ha, hd}
 satCCv == {hd}
 
+
+\* Small scale 
+\*all == {ha, hc}
+\*satCC  == {ha, hc}
+\*satCM  == {ha}
+\*satCCv == {}
+
 -------------------------------------------------
 WellFormedTest ==
     \A h \in all: WellFormed(h)
@@ -299,6 +306,6 @@ CausalAlgTest ==
 VARIABLES x \* keep it so that the model can be run
 =============================================================================
 \* Modification History
-\* Last modified Fri May 28 11:12:49 CST 2021 by Young
+\* Last modified Fri May 28 15:04:02 CST 2021 by Young
 \* Last modified Thu Apr 22 15:12:59 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin
