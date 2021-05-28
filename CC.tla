@@ -110,12 +110,16 @@ AxCausalArb(co, arb, o) ==
     IN  RWRegSemantics(seq, o)
 
 \* Directory to store files recording strict partial order relations 
-POFilePath == "D:\\Education\\Programs\\Python\\EnumeratePO\\POFile\\" 
-
+POFilePath == "E:\\Programs\\Python-Programs\\Event-Structure-Enumerator\\POFile\\"
 \* A set of all subset of the Cartesian Product of ops \X ops, 
 \* each of which represent a strict partial order(irreflexive and transitive)
 StrictPartialOrderSubset(ops) == 
     PartialOrderSubset(ops, POFilePath)
+    
+StrictPartialOrderSubsetNo(ops, i) == 
+    PartialOrderSubsetNoPart(ops, POFilePath, i)
+
+Parts == {0, 1, 2, 3, 4, 5, 6}
 -------------------------------------------------
 
 
@@ -132,6 +136,15 @@ CC(h) == \* Check whether h \in History satisfies CC (Causal Consistency)
             /\ PrintT("co: " \o ToString(co))
             /\ \A o \in ops: AxCausalValue(co, o) \* AxCausalValue
 
+BigCC(h) == 
+    LET ops == Ops(h)
+     IN /\ Cardinality(Ops(h)) = 7
+        /\ \E part \in Parts:
+            \E co \in StrictPartialOrderSubsetNo(ops, part): \* Optimized implementation
+                /\ Respect(co, PO(h))                 \* AxCausal
+                /\ PrintT("co: " \o ToString(co))
+                /\ \A o \in ops: AxCausalValue(co, o) \* AxCausalValue    
+        
 (*
   Version 1: Following the definition of POPL2017
 *)
@@ -159,6 +172,17 @@ CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
                    /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
                    /\ PrintT("arb: " \o ToString(arb))
 
+
+BigCCv(h) == 
+    LET ops == Ops(h)
+     IN /\ Cardinality(Ops(h)) = 7
+        /\ \E part \in Parts:
+            \E co \in StrictPartialOrderSubsetNo(ops, part): \* Optimized implementation
+                /\ Respect(co, PO(h))                 \* AxCausal
+                /\ PrintT("co: " \o ToString(co))
+                /\ \E arb \in {Seq2Rel(le) : le \in AllLinearExtensions(co, ops)}: \* AxArb
+                       /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
+                       /\ PrintT("arb: " \o ToString(arb))
 (*
   Version 3: If exists, arbitration order is one of the linear exetentions of co on the set ops
 *)
@@ -209,6 +233,14 @@ CCv1(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
 CM(h) == \* Check whether h \in History satisfies CM (Causal Memory)
     LET ops == Ops(h)
     IN  \E co \in StrictPartialOrderSubset(ops):
+            /\ Respect(co, PO(h))          \* AxCausal
+            /\ \A o \in ops: AxCausalSeq(h, co, o) \* AxCausalSeq
+
+BigCM(h) == 
+    LET ops == Ops(h)
+     IN /\ Cardinality(Ops(h)) = 7
+        /\ \E part \in Parts:
+            \E co \in StrictPartialOrderSubsetNo(ops, part): \* Optimized implementation
             /\ Respect(co, PO(h))          \* AxCausal
             /\ \A o \in ops: AxCausalSeq(h, co, o) \* AxCausalSeq
 

@@ -257,6 +257,11 @@ CausalDefTest ==
     /\ CCDefTest
     /\ CCvDefTest
     /\ CMDefTest
+
+BigCausalDefTest ==
+    /\ BigCC(hb)
+    /\ BigCCv(hb)
+    /\ ~BigCM(hb)
 -------------------------------------------------
 (*
   Test of the checking algorithms for causal consistency
@@ -299,6 +304,6 @@ CausalAlgTest ==
 VARIABLES x \* keep it so that the model can be run
 =============================================================================
 \* Modification History
-\* Last modified Fri May 28 11:12:49 CST 2021 by Young
+\* Last modified Fri May 28 16:02:20 CST 2021 by Young
 \* Last modified Thu Apr 22 15:12:59 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin
