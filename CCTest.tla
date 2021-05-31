@@ -2,7 +2,7 @@
 (*
   Test of CC Module
 *)
-EXTENDS CC
+EXTENDS CC, CCAlg
 -------------------------------------------------
 (*
   Test case: The following histories are from Figure 2 of the POPL'2017 paper.
