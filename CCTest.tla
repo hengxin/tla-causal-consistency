@@ -2,7 +2,7 @@
 (*
   Test of CC Module
 *)
-EXTENDS CC, EdnHistoryReaderExt
+EXTENDS CC, Alg, EdnHistoryReaderExt
 -------------------------------------------------
 (*
   Test case: The following histories are from Figure 2 of the POPL'2017 paper.
@@ -54,6 +54,13 @@ all == {ha, hc, hd, he}
 satCC  == {ha, hc, hd}
 satCM  == {ha, hd}
 satCCv == {hd}
+
+
+\* Small scale 
+\*all == {ha, hc}
+\*satCC  == {ha, hc}
+\*satCM  == {ha}
+\*satCCv == {}
 
 -------------------------------------------------
 WellFormedTest ==
