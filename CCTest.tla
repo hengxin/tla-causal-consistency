@@ -317,14 +317,17 @@ DefinitionTest ==
 (*
   Test the trace from Jepsen mongo
 *)
+EdnFile == "C:\\Users\\Young\\Desktop\\selected-data\\selected-data\\local_failure\\mongo-causal-register-wc-_w1-rc-_local-ti-160-sd-2-cry-10-wp-0.25-rp-0.75-ops-100-node-failure_20210120\\history100_0.edn"
 MongoTest == 
-    LET h == EdnHistoryReader("E:\\Programs\\Causal-Memory-Checking-Java\\src\\main\\resources\\small_history.edn")
-    IN /\ CCAlg(h)
+    LET h == EdnHistoryReaderExt(EdnFile)
+    IN /\ PrintT(h)
+       /\ CCAlg(h)
+       /\ TRUE
 
 -------------------------------------------------
 VARIABLES x \* keep it so that the model can be run
 =============================================================================
 \* Modification History
-\* Last modified Sat Aug 07 02:19:04 CST 2021 by Young
+\* Last modified Sat Aug 07 02:41:15 CST 2021 by Young
 \* Last modified Thu Apr 22 15:12:59 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin
