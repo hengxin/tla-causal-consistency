@@ -2,7 +2,7 @@
 (*
   Test of CC Module
 *)
-EXTENDS CC
+EXTENDS CC, EdnHistoryReaderExt
 -------------------------------------------------
 (*
   Test case: The following histories are from Figure 2 of the POPL'2017 paper.
@@ -67,14 +67,14 @@ EasyPO(s) ==
     LET rels == SUBSET (s \X s)
     IN {po \in rels : IsStrictPartialOrder(po, s)}
 
-EnumeratePOTest ==
-\*    LET pos == partialOrderSubset({0, 1})
-    LET ops == {W("x", 2, 0), R("x", 1, 1), R("x", 1, 2)}
-        pos1 == EasyPO(ops)
-        pos2 == StrictPartialOrderSubset(ops)
-    IN /\ pos1 = pos2
-       /\ \A po \in pos1:
-            PrintT("po: " \o ToString(po))
+\*EnumeratePOTest ==
+\*\*    LET pos == partialOrderSubset({0, 1})
+\*    LET ops == {W("x", 2, 0), R("x", 1, 1), R("x", 1, 2)}
+\*        pos1 == EasyPO(ops)
+\*        pos2 == StrictPartialOrderSubset(ops)
+\*    IN /\ pos1 = pos2
+\*       /\ \A po \in pos1:
+\*            PrintT("po: " \o ToString(po))
 -------------------------------------------------
 (*
   Test of utility operators for operations
@@ -300,10 +300,24 @@ CausalAlgTest ==
     /\ CCvAlgTest
     /\ CMAlgTest
 
+SpeedCCvTest ==
+    /\ CCv2(hd)
+    
+DefinitionTest ==
+    /\CCv3(hb)
+
+
+(*
+  Test the trace from Jepsen mongo
+*)
+MongoTest == 
+    LET h == EdnHistoryReader("E:\\Programs\\Causal-Memory-Checking-Java\\src\\main\\resources\\small_history.edn")
+    IN /\ CCAlg(h)
+
 -------------------------------------------------
 VARIABLES x \* keep it so that the model can be run
 =============================================================================
 \* Modification History
-\* Last modified Fri May 28 16:02:20 CST 2021 by Young
+\* Last modified Sat Aug 07 01:48:11 CST 2021 by Young
 \* Last modified Thu Apr 22 15:12:59 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin

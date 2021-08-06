@@ -8,7 +8,7 @@
 EXTENDS Naturals, Sequences, FiniteSets, Functions, FiniteSetsExt,
         RelationUtils, TLC, PartialOrderExt
 
-Key == Range("abcdefghijklmnopqrstuvwxyz") \* We assume single-character keys.
+Key == Nat \* We assume single-character keys.
 Val == Nat      \* We assume values from Nat.
 InitVal == 0    \* We follow the convention in POPL'2017.
 Oid == Nat      \* We assume operation identifiers from Nat.
@@ -133,7 +133,7 @@ CC(h) == \* Check whether h \in History satisfies CC (Causal Consistency)
     LET ops == Ops(h)
     IN  \E co \in StrictPartialOrderSubset(ops): \* Optimized implementation
             /\ Respect(co, PO(h))                 \* AxCausal
-            /\ PrintT("co: " \o ToString(co))
+\*            /\ PrintT("co: " \o ToString(co))
             /\ \A o \in ops: AxCausalValue(co, o) \* AxCausalValue
 
 BigCC(h) == 
@@ -167,10 +167,10 @@ CCv(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     LET ops == Ops(h)
     IN  \E co \in StrictPartialOrderSubset(ops): \* Optimized implementation
             /\ Respect(co, PO(h))                 \* AxCausal
-            /\ PrintT("co: " \o ToString(co))
+\*            /\ PrintT("co: " \o ToString(co))
             /\ \E arb \in {Seq2Rel(le) : le \in AllLinearExtensions(co, ops)}: \* AxArb
                    /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
-                   /\ PrintT("arb: " \o ToString(arb))
+\*                   /\ PrintT("arb: " \o ToString(arb))
 
 
 BigCCv(h) == 
@@ -191,7 +191,7 @@ CCv3(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     IN  \E co \in SUBSET (ops \X ops): \* Raw implementation: Cartesian Product
             /\ Respect(co, PO(h))                 \* AxCausal
             /\ IsStrictPartialOrder(co, ops)
-            /\ PrintT("co: " \o ToString(co))
+\*            /\ PrintT("co: " \o ToString(co))
             /\ \E arb \in {Seq2Rel(le) : le \in AllLinearExtensions(co, ops)}: \* AxArb
                    /\ \A o \in ops: AxCausalArb(co, arb, o) \* AxCausalArb
                    /\ PrintT("arb: " \o ToString(arb))
@@ -203,7 +203,7 @@ CCv2(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     IN  \E co \in SUBSET (ops \X ops): 
             /\ Respect(co, PO(h)) \* AxCausal
             /\ IsStrictPartialOrder(co, ops)
-            /\ PrintT("co: " \o ToString(co))
+\*            /\ PrintT("co: " \o ToString(co))
             /\ \E arb \in SUBSET (ops \X ops):  \* to generate; not to test
                    /\ Respect(arb, co)                      \* AxArb
                    /\ IsStrictTotalOrder(arb, ops)
@@ -216,8 +216,8 @@ CCv1(h) == \* Check whether h \in History satisfies CCv (Causal Convergence)
     LET ops == Ops(h)
     IN  \E co \in SUBSET (ops \X ops): 
             /\ \E arb \in SUBSET (ops \X ops):
-                /\ PrintT("co: " \o ToString(co))
-                /\ PrintT("arb: " \o ToString(arb))
+\*                /\ PrintT("co: " \o ToString(co))
+\*                /\ PrintT("arb: " \o ToString(arb))
                 /\ IsStrictPartialOrder(co, ops)
                 /\ IsStrictTotalOrder(arb, ops)
                 /\ Respect(co, PO(h))          \* AxCausal
