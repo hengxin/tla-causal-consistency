@@ -2,7 +2,7 @@
 (*
   Test of CC Module
 *)
-EXTENDS CC, Alg, EdnHistoryReaderExt
+EXTENDS CC, CCAlg, EdnHistoryReaderExt
 -------------------------------------------------
 (*
   Test case: The following histories are from Figure 2 of the POPL'2017 paper.
@@ -325,6 +325,6 @@ MongoTest ==
 VARIABLES x \* keep it so that the model can be run
 =============================================================================
 \* Modification History
-\* Last modified Sat Aug 07 01:48:11 CST 2021 by Young
+\* Last modified Sat Aug 07 02:19:04 CST 2021 by Young
 \* Last modified Thu Apr 22 15:12:59 CST 2021 by hengxin
 \* Created Fri Apr 09 11:53:33 CST 2021 by hengxin
